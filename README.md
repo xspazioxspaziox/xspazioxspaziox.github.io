@@ -1,3 +1,3 @@
 # xspazioxspaziox.github.io
 
-xspazioxspaziox.github.io/contact
+<a href= "https://xspazioxspaziox.github.io/contact">contact</a>
