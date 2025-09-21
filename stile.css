@@ -20,7 +20,7 @@ body {
 
 .flyer-container img {
   max-width: 100%;
-  height: auto;
+  height: 100;
   border: 1px solid #000; /* simula bordo del flyer */
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -44,15 +44,4 @@ body {
 header, footer {
   background-color: #f4f4f4;
   padding: 1rem;
-}
-
-.marquee {
-  display: inline-block;
-  white-space: nowrap;
-  animation: scroll 10s linear infinite;
-}
-
-@keyframes scroll {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
 }
