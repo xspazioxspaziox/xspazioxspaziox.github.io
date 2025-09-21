@@ -10,7 +10,7 @@ async function includeHTML(id, file) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  includeHTML("head-content", "../head.html");
-  includeHTML("header", "../header.html");
-  includeHTML("footer", "../footer.html");
+  includeHTML("head-content", "/head.html");
+  includeHTML("header", "/header.html");
+  includeHTML("footer", "/footer.html");
 });
