@@ -2,7 +2,6 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Pioggia di Emoji</title>
   <style>
     body {
       margin: 0;
@@ -22,19 +21,11 @@
         opacity: 0;
       }
     }
-     #scappa {
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      position: absolute;
-      transition: all 0.2s ease;
-    }
+     
   </style>
 </head>
 <body>
-  <h1 style="text-align:center; padding:20px;">🎉 Benvenuto nella pioggia di emoji! 🎉</h1>
-
-  <script>
+    <script>
     function creaEmoji() {
       const emojiSet = ["🎉", "✨", "🌸", "🔥", "🍀", "🎈"];
       const emoji = document.createElement("div");
@@ -52,24 +43,10 @@
     }
 
     // Genera una nuova emoji ogni 300ms
-    setInterval(creaEmoji, 300);
+    setInterval(creaEmoji, 600);
   </script>
   <br>
    <h1 style="text-align:center;">Prova a cliccare il bottone!</h1>
   <button id="scappa">Cliccami!</button>
-
-  <script>
-    const bottone = document.getElementById("scappa");
-    const body = document.body;
-
-    bottone.addEventListener("mouseenter", () => {
-      const maxX = window.innerWidth - bottone.offsetWidth;
-      const maxY = window.innerHeight - bottone.offsetHeight;
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
-      bottone.style.left = randomX + "px";
-      bottone.style.top = randomY + "px";
-    });
-  </script>
 </body>
 </html>
