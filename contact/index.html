@@ -1,11 +1,51 @@
-blabla
-<script>
-document.getElementById("titolo").innerText = "Nuovo titolo dinamico!";
-</script>
-<br>
-<script>
-const email = document.getElementById("email").value;
-if (!email.includes("@")) {
-  alert("Inserisci un'email valida!");
-}
-</script>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Pioggia di Emoji</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+    }
+    .emoji {
+      position: absolute;
+      font-size: 2rem;
+      animation: caduta linear forwards;
+    }
+    @keyframes caduta {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center; padding:20px;">🎉 Benvenuto nella pioggia di emoji! 🎉</h1>
+
+  <script>
+    function creaEmoji() {
+      const emojiSet = ["🎉", "✨", "🌸", "🔥", "🍀", "🎈"];
+      const emoji = document.createElement("div");
+      emoji.className = "emoji";
+      emoji.innerText = emojiSet[Math.floor(Math.random() * emojiSet.length)];
+      emoji.style.left = Math.random() * window.innerWidth + "px";
+      emoji.style.top = "-50px";
+      emoji.style.animationDuration = 2 + Math.random() * 3 + "s";
+      document.body.appendChild(emoji);
+
+      // Rimuove l'emoji quando l'animazione è finita
+      emoji.addEventListener("animationend", () => {
+        emoji.remove();
+      });
+    }
+
+    // Genera una nuova emoji ogni 300ms
+    setInterval(creaEmoji, 300);
+  </script>
+</body>
+</html>
