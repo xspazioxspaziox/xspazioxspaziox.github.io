@@ -1,3 +1,13 @@
+/* Nasconde il body finché il CSS non è completamente applicato */
+body {
+  visibility: hidden;
+}
+
+body.ready {
+  visibility: visible;
+  transition: visibility 0s linear 0s;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
 
