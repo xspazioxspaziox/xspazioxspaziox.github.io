@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="preload" href="../../assets/css/style.css?v=30" as="style">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=30">
-
+  <!-- stesso CSS/JS della pagina originale -->
+  <link rel="preload" href="../../assets/css/style.css?v=25" as="style">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=25">
   <script src="../../assets/js/include.js" defer></script>
 
   <title>Spazio X — Yoga Info 31.08</title>
@@ -20,20 +20,30 @@
 
   <main class="flyer-container">
     <div class="flyer-block">
-
       <!-- Riga superiore -->
       <div class="flyer-header">
         <div class="flyer-date">31/08</div>
-        <div class="flyer-time">19:00</div>
+        <div class="flyer-time">21:00</div>
       </div>
 
-      <!-- Box di testo scrollabile con larghezza invariata -->
-      <div class="flyer-image flyer-textbox">
-         <div class="flyer-text-frame">
-        <div class="flyer-text-content">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat velit in lectus condimentum,
-            eget tincidunt ex malesuada. Curabitur vitae dignissim nulla. Cras efficitur, magna in dignissim tempor,
-            libero felis aliquam neque, in feugiat nisi sapien id magna.
-          </p>
-          <p>
+      <!-- 👇 Cornice identica, ma con testo scrollabile -->
+      <div class="flyer-image">
+        <div class="flyer-frame">
+          <div class="flyer-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat velit in lectus condimentum, eget tincidunt ex malesuada. Curabitur vitae dignissim nulla. Cras efficitur, magna in dignissim tempor, libero felis aliquam neque, in feugiat nisi sapien id magna.</p>
+            <p>Vestibulum sit amet convallis libero. Aliquam erat volutpat. Suspendisse porta dignissim est, in porttitor nunc viverra nec. Integer vel nulla justo. Sed luctus, velit sed tristique rhoncus, urna velit suscipit tortor, vel tincidunt orci est sit amet lacus.</p>
+            <p>Nam ac risus sapien. Vivamus a magna eget mi consequat aliquam in sit amet nulla. Aenean interdum at augue sit amet laoreet. Duis fermentum consequat magna, in sodales sem pellentesque et. Donec in malesuada augue.</p>
+            <p>Ut id sapien ac lorem pulvinar luctus. Curabitur eu augue ut sapien gravida elementum. In hac habitasse platea dictumst. Morbi tincidunt sapien euismod, pretium nunc et, pulvinar purus.</p>
+            <p>…testo di esempio aggiuntivo per forzare lo scroll…</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="flyer-info">ingresso libero</div>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+</body>
+</html>
