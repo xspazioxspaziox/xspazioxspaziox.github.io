@@ -99,7 +99,7 @@ body {
  /* Larghezza identica per immagine o testo */
 .flyer-image {
   /* era: width:100%; max-width:400px; */
-  width: clamp(280px, 95%, 400px);  /* 👈 identico su tutte le pagine */
+  width: clamp(280px, 95%, 300px);  /* 👈 identico su tutte le pagine */
   margin: 0 auto;
   box-sizing: border-box;           /* bordi inclusi nel calcolo */
 }
