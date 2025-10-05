@@ -86,7 +86,7 @@ body {
   background-color: #fff;
   white-space: nowrap;   /* una riga anche su mobile */
   padding: 10px 40px;
-  margin-bottom: 80px;   /* ← distanza reale dal fondo */
+  margin-bottom: 20px;   /* ← distanza reale dal fondo */
 }
 @media (max-width: 480px) {
   .site-footer {
