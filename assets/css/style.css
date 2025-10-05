@@ -5,10 +5,10 @@ body {
   font-family: 'Source Code Pro', monospace;
   color: #333;
   background: #fff;
-  height: 100vh;             /* Tutta la pagina visibile */
+  min-height: 100vh;       /* flessibile, non blocca lo scroll */
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;       /* consente di mostrare il footer sempre */
 }
 
 /* Header */
@@ -18,11 +18,13 @@ body {
 }
 
 /* Contenitore principale */
+
 .flyer-container {
-  flex: 1;                   /* Occupa lo spazio centrale */
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 30px; /* margine per non far toccare il footer */
 }
 
 /* Box flyer */
