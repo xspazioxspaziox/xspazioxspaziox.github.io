@@ -1,40 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
+
+/* Layout di pagina con CSS Grid: header | main | footer */
 body {
   margin: 0;
   font-family: 'Source Code Pro', monospace;
   color: #333;
   background: #fff;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header, contenuto, footer */
+  overflow: hidden; /* niente scroll */
 }
 
 /* Header */
 .site-header {
-  padding: 20px 40px; /* leggermente più ampio: base per allineare il footer */
+  padding: 20px 40px;
   text-align: left;
-  flex-shrink: 0;
 }
 
-/* Contenitore principale */
+/* Contenitore principale centrato */
 .flyer-container {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  padding-bottom: 72px;                        /* riserva spazio per il footer */
-  box-sizing: border-box;
+  justify-content: center; /* centra davvero */
+  min-height: 0; /* evita “spinte” verticali */
+  position: relative; /* per il link Flying object */
 }
-@media (max-width: 480px) {
-  .flyer-container {
-    padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
-  }
-}
-
 
 /* --- ELEMENTI ALLINEATI ALL’IMMAGINE --- */
 
@@ -85,23 +78,24 @@ body {
   color: #444;
 }
 
-/* Footer (in flusso, una sola riga) */
+
+/* Footer: più alto dal bordo e su una sola riga */
 .site-footer {
   text-align: left;
-  padding: 10px 40px;      /* allineato all’header */
   font-size: 14px;
   background-color: #fff;
-  flex-shrink: 0;
-  white-space: nowrap;     /* tutto su una riga */
-  margin-top: 24px;        /* distanza dal contenuto */
+  white-space: nowrap;   /* una riga anche su mobile */
+  padding: 10px 40px;
+  margin-bottom: 80px;   /* ← distanza reale dal fondo */
 }
 @media (max-width: 480px) {
   .site-footer {
     padding: 15px 25px;
     font-size: 13px;
-    margin-top: 28px;      /* un filo più alto su mobile */
+    margin-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
   }
 }
+
 
 
 /* --- ANIMAZIONE OGGETTO VOLANTE (più lenta e più piccola) --- */
