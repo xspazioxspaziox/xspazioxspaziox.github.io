@@ -7,7 +7,7 @@
   --flyer-offset: -6svh;
   --flyer-box-h: 48svh;
 }
-@media (max-width: 480px) {
+@media (max-width: 280px) {
   :root { --flyer-offset: -4svh; --flyer-box-h: 42svh; }
 }
 
