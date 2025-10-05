@@ -77,20 +77,28 @@ body {
 }
 
 
-/* Link "Flying object" */
+/* Posizioniamo l’anchor rispetto al contenuto principale */
+.flyer-container { position: relative; }  /* aggiungi questa riga */
+
+/* Link "Flying object" visibile e dentro pagina */
 .flying-object {
   position: absolute;
-  right: -70px;
-  top: 40px;
+  right: 10px;      /* dentro il viewport */
+  top: 20%;         /* regola se vuoi più su/giù */
   transform: rotate(-20deg);
   font-size: 0.9em;
   color: #333;
   text-decoration: none;
   transition: opacity 0.2s;
 }
+.flying-object:hover { opacity: 0.6; }
 
-.flying-object:hover {
-  opacity: 0.6;
+@media (max-width: 480px) {
+  .flying-object {
+    right: 8px;
+    top: 16%;
+    font-size: 0.8em;
+  }
 }
 
 /* Footer */
