@@ -79,7 +79,7 @@ body {
 /* Footer */
 .site-footer {
   position: absolute;
-  bottom: 70px;            /* ✅ più lontano dal fondo */
+  bottom: 60px;            /* ✅ più lontano dal fondo */
   left: 40px;              /* allineato all’header */
   text-align: left;
   font-size: 14px;
