@@ -42,7 +42,7 @@ body {
 .flyer-image,
 .flyer-info {
   width: 100%;
-  max-width: 400px;   /* ← identico alla pagina con img */
+  max-width: 200px;   /* ← identico alla pagina con img */
   margin: 0 auto;
   box-sizing: border-box;
 }
