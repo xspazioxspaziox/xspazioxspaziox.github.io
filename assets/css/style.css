@@ -88,4 +88,21 @@ body {
   .flyer-info {
     font-size: 0.8em;
   }
+
+  /* Link "Flying object" */
+.flying-object {
+  position: absolute;
+  right: -80px;
+  top: 50px;
+  transform: rotate(-20deg);
+  font-size: 0.9em;
+  color: #333;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.flying-object:hover {
+  opacity: 0.6;
+}
+
 }
