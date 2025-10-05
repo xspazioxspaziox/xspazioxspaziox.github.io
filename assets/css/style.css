@@ -8,7 +8,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* evita scroll */
+  overflow: hidden; /* nessuno scroll */
 }
 
 /* Header */
@@ -22,101 +22,26 @@ body {
 .flyer-container {
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-/* Box flyer */
-.flyer-box {
-  position: relative;
-  width: 90%;
-  max-width: 400px;
-  height: 80vh;                /* occuperà il 80% dell’altezza schermo */
-  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid #ccc;
-  background-color: #fafafa;
-  box-sizing: border-box;
-  padding: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Riga superiore: data e ora */
 .flyer-header {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+  width: 90%;
+  max-width: 400px;
   font-size: 0.9em;
   color: #444;
+  margin-bottom: 8px;
 }
 
 /* Immagine flyer */
 .flyer-image {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-  margin: 8px 0;
-}
-
-.flyer-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* mantiene proporzioni, evita ritagli */
-  max-height: 65vh;    /* limite per stare nella pagina */
-}
-
-/* Info */
-.flyer-info {
-  text-align: right;
-  font-size: 0.9em;
-  border-top: 1px solid #ccc;
-  padding-top: 8px;
-  margin-top: 8px;
-}
-
-/* Link "Flying object" */
-.flying-object {
-  position: absolute;
-  right: -70px;
-  top: 40px;
-  transform: rotate(-20deg);
-  font-size: 0.9em;
-  color: #333;
-  text-decoration: none;
-  transition: opacity 0.2s;
-}
-
-.flying-object:hover {
-  opacity: 0.6;
-}
-
-/* Footer */
-.site-footer {
-  text-align: left;
-  padding: 10px 30px;
-  font-size: 14px;
-  background-color: #fff;
-  flex-shrink: 0;
-}
-
-/* 📱 Responsive */
-@media (max-width: 480px) {
-  .flyer-box {
-    max-width: 90%;
-    height: 85vh;          /* leggermente più alto su mobile */
-  }
-
-  .flyer-info {
-    font-size: 0.8em;
-  }
-
-  .flying-object {
-    right: -50px;
-    top: 30px;
-    font-size: 0.8em;
-  }
-}
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid #000; /* cornice nera sottile */
+  overf
