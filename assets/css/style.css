@@ -1,47 +1,25 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <script src="../../assets/js/include.js" defer></script>
+</head>
 
-body {
-  margin: 0;
-  font-family: 'Source Code Pro', monospace;
-  color: #333;
-  background: #fff;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* nessuno scroll */
-}
+<body>
+  <div id="header"></div>
 
-/* Header */
-.site-header {
-  padding: 20px 30px;
-  text-align: left;
-  flex-shrink: 0;
-}
+  <main class="flyer-container">
+    <div class="flyer-header">
+      <div class="flyer-date">data: 31/08</div>
+      <div class="flyer-time">ora: 21:00</div>
+    </div>
 
-/* Contenitore principale */
-.flyer-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+    <div class="flyer-image">
+      <img src="../img/flyer.jpg" alt="flyer evento 31 agosto">
+    </div>
 
-/* Riga superiore: data e ora */
-.flyer-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  width: 90%;
-  max-width: 400px;
-  font-size: 0.9em;
-  color: #444;
-  margin-bottom: 8px;
-}
+    <div class="flyer-info">info: ingresso libero</div>
+  </main>
 
-/* Immagine flyer */
-.flyer-image {
-  width: 90%;
-  max-width: 400px;
-  border: 1px solid #000; /* cornice nera sottile */
-  overf
+  <div id="footer"></div>
+</body>
+</html>
