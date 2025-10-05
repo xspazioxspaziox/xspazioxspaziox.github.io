@@ -34,32 +34,34 @@
     return html;
   }
 
-  // 3) Inietta HEAD (meta + css + favicon)
-  fetch(base + '/partials/head.html')
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .then(function (html) {
-      var rewritten = rewriteAssetURLs(html);
-      var t = document.createElement('template');
-      t.innerHTML = rewritten.trim();
-      document.head.appendChild(t.content);
-    })
-    .catch(function () { /* evita errori rumorosi in console durante lo sviluppo */ });
+// HEAD (già ok)
+fetch(base + '/partials/head.html')
+  .then(r => r.ok ? r.text() : Promise.reject())
+  .then(html => {
+    const rewritten = rewriteAssetURLs(html);
+    const t = document.createElement('template');
+    t.innerHTML = rewritten.trim();
+    document.head.appendChild(t.content);
+  })
+  .catch(() => {});
 
-  // 4) Inietta HEADER
-  fetch(base + '/partials/header.html')
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .then(function (html) {
-      var el = document.getElementById('header');
-      if (el) el.innerHTML = html;
-    })
-    .catch(function () {});
+// HEADER  ✅ ora riscriviamo gli URL anche qui
+fetch(base + '/partials/header.html')
+  .then(r => r.ok ? r.text() : Promise.reject())
+  .then(html => {
+    const rewritten = rewriteAssetURLs(html);
+    const el = document.getElementById('header');
+    if (el) el.innerHTML = rewritten;
+  })
+  .catch(() => {});
 
-  // 5) Inietta FOOTER
-  fetch(base + '/partials/footer.html')
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .then(function (html) {
-      var el = document.getElementById('footer');
-      if (el) el.innerHTML = html;
-    })
-    .catch(function () {});
+// FOOTER  ✅ idem
+fetch(base + '/partials/footer.html')
+  .then(r => r.ok ? r.text() : Promise.reject())
+  .then(html => {
+    const rewritten = rewriteAssetURLs(html);
+    const el = document.getElementById('footer');
+    if (el) el.innerHTML = rewritten;
+  })
+  .catch(() => {});
 })();
