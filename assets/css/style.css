@@ -6,13 +6,14 @@
 :root {
   --flyer-offset: -6svh;   /* alza il blocco centrale su desktop */
   --flyer-box-h: 48svh;    /* altezza cornice (immagine e testo identici) */
-  --flyer-w: clamp(280px, 90vw, 400px); /* larghezza uniforme cornice e testi */
+  --flyer-w: 400px;        /* larghezza fissa come le pagine con immagine */
 }
 
 @media (max-width: 480px) {
   :root {
     --flyer-offset: -4svh; /* alza meno su mobile */
     --flyer-box-h: 42svh;  /* altezza più bassa su mobile */
+    --flyer-w: 95%;        /* uguale comportamento del responsive immagini */
   }
 }
 
@@ -63,7 +64,7 @@ body {
 }
 
 /* ===============================
-   BLOCCO FLYER
+   BLOCCO FLYER (centrato)
 =============================== */
 .flyer-container {
   display: flex;
@@ -71,8 +72,6 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  min-height: 0;
-  padding-bottom: 0;
   transform: translateY(var(--flyer-offset));
 }
 
@@ -80,31 +79,28 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: auto;
 }
 
 /* Riga superiore: data e ora */
 .flyer-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  width: var(--flyer-w);
   font-size: 0.9em;
   color: #444;
-  width: var(--flyer-w);
   margin-bottom: 6px;
   box-sizing: border-box;
 }
 
 /* ===============================
-   CORNICE IMMAGINE o TESTO
+   CORNICE (IMMAGINE o TESTO)
 =============================== */
 .flyer-image {
   width: var(--flyer-w);
   box-sizing: border-box;
-  margin: 0 auto;
 }
 
-/* Immagine flyer */
+/* Cornice immagine */
 .flyer-image img {
   display: block;
   width: 100%;
@@ -126,7 +122,7 @@ body {
   overflow: hidden;
 }
 
-/* Testo scrollabile interno */
+/* Testo scrollabile dentro la cornice */
 .flyer-scroll {
   height: calc(var(--flyer-box-h) - 2px - 20px);
   overflow-y: auto;
@@ -149,9 +145,7 @@ body {
   background: #555;
 }
 
-/* ===============================
-   INFO SOTTO CORNICE
-=============================== */
+/* Riga inferiore (info) */
 .flyer-info {
   width: var(--flyer-w);
   text-align: right;
