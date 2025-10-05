@@ -228,26 +228,27 @@ body {
   }
 }
 
-/* ------------------------------
-   BOX TESTO SCROLLABILE (stessa cornice immagine)
---------------------------------*/
-.flyer-textbox {
+/* --- BOX TESTO SCROLLABILE con cornice identica all'immagine --- */
+.flyer-textbox{
   width: 100%;
-  max-width: 400px;          /* ✅ stessa larghezza del flyer-image */
-  height: auto;
-  border: 1px solid #000;    /* ✅ stessa cornice nera sottile */
-  box-sizing: border-box;
-  background-color: #fafafa;
-  max-height: 48svh;         /* ✅ stessa altezza massima del flyer */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow: hidden;
+  max-width: 400px;              /* = .flyer-image */
 }
 
-.flyer-text-content {
-  flex: 1;
+/* Questo elemento replica l'IMG: stessa cornice e dimensioni */
+.flyer-text-frame{
+  display: block;
   width: 100%;
+  height: auto;
+  max-height: 48svh;             /* = .flyer-image img */
+  border: 1px solid #000;        /* = cornice nera sottile */
+  box-sizing: border-box;        /* = come l'img */
+  background: #fafafa;
+  overflow: hidden;              /* il contenuto scorrerà dentro */
+}
+
+/* Contenuto scrollabile dentro la “cornice” */
+.flyer-text-content{
+  height: 100%;
   overflow-y: auto;
   padding: 10px 12px;
   text-align: left;
@@ -258,25 +259,14 @@ body {
   scrollbar-color: #888 #f0f0f0;
 }
 
-/* Scorrimento elegante per browser WebKit */
-.flyer-text-content::-webkit-scrollbar {
-  width: 6px;
-}
-.flyer-text-content::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 3px;
-}
-.flyer-text-content::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
+/* WebKit scrollbar */
+.flyer-text-content::-webkit-scrollbar{ width:6px; }
+.flyer-text-content::-webkit-scrollbar-thumb{ background:#888; border-radius:3px; }
+.flyer-text-content::-webkit-scrollbar-thumb:hover{ background:#555; }
 
-/* ✅ Mobile: proporzioni invarianti */
-@media (max-width: 480px) {
-  .flyer-textbox {
-    max-width: 95%;
-    max-height: 42svh;
-  }
-  .flyer-text-content {
-    font-size: 0.85em;
-  }
+/* Mobile: stessa logica delle immagini */
+@media (max-width:480px){
+  .flyer-textbox{ max-width:95%; }
+  .flyer-text-frame{ max-height:42svh; }   /* = .flyer-image img su mobile */
+  .flyer-text-content{ font-size:0.85em; }
 }
