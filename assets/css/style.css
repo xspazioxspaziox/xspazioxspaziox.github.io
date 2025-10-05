@@ -4,7 +4,7 @@
    VARIABILI GLOBALI
 =============================== */
 :root {
-  --flyer-offset: -6svh;  /* alza il blocco centrale su desktop */
+  --flyer-offset: -3svh;  /* alza il blocco centrale su desktop */
 }
 
 @media (max-width: 480px) {
