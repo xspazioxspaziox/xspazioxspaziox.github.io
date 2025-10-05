@@ -1,67 +1,40 @@
-// include.js robusto per root e sottocartelle (GitHub Pages incluso)
+// include.js – inietta header e footer usando #header e #footer.
+// Riscrive href/src che iniziano con ./assets/ o /assets/ per funzionare
+// sia dalla root che dalle sottocartelle.
+
 (function () {
-  // 1) Trova in modo affidabile IL tag <script> di include.js
-  var scriptEl = document.currentScript;
-  if (!scriptEl) {
-    var scripts = document.getElementsByTagName('script');
-    for (var i = scripts.length - 1; i >= 0; i--) {
-      var s = scripts[i];
-      var src = s.getAttribute('src') || '';
-      if (/(^|\/)include\.js(\?|$)/.test(src)) { scriptEl = s; break; }
+  // Trova il base path del sito (es. '' oppure '/xspazioxspaziox.github.io')
+  function getBase() {
+    var s = document.currentScript;
+    if (!s) {
+      var list = document.getElementsByTagName('script');
+      s = list[list.length - 1];
     }
-  }
-  if (!scriptEl) return;
-
-  // 2) Risolvi l'URL assoluto dello script per ricavare la "base" del sito
-  //    Esempi:
-  //    /repo/assets/js/include.js  -> base "/repo"
-  //    /assets/js/include.js       -> base ""
-  var absolute = new URL(scriptEl.getAttribute('src'), window.location.href);
-  var pathname = absolute.pathname; // es: "/repo/assets/js/include.js"
-  var idx = pathname.indexOf('/assets/');
-  var base = idx >= 0 ? pathname.slice(0, idx) : '';
-
-  // Consentire override opzionale via data-root su <script> (solo se serve)
-  var override = scriptEl.getAttribute('data-root');
-  if (override) base = override;
-
-  // Helper: riscrive href/src relativi agli asset dentro head.html
-  function rewriteAssetURLs(html) {
-    // Cambia "./assets/..." o "assets/..." in "<base>/assets/..."
-    html = html.replace(/(href|src)=["']\.?\/?assets\//g, '$1="' + base + '/assets/');
-    // Cambia "./partials/..." solo se presente (di solito non serve in head)
-    html = html.replace(/(href|src)=["']\.?\/?partials\//g, '$1="' + base + '/partials/');
-    return html;
+    var url = new URL(s.src, location.href);
+    var p = url.pathname;                          // /<repo>/assets/js/include.js
+    var i = p.indexOf('/assets/');
+    return i >= 0 ? p.slice(0, i) : '';
   }
 
-// HEAD (già ok)
-fetch(base + '/partials/head.html')
-  .then(r => r.ok ? r.text() : Promise.reject())
-  .then(html => {
-    const rewritten = rewriteAssetURLs(html);
-    const t = document.createElement('template');
-    t.innerHTML = rewritten.trim();
-    document.head.appendChild(t.content);
-  })
-  .catch(() => {});
+  var BASE = getBase();
 
-// HEADER  ✅ ora riscriviamo gli URL anche qui
-fetch(base + '/partials/header.html')
-  .then(r => r.ok ? r.text() : Promise.reject())
-  .then(html => {
-    const rewritten = rewriteAssetURLs(html);
-    const el = document.getElementById('header');
-    if (el) el.innerHTML = rewritten;
-  })
-  .catch(() => {});
+  function rewrite(html) {
+    // /assets/...  oppure ./assets/...  -> {BASE}/assets/...
+    return html
+      .replace(/(href|src)=["']\/?assets\//g, '$1="' + BASE + '/assets/');
+  }
 
-// FOOTER  ✅ idem
-fetch(base + '/partials/footer.html')
-  .then(r => r.ok ? r.text() : Promise.reject())
-  .then(html => {
-    const rewritten = rewriteAssetURLs(html);
-    const el = document.getElementById('footer');
-    if (el) el.innerHTML = rewritten;
-  })
-  .catch(() => {});
+  function inject(targetId, partialPath) {
+    var el = document.getElementById(targetId);
+    if (!el) return;
+    fetch(BASE + partialPath, { cache: 'no-store' })
+      .then(r => r.ok ? r.text() : Promise.reject(partialPath))
+      .then(t => { el.innerHTML = rewrite(t); })
+      .catch(u => console.warn('Include fallito:', u));
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    inject('header', '/partials/header.html');
+    inject('footer', '/partials/footer.html');
+  });
 })();
