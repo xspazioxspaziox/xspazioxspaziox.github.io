@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
-/* Layout di pagina con CSS Grid: header | main | footer */
+/* ------------------------------
+   LAYOUT BASE (header | main | footer)
+--------------------------------*/
 body {
   margin: 0;
   font-family: 'Source Code Pro', monospace;
   color: #333;
   background: #fff;
   height: 100vh;
-  display: grid;                    /* header | main | footer */
-  grid-template-rows: auto 1fr auto;
-  row-gap: 0;                       /* niente spazio extra tra le righe */
-  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header, contenuto, footer */
+  row-gap: 0;
+  overflow: hidden;                  /* niente scroll */
 }
 
 /* Header */
@@ -19,18 +21,29 @@ body {
   text-align: left;
 }
 
-/* Contenuto centrato */
+/* Footer: una riga, vicino al fondo */
+.site-footer {
+  text-align: left;
+  font-size: 14px;
+  background-color: #fff;
+  white-space: nowrap;          /* tutto su una riga anche su mobile */
+  padding: 10px 40px;           /* allineato all'header */
+  margin-bottom: 16px;          /* distanza dal bordo inferiore */
+}
+
+/* ------------------------------
+   BLOCCO FLYER (immagine = riferimento)
+--------------------------------*/
 .flyer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;          /* davvero centrato */
+  justify-content: center;      /* centratura reale */
   position: relative;
   min-height: 0;
   padding-bottom: 0;
 }
 
-/* --- ELEMENTI ALLINEATI ALL’IMMAGINE --- */
 .flyer-block {
   display: flex;
   flex-direction: column;
@@ -42,33 +55,20 @@ body {
 .flyer-header {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  max-width: 400px;             /* = larghezza immagine */
   font-size: 0.9em;
   color: #444;
-  width: 100%;
-  max-width: 400px; /* uguale all'immagine */
   margin-bottom: 6px;
 }
 
-/* Immagine flyer */
+/* Immagine con cornice sottile */
 .flyer-image {
   width: 100%;
   max-width: 400px;
 }
-
 .flyer-image img {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid #000; /* cornice sottile */
-  box-sizing: border-box;
-  max-height: 48vh;
-  object-fit: contain;
-}
-
-/* Info */
-.flyer-info {
-  width: 100%;
-  max-width: 400px;
-  text-align: right;
-  font-size: 0.9em;
-  borde
+  border:
