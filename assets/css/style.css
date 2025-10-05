@@ -27,39 +27,46 @@ body {
   justify-content: center;
 }
 
+/* --- ELEMENTI ALLINEATI ALL’IMMAGINE --- */
+
+/* Contenitore comune */
+.flyer-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+
 /* Riga superiore: data e ora */
 .flyer-header {
   display: flex;
   justify-content: space-between;
-  width: 90%;
-  max-width: 400px;
   font-size: 0.9em;
   color: #444;
+  width: 100%;
+  max-width: 400px; /* uguale all'immagine */
   margin-bottom: 6px;
 }
 
 /* Immagine flyer */
 .flyer-image {
-  width: 90%;
+  width: 100%;
   max-width: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .flyer-image img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 48vh;
-  border: 1px solid #000;
+  border: 1px solid #000; /* cornice sottile */
   box-sizing: border-box;
+  max-height: 48vh;
   object-fit: contain;
 }
 
 /* Info */
 .flyer-info {
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   text-align: right;
   font-size: 0.9em;
@@ -68,6 +75,7 @@ body {
   margin-top: 8px;
   color: #444;
 }
+
 
 /* Link "Flying object" */
 .flying-object {
