@@ -4,12 +4,12 @@
    VARIABILI GLOBALI
 =============================== */
 :root {
-  --flyer-offset: -2svh;  /* alza il blocco centrale su desktop */
+  --flyer-offset: -4svh;  /* alza il blocco centrale su desktop */
 }
 
 @media (max-width: 480px) {
   :root {
-    --flyer-offset: -1svh; /* alza meno su mobile */
+    --flyer-offset: -3svh; /* alza meno su mobile */
   }
 }
 
