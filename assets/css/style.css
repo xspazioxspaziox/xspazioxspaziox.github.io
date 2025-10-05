@@ -25,6 +25,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 100px;
 }
 
 /* --- ELEMENTI ALLINEATI ALL’IMMAGINE --- */
@@ -78,7 +79,6 @@ body {
 
 /* Footer */
 .site-footer {
-  position: absolute;
   bottom: 60px;            /* ✅ più lontano dal fondo */
   left: 40px;              /* allineato all’header */
   text-align: left;
