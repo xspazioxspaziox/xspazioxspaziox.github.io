@@ -85,7 +85,7 @@ body {
   background-color: #fff;
   white-space: nowrap;              /* una sola riga */
   padding: 10px 40px;               /* allineato all’header */
-  margin-bottom: 16px;              /* ✅ più vicino al fondo */
+  margin-bottom: 10px;              /* ✅ più vicino al fondo */
 }
 @media (max-width: 480px) {
   .site-footer {
