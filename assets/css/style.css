@@ -1,45 +1,272 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
-  <link rel="preload" href="../../assets/css/style.css?v=31" as="style">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=31">
-  <script src="../../assets/js/include.js?v=31" defer></script>
+/* ===============================
+   VARIABILI GLOBALI
+=============================== */
+:root {
+  --flyer-offset: -6svh;  /* alza il blocco centrale su desktop */
+}
 
-  <title>Spazio X — Yoga Info 31.08</title>
-  <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
-</head>
-<body>
-  <div id="header"></div>
+@media (max-width: 480px) {
+  :root {
+    --flyer-offset: -4svh; /* alza meno su mobile */
+  }
+}
 
-  <h1 class="page-title">Evento: Yoga Info — 31/08</h1>
+/* ===============================
+   STRUTTURA BASE
+=============================== */
+body {
+  margin: 0;
+  font-family: 'Source Code Pro', monospace;
+  color: #333;
+  background: #fff;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto; /* header | h1 | main | footer */
+  row-gap: 0;
+  overflow: hidden;
+}
 
-  <main class="flyer-container">
-    <div class="flyer-block">
-      <div class="flyer-header">
-        <div class="flyer-date">31/08</div>
-        <div class="flyer-time">21:00</div>
-      </div>
 
-      <!-- Cornice identica al flyer immagine, con testo scrollabile -->
-      <div class="flyer-image">
-        <div class="flyer-frame">
-          <div class="flyer-scroll">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat velit in lectus condimentum…</p>
-            <p>Vestibulum sit amet convallis libero. Aliquam erat volutpat…</p>
-            <p>Nam ac risus sapien. Vivamus a magna eget mi consequat aliquam…</p>
-            <p>Ut id sapien ac lorem pulvinar luctus. Curabitur eu augue ut sapien…</p>
-            <p>…aggiungi altro testo per forzare lo scroll…</p>
-          </div>
-        </div>
-      </div>
+/* Header */
+.site-header {
+  padding: 20px 40px;
+  text-align: left;
+}
 
-      <div class="flyer-info">ingresso libero</div>
-    </div>
-  </main>
+/* Footer: una riga, vicino al fondo */
+.site-footer {
+  text-align: left;
+  font-size: 14px;
+  background-color: #fff;
+  white-space: nowrap;
+  padding: 10px 40px;
+  margin-bottom: 16px; /* un po’ sopra il bordo inferiore */
+}
 
-  <div id="footer"></div>
-</body>
-</html>
+/* Titolo di pagina gestito per-pagina */
+.page-title {
+  padding: 0 40px;      /* allineato con header/footer desktop */
+  margin: 0 0 8px 0;    /* poco spazio sotto */
+  font-size: 2rem;      /* regola come preferisci */
+  line-height: 1.2;
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    padding: 0 25px;    /* allineato con header/footer mobile */
+    font-size: 1.6rem;
+  }
+}
+
+/* ===============================
+   BLOCCO FLYER (centrato)
+=============================== */
+.flyer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 0;
+  padding-bottom: 0;
+  transform: translateY(var(--flyer-offset)); /* rialzato */
+}
+
+.flyer-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+
+/* Riga superiore: data e ora */
+.flyer-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #444;
+  width: 100%;
+  max-width: 400px; /* uguale all’immagine */
+  margin-bottom: 6px;
+}
+
+/* Immagine flyer */
+.flyer-image {
+  width: 100%;
+  max-width: 400px;
+}
+
+.flyer-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #000; /* cornice nera sottile */
+  box-sizing: border-box;
+  max-height: 48svh;      /* occupa metà schermo circa */
+  object-fit: contain;
+}
+
+/* Box testo scrollabile al posto del flyer */
+.flyer-textbox {
+  border: 1px solid #000;
+  background: #fafafa;
+  overflow: hidden;
+  max-width: 400px;
+  width: 100%;
+  max-height: 48svh; /* stessa altezza del flyer */
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.flyer-text-content {
+  overflow-y: auto;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 0.9em;
+  line-height: 1.5;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f0f0f0;
+}
+
+/* Per i browser WebKit */
+.flyer-text-content::-webkit-scrollbar {
+  width: 6px;
+}
+.flyer-text-content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+.flyer-text-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Info */
+.flyer-info {
+  width: 100%;
+  max-width: 400px;
+  text-align: right;
+  font-size: 0.9em;
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  margin-top: 8px;
+  color: #444;
+}
+
+/* ===============================
+   OGGETTO VOLANTE
+=============================== */
+.flier {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  width: 0;
+  height: 0;
+  overflow: visible !important;
+}
+
+.flier img {
+  width: 48px !important;
+  height: 48px !important;
+  opacity: 0.75;
+  object-fit: contain;
+  will-change: transform;
+  animation: flyAcross 90s linear infinite;
+  transform: translate3d(-150%, 100vh, 0) rotateZ(0deg);
+}
+
+/* Traiettoria del volo */
+@keyframes flyAcross {
+  0%, 98.001% { transform: translate3d(-200%, 100vh, 0) rotateZ(0deg); }
+  15%         { transform: translate3d(100vw, -100%, 0) rotateZ(180deg); }
+  15.001%,18% { transform: translate3d(100vw, -30%, 0) rotateZ(0deg); }
+  40%         { transform: translate3d(-200%, 3vh, 0) rotateZ(-180deg); }
+  40.001%,43% { transform: translate3d(-200%, -100%, 0) rotateZ(-180deg); }
+  65%         { transform: translate3d(100vw, 50vh, 0) rotateZ(0deg); }
+  65.001%,68% { transform: translate3d(20vw, -200%, 0) rotateZ(180deg); }
+  95%         { transform: translate3d(10vw, 100vh, 0) rotateZ(0deg); }
+}
+
+/* ===============================
+   RESPONSIVE
+=============================== */
+@media (max-width: 480px) {
+  .flyer-header,
+  .flyer-image,
+  .flyer-info {
+    width: 95%;
+    max-width: 95%;
+  }
+
+  .flyer-image img {
+    max-height: 42svh;
+  }
+
+  .flyer-info {
+    font-size: 0.8em;
+  }
+
+  .site-header,
+  .site-footer {
+    padding: 15px 25px;
+  }
+
+  .site-footer {
+    font-size: 13px;
+    margin-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .flier img {
+    width: 36px !important;
+    height: 36px !important;
+    animation-duration: 110s;
+  }
+}
+
+/* --- BOX TESTO SCROLLABILE con cornice identica all'immagine --- */
+.flyer-textbox{
+  width: 100%;
+  max-width: 400px;              /* = .flyer-image */
+}
+
+/* Questo elemento replica l'IMG: stessa cornice e dimensioni */
+.flyer-text-frame{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 48svh;             /* = .flyer-image img */
+  border: 1px solid #000;        /* = cornice nera sottile */
+  box-sizing: border-box;        /* = come l'img */
+  background: #fafafa;
+  overflow: hidden;              /* il contenuto scorrerà dentro */
+}
+
+/* Contenuto scrollabile dentro la “cornice” */
+.flyer-text-content{
+  height: 100%;
+  overflow-y: auto;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: #333;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f0f0f0;
+}
+
+/* WebKit scrollbar */
+.flyer-text-content::-webkit-scrollbar{ width:6px; }
+.flyer-text-content::-webkit-scrollbar-thumb{ background:#888; border-radius:3px; }
+.flyer-text-content::-webkit-scrollbar-thumb:hover{ background:#555; }
+
+/* Mobile: stessa logica delle immagini */
+@media (max-width:480px){
+  .flyer-textbox{ max-width:95%; }
+  .flyer-text-frame{ max-height:42svh; }   /* = .flyer-image img su mobile */
+  .flyer-text-content{ font-size:0.85em; }
+}
