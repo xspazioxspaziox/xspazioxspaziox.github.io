@@ -114,21 +114,30 @@ body {
   object-fit: contain;
 }
 
-/* Cornice testo identica all’immagine */
-.flyer-image .flyer-frame {
+/* ---- Cornice testo IDENTICA a quella dell'immagine ---- */
+
+/* Contenitore principale: identico a quello del flyer immagine */
+.flyer-image {
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box; /* ✅ corregge differenza di 1px per lato */
+}
+
+/* Cornice */
+.flyer-frame {
   display: block;
   width: 100%;
-  height: var(--flyer-box-h);
+  max-height: var(--flyer-box-h);
   border: 1px solid #000;
-  box-sizing: border-box;
+  box-sizing: border-box; /* include il bordo nella larghezza totale */
   background: #fafafa;
   overflow: hidden;
 }
 
-/* Contenuto scrollabile dentro la cornice */
-.flyer-image .flyer-scroll {
-  height: 100%;
-  overflow: auto;
+/* Contenuto scrollabile */
+.flyer-scroll {
+  height: calc(var(--flyer-box-h) - 2px - 20px);
+  overflow-y: auto;
   padding: 10px 12px;
   text-align: left;
   font-size: 0.9em;
@@ -139,9 +148,29 @@ body {
 }
 
 /* WebKit scrollbar */
-.flyer-image .flyer-scroll::-webkit-scrollbar { width: 6px; }
-.flyer-image .flyer-scroll::-webkit-scrollbar-thumb { background: #888; border-radius: 3px; }
-.flyer-image .flyer-scroll::-webkit-scrollbar-thumb:hover { background: #555; }
+.flyer-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.flyer-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+.flyer-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .flyer-image {
+    max-width: 95%;
+  }
+  .flyer-frame {
+    max-height: 42svh;
+  }
+  .flyer-scroll {
+    font-size: 0.85em;
+  }
+}
 
 /* Info */
 .flyer-info {
