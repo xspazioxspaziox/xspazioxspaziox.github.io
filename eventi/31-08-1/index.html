@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <link rel="preload" href="../../assets/css/style.css" as="style">
-  <link rel="stylesheet" href="../../assets/css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS subito disponibile (niente FOUC) -->
+  <link rel="preload" href="../../assets/css/style.css?v=18" as="style">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=18">
+
+  <!-- JS include (defer) -->
   <script src="../../assets/js/include.js" defer></script>
+
+  <title>Spazio X — Evento 31.08</title>
+  <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
 </head>
-
-
 <body>
   <div id="header"></div>
 
   <main class="flyer-container">
-     <div class="flyer-block">
-       <!-- Riga superiore -->
-    <div class="flyer-header">
-      <div class="flyer-date">31/08</div>
-      <div class="flyer-time">21:00</div>
-    </div>
-   <!-- Immagine flyer -->
-    <div class="flyer-image">
-      <img src="../img/31-08-01.jpg" alt="flyer evento 31 agosto">
-    </div>
+    <div class="flyer-block">
+      <!-- Riga superiore -->
+      <div class="flyer-header">
+        <div class="flyer-date">31/08</div>
+        <div class="flyer-time">21:00</div>
+      </div>
 
-    <div class="flyer-info">ingresso libero</div>
-  </main>
+      <!-- Immagine flyer -->
+      <div class="flyer-image">
+        <img src="../img/31-08-01.jpg" alt="flyer evento 31 agosto">
+      </div>
+
+      <!-- Info -->
+      <div class="flyer-info">ingresso libero</div>
+    </div>
+  </main> <!-- ✅ ora è chiuso correttamente -->
 
   <div id="footer"></div>
 </body>
