@@ -6,14 +6,12 @@
 :root {
   --flyer-offset: -6svh;   /* alza il blocco centrale su desktop */
   --flyer-box-h: 48svh;    /* altezza cornice (immagine e testo identici) */
-  --flyer-w: 400px;        /* larghezza fissa come le pagine con immagine */
 }
 
 @media (max-width: 480px) {
   :root {
     --flyer-offset: -4svh; /* alza meno su mobile */
     --flyer-box-h: 42svh;  /* altezza più bassa su mobile */
-    --flyer-w: 95%;        /* uguale comportamento del responsive immagini */
   }
 }
 
@@ -27,8 +25,7 @@ body {
   background: #fff;
   height: 100vh;
   display: grid;
-  grid-template-rows: auto auto 1fr auto; /* header | h1 | main | footer */
-  row-gap: 0;
+  grid-template-rows: auto auto 1fr auto;
   overflow: hidden;
 }
 
@@ -71,7 +68,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
   transform: translateY(var(--flyer-offset));
 }
 
@@ -79,24 +75,27 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: auto;
 }
 
-/* Riga superiore: data e ora */
+/* Riga superiore */
 .flyer-header {
   display: flex;
   justify-content: space-between;
-  width: var(--flyer-w);
+  width: 100%;
+  max-width: 400px;       /* 👈 come la cornice immagine */
   font-size: 0.9em;
   color: #444;
   margin-bottom: 6px;
-  box-sizing: border-box;
 }
 
 /* ===============================
    CORNICE (IMMAGINE o TESTO)
 =============================== */
 .flyer-image {
-  width: var(--flyer-w);
+  width: 100%;
+  max-width: 400px;        /* 👈 identico all’immagine del flyer */
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
@@ -111,18 +110,18 @@ body {
   object-fit: contain;
 }
 
-/* Cornice testo (identica a quella dell’immagine) */
+/* Cornice testo (identica) */
 .flyer-frame {
-  display: block;
   width: 100%;
+  max-width: 400px;        /* 👈 identico */
   max-height: var(--flyer-box-h);
   border: 1px solid #000;
-  box-sizing: border-box;
   background: #fafafa;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
-/* Testo scrollabile dentro la cornice */
+/* Contenuto scrollabile dentro la cornice */
 .flyer-scroll {
   height: calc(var(--flyer-box-h) - 2px - 20px);
   overflow-y: auto;
@@ -147,14 +146,14 @@ body {
 
 /* Riga inferiore (info) */
 .flyer-info {
-  width: var(--flyer-w);
+  width: 100%;
+  max-width: 400px;       /* 👈 identico */
   text-align: right;
   font-size: 0.9em;
   border-top: 1px solid #ccc;
   padding-top: 8px;
   margin-top: 8px;
   color: #444;
-  box-sizing: border-box;
 }
 
 /* ===============================
@@ -178,10 +177,8 @@ body {
   object-fit: contain;
   will-change: transform;
   animation: flyAcross 90s linear infinite;
-  transform: translate3d(-150%, 100vh, 0) rotateZ(0deg);
 }
 
-/* Traiettoria del volo */
 @keyframes flyAcross {
   0%, 98.001% { transform: translate3d(-200%, 100vh, 0) rotateZ(0deg); }
   15%         { transform: translate3d(100vw, -100%, 0) rotateZ(180deg); }
@@ -199,8 +196,10 @@ body {
 @media (max-width: 480px) {
   .flyer-header,
   .flyer-image,
-  .flyer-info {
-    width: var(--flyer-w);
+  .flyer-info,
+  .flyer-frame {
+    width: 95%;
+    max-width: 95%;
   }
 
   .flyer-scroll {
