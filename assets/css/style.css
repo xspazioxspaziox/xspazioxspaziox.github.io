@@ -77,24 +77,21 @@ body {
   color: #444;
 }
 
-/* Footer */
+/* Footer (in flusso, una sola riga) */
 .site-footer {
-  bottom: 60px;            /* ✅ più lontano dal fondo */
-  left: 40px;              /* allineato all’header */
   text-align: left;
+  padding: 10px 40px;      /* allineato all’header */
   font-size: 14px;
   background-color: #fff;
-  white-space: nowrap;     /* ✅ evita l'andata a capo */
-  z-index: 100;            /* sopra eventuali elementi grafici */
+  flex-shrink: 0;
+  white-space: nowrap;     /* tutto su una riga */
+  margin-top: 24px;        /* distanza dal contenuto */
 }
-
-/* 📱 Responsive */
 @media (max-width: 480px) {
   .site-footer {
-    bottom: 80px;          /* ✅ ancora più in alto su mobile */
-    left: 25px;            /* allineato al padding dell'header mobile */
+    padding: 15px 25px;
     font-size: 13px;
-    white-space: nowrap;
+    margin-top: 28px;      /* un filo più alto su mobile */
   }
 }
 
