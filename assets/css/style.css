@@ -23,9 +23,11 @@ body {
   background: #fff;
   height: 100vh;
   display: grid;
-  grid-template-rows: auto 1fr auto; /* header | main | footer */
+  grid-template-rows: auto auto 1fr auto; /* header | h1 | main | footer */
+  row-gap: 0;
   overflow: hidden;
 }
+
 
 /* Header */
 .site-header {
