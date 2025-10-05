@@ -50,20 +50,21 @@ body {
 }
 
 /* Riga superiore: data e ora */
+/* Riga superiore: data e ora */
 .flyer-header {
   display: flex;
   justify-content: space-between;
   font-size: 0.9em;
   color: #444;
   width: 100%;
-  max-width: 440px; /* +10% rispetto ai 400px originali */
+  max-width: 420px; /* leggermente meno larga */
   margin-bottom: 6px;
 }
 
 /* Immagine flyer */
 .flyer-image {
   width: 100%;
-  max-width: 440px; /* +10% */
+  max-width: 420px; /* ridotta del 5% per restare equilibrata */
 }
 
 .flyer-image img {
@@ -72,14 +73,14 @@ body {
   height: auto;
   border: 1px solid #000; /* cornice nera sottile */
   box-sizing: border-box;
-  max-height: 53vh; /* leggermente aumentato per compensare la scala */
+  max-height: 42vh; /* ridotta: così entra in una schermata */
   object-fit: contain;
 }
 
 /* Info */
 .flyer-info {
   width: 100%;
-  max-width: 440px; /* +10% */
+  max-width: 420px;
   text-align: right;
   font-size: 0.9em;
   border-top: 1px solid #ccc;
@@ -87,6 +88,7 @@ body {
   margin-top: 8px;
   color: #444;
 }
+
 
 /* ------------------------------
    LINK "Flying object"
