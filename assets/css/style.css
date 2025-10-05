@@ -25,11 +25,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-/* --- ELEMENTI ALLINEATI ALL’IMMAGINE --- */
-
-/* Contenitore comune */
+/* Blocco principale che contiene data/ora, immagine, info */
 .flyer-block {
   display: flex;
   flex-direction: column;
@@ -44,30 +43,30 @@ body {
   font-size: 0.9em;
   color: #444;
   width: 100%;
-  max-width: 400px; /* uguale all'immagine */
+  max-width: 440px; /* +10% rispetto ai 400px originali */
   margin-bottom: 6px;
 }
 
 /* Immagine flyer */
 .flyer-image {
   width: 100%;
-  max-width: 400px;
+  max-width: 440px; /* +10% */
 }
 
 .flyer-image img {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid #000; /* cornice sottile */
+  border: 1px solid #000; /* cornice nera sottile */
   box-sizing: border-box;
-  max-height: 48vh;
+  max-height: 53vh; /* leggermente aumentato per compensare la scala */
   object-fit: contain;
 }
 
 /* Info */
 .flyer-info {
   width: 100%;
-  max-width: 400px;
+  max-width: 440px; /* +10% */
   text-align: right;
   font-size: 0.9em;
   border-top: 1px solid #ccc;
@@ -76,46 +75,27 @@ body {
   color: #444;
 }
 
-
-/* Link "Flying object" */
+/* Link "Flying object" dentro la pagina */
 .flying-object {
   position: absolute;
-  right: -70px;
-  top: 40px;
+  right: 20px;        /* dentro il margine visibile */
+  top: 60px;          /* più vicino all’immagine */
   transform: rotate(-20deg);
   font-size: 0.9em;
   color: #333;
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 100;       /* sopra tutto ma sotto al flier volante */
 }
 
 .flying-object:hover {
   opacity: 0.6;
+  transform: rotate(-20deg) scale(1.05);
 }
 
 /* Footer */
 .site-footer {
-  text-align: left;
-  padding: 10px 40px; /* uguale all’header */
-  font-size: 14px;
-  background-color: #fff;
-  flex-shrink: 0;
-}
-
-/* --- ANIMAZIONE OGGETTO VOLANTE (più lenta e più piccola) --- */
-
-.flier {
-  pointer-events: none;
-}
-
-.flier > * {
-  animation: fly 90s linear infinite; /* più lento (da 50s → 90s) */
-  pointer-events: none !important;
-  top: 0;
-  left: 0;
-  transform: translateX(-120%) translateY(-120%) rotateZ(0);
-  position: fixed;
-  animation-delay: 1s;
+  text-align
   z-index: 999999;
   width: 50px;     /* ridotto */
   height: 50px;    /* ridotto */
