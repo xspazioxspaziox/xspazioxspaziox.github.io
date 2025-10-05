@@ -43,7 +43,7 @@ body {
   min-height: 0;
   padding-bottom: 0;
 
-  transform: translateY(-16vh);   /* ✅ sposta TUTTO il blocco un po’ più in alto */
+  transform: translateY(-4vh);   /* ✅ sposta TUTTO il blocco un po’ più in alto */
 }
 
 @media (max-width: 480px) {
