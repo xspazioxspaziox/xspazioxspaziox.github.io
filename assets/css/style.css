@@ -5,26 +5,24 @@ body {
   font-family: 'Source Code Pro', monospace;
   color: #333;
   background: #fff;
-  min-height: 100vh;       /* flessibile, non blocca lo scroll */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: visible;       /* consente di mostrare il footer sempre */
 }
 
 /* Header */
 .site-header {
-  padding: 20px 30px;        /* Stacca "Spazio X" dal bordo */
+  padding: 20px 30px;       /* Stacca "Spazio X" dal bordo */
   text-align: left;
 }
 
 /* Contenitore principale */
-
 .flyer-container {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 30px; /* margine per non far toccare il footer */
+  padding-bottom: 30px;
 }
 
 /* Box flyer */
@@ -33,23 +31,16 @@ body {
   width: 90%;
   max-width: 400px;
   border: 1px solid #ccc;
-  text-align: center;
   background-color: #fafafa;
-  padding: 15px;
   box-sizing: border-box;
+  padding: 10px;
 }
 
-/* Titolo evento */
-.flyer-title {
-  font-size: 1.4em;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-/* Data e ora */
-.flyer-date, .flyer-time {
-  display: inline-block;
-  margin: 0 10px;
+/* Riga superiore: data e ora */
+.flyer-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
   font-size: 0.9em;
   color: #444;
 }
@@ -59,10 +50,8 @@ body {
   width: 100%;
   aspect-ratio: 1 / 1;
   border: 1px solid #ddd;
-  box-sizing: border-box;
-  margin-top: 10px;
-  margin-bottom: 10px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .flyer-image img {
@@ -86,17 +75,14 @@ body {
   text-align: left;
   padding: 10px 30px;
   font-size: 14px;
+  background-color: #fff;
 }
 
 /* 📱 Responsive */
 @media (max-width: 480px) {
   .flyer-box {
     max-width: 90%;
-    padding: 10px;
-  }
-
-  .flyer-title {
-    font-size: 1.1em;
+    padding: 8px;
   }
 
   .flyer-info {
