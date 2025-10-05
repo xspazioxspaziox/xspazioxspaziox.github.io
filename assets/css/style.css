@@ -78,12 +78,25 @@ body {
 
 /* Footer */
 .site-footer {
+  position: absolute;       /* ✅ lo spostiamo rispetto al viewport */
+  bottom: 20px;             /* distanza dal bordo inferiore */
+  left: 40px;               /* allineato all'header */
   text-align: left;
-  padding: 10px 40px; /* uguale all’header */
   font-size: 14px;
   background-color: #fff;
-  flex-shrink: 0;
+  white-space: nowrap;      /* ✅ il testo resta sempre su una riga */
 }
+
+/* 📱 Responsive */
+@media (max-width: 480px) {
+  .site-footer {
+    bottom: 15px;           /* leggermente più vicino al bordo su mobile */
+    left: 25px;             /* allineato al padding mobile */
+    font-size: 13px;        /* leggermente più piccolo ma sempre su una riga */
+    white-space: nowrap;    /* ✅ impedisce l'andata a capo */
+  }
+}
+
 
 /* --- ANIMAZIONE OGGETTO VOLANTE (più lenta e più piccola) --- */
 
