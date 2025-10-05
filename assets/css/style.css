@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
-/* ------------------------------
-   BASE
---------------------------------*/
 body {
   margin: 0;
   font-family: 'Source Code Pro', monospace;
@@ -14,22 +11,25 @@ body {
   overflow: hidden;
 }
 
-/* Header / Footer */
-.site-header { padding: 20px 40px; text-align: left; flex-shrink: 0; }
-.site-footer { padding: 10px 40px; text-align: left; font-size: 14px; background: #fff; flex-shrink: 0; }
+/* Header */
+.site-header {
+  padding: 20px 40px; /* leggermente più ampio: base per allineare il footer */
+  text-align: left;
+  flex-shrink: 0;
+}
 
-/* ------------------------------
-   FLYER (immagine = riferimento)
---------------------------------*/
+/* Contenitore principale */
 .flyer-container {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative; /* per il link "Flying object" */
 }
 
+/* --- ELEMENTI ALLINEATI ALL’IMMAGINE --- */
+
+/* Contenitore comune */
 .flyer-block {
   display: flex;
   flex-direction: column;
@@ -37,33 +37,37 @@ body {
   width: auto;
 }
 
-/* Riga superiore */
+/* Riga superiore: data e ora */
 .flyer-header {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  max-width: 420px;      /* RIFERIMENTO larghezza */
   font-size: 0.9em;
   color: #444;
+  width: 100%;
+  max-width: 400px; /* uguale all'immagine */
   margin-bottom: 6px;
 }
 
-/* Immagine + cornice */
-.flyer-image { width: 100%; max-width: 420px; }
+/* Immagine flyer */
+.flyer-image {
+  width: 100%;
+  max-width: 400px;
+}
+
 .flyer-image img {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid #000;       /* cornice nera sottile */
+  border: 1px solid #000; /* cornice sottile */
   box-sizing: border-box;
-  max-height: 42vh !important;  /* RIFERIMENTO altezza senza scroll */
+  max-height: 48vh;
   object-fit: contain;
 }
 
-/* Info + divisore allineati all’immagine */
+/* Info */
 .flyer-info {
   width: 100%;
-  max-width: 420px;      /* uguale all’immagine */
+  max-width: 400px;
   text-align: right;
   font-size: 0.9em;
   border-top: 1px solid #ccc;
@@ -72,21 +76,107 @@ body {
   color: #444;
 }
 
-/* ------------------------------
-   LINK "Flying object"
---------------------------------*/
+
+/* Link "Flying object" */
 .flying-object {
   position: absolute;
-  right: 20px;
-  top: 60px;
+  right: -70px;
+  top: 40px;
   transform: rotate(-20deg);
   font-size: 0.9em;
   color: #333;
   text-decoration: none;
-  transition: opacity 0.2s, transform 0.2s;
-  z-index: 100;
+  transition: opacity 0.2s;
 }
-.flying-object:hover { opacity: 0.6; transform: rotate(-20deg) scale(1.05); }
 
-/* ------------------------------
-   OG
+.flying-object:hover {
+  opacity: 0.6;
+}
+
+/* Footer */
+.site-footer {
+  text-align: left;
+  padding: 10px 40px; /* uguale all’header */
+  font-size: 14px;
+  background-color: #fff;
+  flex-shrink: 0;
+}
+
+/* --- ANIMAZIONE OGGETTO VOLANTE (più lenta e più piccola) --- */
+
+.flier {
+  pointer-events: none;
+}
+
+.flier > * {
+  animation: fly 90s linear infinite; /* più lento (da 50s → 90s) */
+  pointer-events: none !important;
+  top: 0;
+  left: 0;
+  transform: translateX(-120%) translateY(-120%) rotateZ(0);
+  position: fixed;
+  animation-delay: 1s;
+  z-index: 999999;
+  width: 50px;     /* ridotto */
+  height: 50px;    /* ridotto */
+  opacity: 0.7;    /* leggermente trasparente, più elegante */
+}
+
+/* traiettoria invariata */
+@keyframes fly {
+  98.001%, 0% {
+    display: block;
+    transform: translateX(-200%) translateY(100vh) rotateZ(0deg);
+  }
+  15% {
+    transform: translateX(100vw) translateY(-100%) rotateZ(180deg);
+  }
+  15.001%, 18% {
+    transform: translateX(100vw) translateY(-30%) rotateZ(0deg);
+  }
+  40% {
+    transform: translateX(-200%) translateY(3vh) rotateZ(-180deg);
+  }
+  40.001%, 43% {
+    transform: translateX(-200%) translateY(-100%) rotateZ(-180deg);
+  }
+  65% {
+    transform: translateX(100vw) translateY(50vh) rotateZ(0deg);
+  }
+  65.001%, 68% {
+    transform: translateX(20vw) translateY(-200%) rotateZ(180deg);
+  }
+  95% {
+    transform: translateX(10vw) translateY(100vh) rotateZ(0deg);
+  }
+}
+
+
+/* 📱 Responsive */
+@media (max-width: 480px) {
+  .flyer-header,
+  .flyer-image,
+  .flyer-info {
+    width: 95%;
+    max-width: 95%;
+  }
+
+  .flyer-image img {
+    max-height: 42vh;
+  }
+
+  .flyer-info {
+    font-size: 0.8em;
+  }
+
+  .site-header,
+  .site-footer {
+    padding: 15px 25px;
+  }
+
+  .flying-object {
+    right: -50px;
+    top: 30px;
+    font-size: 0.8em;
+  }
+}
