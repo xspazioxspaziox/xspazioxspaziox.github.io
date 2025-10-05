@@ -93,4 +93,132 @@ body {
   margin-bottom: 6px;
 }
 
-/* ====================*
+/* ===============================
+   CORNICE IMMAGINE o TESTO
+=============================== */
+
+/* Larghezza identica per immagine o testo */
+.flyer-image {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Immagine flyer */
+.flyer-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  max-height: var(--flyer-box-h);
+  object-fit: contain;
+}
+
+/* Cornice testo identica all’immagine */
+.flyer-image .flyer-frame {
+  display: block;
+  width: 100%;
+  height: var(--flyer-box-h);
+  border: 1px solid #000;
+  box-sizing: border-box;
+  background: #fafafa;
+  overflow: hidden;
+}
+
+/* Contenuto scrollabile dentro la cornice */
+.flyer-image .flyer-scroll {
+  height: 100%;
+  overflow: auto;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: #333;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f0f0f0;
+}
+
+/* WebKit scrollbar */
+.flyer-image .flyer-scroll::-webkit-scrollbar { width: 6px; }
+.flyer-image .flyer-scroll::-webkit-scrollbar-thumb { background: #888; border-radius: 3px; }
+.flyer-image .flyer-scroll::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* Info */
+.flyer-info {
+  width: 100%;
+  max-width: 400px;
+  text-align: right;
+  font-size: 0.9em;
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  margin-top: 8px;
+  color: #444;
+}
+
+/* ===============================
+   OGGETTO VOLANTE
+=============================== */
+.flier {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  width: 0;
+  height: 0;
+  overflow: visible !important;
+}
+
+.flier img {
+  width: 48px !important;
+  height: 48px !important;
+  opacity: 0.75;
+  object-fit: contain;
+  will-change: transform;
+  animation: flyAcross 90s linear infinite;
+  transform: translate3d(-150%, 100vh, 0) rotateZ(0deg);
+}
+
+/* Traiettoria del volo */
+@keyframes flyAcross {
+  0%, 98.001% { transform: translate3d(-200%, 100vh, 0) rotateZ(0deg); }
+  15%         { transform: translate3d(100vw, -100%, 0) rotateZ(180deg); }
+  15.001%,18% { transform: translate3d(100vw, -30%, 0) rotateZ(0deg); }
+  40%         { transform: translate3d(-200%, 3vh, 0) rotateZ(-180deg); }
+  40.001%,43% { transform: translate3d(-200%, -100%, 0) rotateZ(-180deg); }
+  65%         { transform: translate3d(100vw, 50vh, 0) rotateZ(0deg); }
+  65.001%,68% { transform: translate3d(20vw, -200%, 0) rotateZ(180deg); }
+  95%         { transform: translate3d(10vw, 100vh, 0) rotateZ(0deg); }
+}
+
+/* ===============================
+   RESPONSIVE
+=============================== */
+@media (max-width: 480px) {
+  .flyer-header,
+  .flyer-image,
+  .flyer-info {
+    width: 95%;
+    max-width: 95%;
+  }
+
+  .flyer-info {
+    font-size: 0.8em;
+  }
+
+  .site-header,
+  .site-footer {
+    padding: 15px 25px;
+  }
+
+  .site-footer {
+    font-size: 13px;
+    margin-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .flier img {
+    width: 36px !important;
+    height: 36px !important;
+    animation-duration: 110s;
+  }
+}
