@@ -78,22 +78,23 @@ body {
 
 /* Footer */
 .site-footer {
-  position: absolute;       /* ✅ lo spostiamo rispetto al viewport */
-  bottom: 20px;             /* distanza dal bordo inferiore */
-  left: 40px;               /* allineato all'header */
+  position: absolute;
+  bottom: 60px;            /* ✅ più lontano dal fondo */
+  left: 40px;              /* allineato all’header */
   text-align: left;
   font-size: 14px;
   background-color: #fff;
-  white-space: nowrap;      /* ✅ il testo resta sempre su una riga */
+  white-space: nowrap;     /* ✅ evita l'andata a capo */
+  z-index: 100;            /* sopra eventuali elementi grafici */
 }
 
 /* 📱 Responsive */
 @media (max-width: 480px) {
   .site-footer {
-    bottom: 15px;           /* leggermente più vicino al bordo su mobile */
-    left: 25px;             /* allineato al padding mobile */
-    font-size: 13px;        /* leggermente più piccolo ma sempre su una riga */
-    white-space: nowrap;    /* ✅ impedisce l'andata a capo */
+    bottom: 80px;          /* ✅ ancora più in alto su mobile */
+    left: 25px;            /* allineato al padding dell'header mobile */
+    font-size: 13px;
+    white-space: nowrap;
   }
 }
 
