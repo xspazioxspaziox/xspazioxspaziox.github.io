@@ -96,17 +96,18 @@ body {
 /* ===============================
    CORNICE IMMAGINE o TESTO
 =============================== */
-
-/* Larghezza identica per immagine o testo */
+ /* Larghezza identica per immagine o testo */
 .flyer-image {
-  width: 100%;
-  max-width: 400px;
+  /* era: width:100%; max-width:400px; */
+  width: clamp(280px, 95%, 400px);  /* 👈 identico su tutte le pagine */
+  margin: 0 auto;
+  box-sizing: border-box;           /* bordi inclusi nel calcolo */
 }
 
-/* Immagine flyer */
+/* Immagine flyer (lascia inalterato il resto) */
 .flyer-image img {
   display: block;
-  width: 100%;
+  width: 100%;                      /* combacia alla larghezza di .flyer-image */
   height: auto;
   border: 1px solid #000;
   box-sizing: border-box;
@@ -114,27 +115,18 @@ body {
   object-fit: contain;
 }
 
-/* ---- Cornice testo IDENTICA a quella dell'immagine ---- */
-
-/* Contenitore principale: identico a quello del flyer immagine */
-.flyer-image {
-  width: 100%;
-  max-width: 400px;
-  box-sizing: border-box; /* ✅ corregge differenza di 1px per lato */
-}
-
-/* Cornice */
+/* Cornice testo identica all’immagine */
 .flyer-frame {
   display: block;
-  width: 100%;
+  width: 100%;                      /* combacia alla larghezza di .flyer-image */
   max-height: var(--flyer-box-h);
   border: 1px solid #000;
-  box-sizing: border-box; /* include il bordo nella larghezza totale */
+  box-sizing: border-box;           /* bordi inclusi nel calcolo */
   background: #fafafa;
   overflow: hidden;
 }
 
-/* Contenuto scrollabile */
+/* Contenuto scrollabile (altezza interna = altezza cornice - bordo - padding) */
 .flyer-scroll {
   height: calc(var(--flyer-box-h) - 2px - 20px);
   overflow-y: auto;
@@ -143,9 +135,8 @@ body {
   font-size: 0.9em;
   line-height: 1.5;
   color: #333;
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f0f0f0;
 }
+
 
 /* WebKit scrollbar */
 .flyer-scroll::-webkit-scrollbar {
