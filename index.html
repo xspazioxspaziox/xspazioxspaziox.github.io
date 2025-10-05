@@ -1,41 +1,44 @@
-<!-- Home del sito -->
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <!-- CSS subito disponibile (niente FOUC) -->
-  <link rel="preload" href="./assets/css/style.css?v=12" as="style">
+  <link rel="preload" href="./assets/css/style.css?v=13" as="style">
   <link rel="stylesheet" href="./assets/css/style.css?v=13">
+
   <!-- JS include (defer) -->
   <script src="./assets/js/include.js" defer></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Facoltativi ma utili -->
+  <title>Spazio X</title>
+  <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
 </head>
 <body>
+
+  <!-- Header iniettato da include.js -->
   <div id="header"></div>
 
-<main class="flyer-container">
-  <div class="flyer-block">
+  <main class="flyer-container">
+    <div class="flyer-block">
+      <!-- Riga superiore -->
+      <div class="flyer-header">
+        <div class="flyer-date">31/08</div>
+        <div class="flyer-time">21:00</div>
+      </div>
 
-    <!-- Riga superiore -->
-    <div class="flyer-header">
-      <div class="flyer-date">31/08</div>
-      <div class="flyer-time">21:00</div>
+      <!-- Immagine flyer -->
+      <div class="flyer-image">
+        <img src="./eventi/img/31-08-01.jpg" alt="flyer evento 31 agosto">
+      </div>
+
+      <!-- Info -->
+      <div class="flyer-info">info</div>
     </div>
 
-    <!-- Immagine flyer -->
-    <div class="flyer-image">
-      <img src="./eventi/img/31-08-01.jpg" alt="flyer evento 31 agosto">
-    </div>
-
-    <!-- Info -->
-    <div class="flyer-info">info</div>
-
-  </div>
-
-</main>
-
-
+  <!-- Footer iniettato da include.js -->
   <div id="footer"></div>
+
 </body>
 </html>
