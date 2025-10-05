@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
+/* ------------------------------
+   STRUTTURA BASE
+--------------------------------*/
 body {
   margin: 0;
   font-family: 'Source Code Pro', monospace;
@@ -13,21 +16,85 @@ body {
 
 /* Header */
 .site-header {
-  padding: 20px 40px; /* leggermente più ampio: base per allineare il footer */
+  padding: 20px 40px; /* allineato col footer */
   text-align: left;
   flex-shrink: 0;
 }
 
-/* Assicuriamoci che il contenitore sia relativo */
+/* Footer */
+.site-footer {
+  text-align: left;
+  padding: 10px 40px; /* uguale all’header */
+  font-size: 14px;
+  background-color: #fff;
+  flex-shrink: 0;
+}
+
+/* ------------------------------
+   SEZIONE CENTRALE DEL FLYER
+--------------------------------*/
 .flyer-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
 }
 
-/* Link "Flying object" dentro la pagina */
+.flyer-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+
+/* Riga superiore: data e ora */
+.flyer-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #444;
+  width: 100%;
+  max-width: 440px; /* +10% rispetto ai 400px originali */
+  margin-bottom: 6px;
+}
+
+/* Immagine flyer */
+.flyer-image {
+  width: 100%;
+  max-width: 440px; /* +10% */
+}
+
+.flyer-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #000; /* cornice nera sottile */
+  box-sizing: border-box;
+  max-height: 53vh; /* leggermente aumentato per compensare la scala */
+  object-fit: contain;
+}
+
+/* Info */
+.flyer-info {
+  width: 100%;
+  max-width: 440px; /* +10% */
+  text-align: right;
+  font-size: 0.9em;
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  margin-top: 8px;
+  color: #444;
+}
+
+/* ------------------------------
+   LINK "Flying object"
+--------------------------------*/
 .flying-object {
   position: absolute;
   right: 20px;        /* dentro il margine visibile */
-  top: 60px;          /* più vicino all’immagine */
+  top: 60px;          /* vicino all’immagine */
   transform: rotate(-20deg);
   font-size: 0.9em;
   color: #333;
@@ -41,33 +108,15 @@ body {
   transform: rotate(-20deg) scale(1.05);
 }
 
-/* 📱 Mobile */
-@media (max-width: 480px) {
-  .flying-object {
-    right: 15px;
-    top: 40px;
-    font-size: 0.8em;
-  }
-}
-
-
-/* Footer */
-.site-footer {
-  text-align: left;
-  padding: 10px 40px; /* uguale all’header */
-  font-size: 14px;
-  background-color: #fff;
-  flex-shrink: 0;
-}
-
-/* --- ANIMAZIONE OGGETTO VOLANTE (più lenta e più piccola) --- */
-
+/* ------------------------------
+   OGGETTO VOLANTE (animazione)
+--------------------------------*/
 .flier {
   pointer-events: none;
 }
 
 .flier > * {
-  animation: fly 120s linear infinite; /* più lento (da 50s → 90s) */
+  animation: fly 120s linear infinite; /* lento e continuo */
   pointer-events: none !important;
   top: 0;
   left: 0;
@@ -75,12 +124,12 @@ body {
   position: fixed;
   animation-delay: 1s;
   z-index: 999999;
-  width: 50px;     /* ridotto */
-  height: 50px;    /* ridotto */
-  opacity: 0.7;    /* leggermente trasparente, più elegante */
+  width: 50px;      /* piccolo */
+  height: 50px;
+  opacity: 0.7;     /* leggermente trasparente */
 }
 
-/* traiettoria invariata */
+/* Traiettoria del volo */
 @keyframes fly {
   98.001%, 0% {
     display: block;
@@ -109,8 +158,9 @@ body {
   }
 }
 
-
-/* 📱 Responsive */
+/* ------------------------------
+   RESPONSIVE (Mobile)
+--------------------------------*/
 @media (max-width: 480px) {
   .flyer-header,
   .flyer-image,
@@ -120,10 +170,16 @@ body {
   }
 
   .flyer-image img {
-    max-height: 42vh;
+    max-height: 50vh;
   }
 
   .flyer-info {
+    font-size: 0.8em;
+  }
+
+  .flying-object {
+    right: 15px;
+    top: 40px;
     font-size: 0.8em;
   }
 
@@ -131,10 +187,5 @@ body {
   .site-footer {
     padding: 15px 25px;
   }
-
-  .flying-object {
-    right: -50px;
-    top: 30px;
-    font-size: 0.8em;
-  }
 }
+
