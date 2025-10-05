@@ -67,7 +67,7 @@ body {
 }
 
 .flier > * {
-  animation: fly 50s linear infinite; /* più lento (da 50s → 90s) */
+  animation: fly 120s linear infinite; /* più lento (da 50s → 90s) */
   pointer-events: none !important;
   top: 0;
   left: 0;
