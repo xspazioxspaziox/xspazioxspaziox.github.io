@@ -43,6 +43,21 @@ body {
   margin-bottom: 16px; /* un po’ sopra il bordo inferiore */
 }
 
+/* Titolo di pagina gestito per-pagina */
+.page-title {
+  padding: 0 40px;      /* allineato con header/footer desktop */
+  margin: 0 0 8px 0;    /* poco spazio sotto */
+  font-size: 2rem;      /* regola come preferisci */
+  line-height: 1.2;
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    padding: 0 25px;    /* allineato con header/footer mobile */
+    font-size: 1.6rem;
+  }
+}
+
 /* ===============================
    BLOCCO FLYER (centrato)
 =============================== */
