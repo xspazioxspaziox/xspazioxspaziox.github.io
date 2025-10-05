@@ -46,6 +46,11 @@ body {
   transform: translateY(-6vh);   /* ✅ sposta TUTTO il blocco un po’ più in alto */
 }
 
+@media (max-width: 480px) {
+  .flyer-container {
+    transform: translateY(-3vh);
+  }
+}
 
 .flyer-block {
   display: flex;
