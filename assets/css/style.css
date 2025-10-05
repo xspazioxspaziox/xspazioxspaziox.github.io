@@ -7,7 +7,7 @@
   --flyer-offset: -6svh;
   --flyer-box-h: 48svh;
 }
-@media (max-width: 280px) {
+@media (max-width: 380px) {
   :root { --flyer-offset: -4svh; --flyer-box-h: 42svh; }
 }
 
@@ -42,7 +42,7 @@ body {
 .flyer-image,
 .flyer-info {
   width: 100%;
-  max-width: 200px;   /* ← identico alla pagina con img */
+  max-width: 250px;   /* ← identico alla pagina con img */
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -105,7 +105,7 @@ body {
 /* ===============================
    RESPONSIVE
 =============================== */
-@media (max-width:280px){
+@media (max-width:380px){
   .flyer-header, .flyer-image, .flyer-info { width:95%; max-width:95%; }
   .flyer-scroll{ font-size:.85em; }
   .site-header, .site-footer { padding:15px 25px; }
