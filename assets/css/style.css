@@ -18,61 +18,9 @@ body {
   flex-shrink: 0;
 }
 
-/* Contenitore principale */
+/* Assicuriamoci che il contenitore sia relativo */
 .flyer-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   position: relative;
-}
-
-/* Blocco principale che contiene data/ora, immagine, info */
-.flyer-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: auto;
-}
-
-/* Riga superiore: data e ora */
-.flyer-header {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9em;
-  color: #444;
-  width: 100%;
-  max-width: 440px; /* +10% rispetto ai 400px originali */
-  margin-bottom: 6px;
-}
-
-/* Immagine flyer */
-.flyer-image {
-  width: 100%;
-  max-width: 440px; /* +10% */
-}
-
-.flyer-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid #000; /* cornice nera sottile */
-  box-sizing: border-box;
-  max-height: 53vh; /* leggermente aumentato per compensare la scala */
-  object-fit: contain;
-}
-
-/* Info */
-.flyer-info {
-  width: 100%;
-  max-width: 440px; /* +10% */
-  text-align: right;
-  font-size: 0.9em;
-  border-top: 1px solid #ccc;
-  padding-top: 8px;
-  margin-top: 8px;
-  color: #444;
 }
 
 /* Link "Flying object" dentro la pagina */
@@ -93,9 +41,39 @@ body {
   transform: rotate(-20deg) scale(1.05);
 }
 
+/* 📱 Mobile */
+@media (max-width: 480px) {
+  .flying-object {
+    right: 15px;
+    top: 40px;
+    font-size: 0.8em;
+  }
+}
+
+
 /* Footer */
 .site-footer {
-  text-align
+  text-align: left;
+  padding: 10px 40px; /* uguale all’header */
+  font-size: 14px;
+  background-color: #fff;
+  flex-shrink: 0;
+}
+
+/* --- ANIMAZIONE OGGETTO VOLANTE (più lenta e più piccola) --- */
+
+.flier {
+  pointer-events: none;
+}
+
+.flier > * {
+  animation: fly 120s linear infinite; /* più lento (da 50s → 90s) */
+  pointer-events: none !important;
+  top: 0;
+  left: 0;
+  transform: translateX(-120%) translateY(-120%) rotateZ(0);
+  position: fixed;
+  animation-delay: 1s;
   z-index: 999999;
   width: 50px;     /* ridotto */
   height: 50px;    /* ridotto */
