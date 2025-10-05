@@ -8,9 +8,10 @@ body {
   color: #333;
   background: #fff;
   height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto; /* header, contenuto, footer */
-  overflow: hidden; /* niente scroll */
+  display: grid;                    /* header | main | footer */
+  grid-template-rows: auto 1fr auto;
+  row-gap: 0;                       /* niente spazio extra tra le righe */
+  overflow: hidden;
 }
 
 /* Header */
@@ -78,23 +79,19 @@ body {
   color: #444;
 }
 
-/* Footer: più basso di prima ma ancora sicuro */
 .site-footer {
   text-align: left;
   font-size: 14px;
   background-color: #fff;
-  white-space: nowrap;              /* una riga anche su mobile */
-  padding: 10px 40px;
-  /* distanza dal bordo inferiore, adattiva: ~32–56px */
-  margin-bottom: clamp(32px, 6vh, 56px);
+  white-space: nowrap;              /* una sola riga */
+  padding: 10px 40px;               /* allineato all’header */
+  margin-bottom: 16px;              /* ✅ più vicino al fondo */
 }
-
 @media (max-width: 480px) {
   .site-footer {
     padding: 15px 25px;
     font-size: 13px;
-    /* su mobile: ~40–72px + safe-area */
-    margin-bottom: calc(clamp(40px, 8vh, 72px) + env(safe-area-inset-bottom, 0px));
+    margin-bottom: calc(20px + env(safe-area-inset-bottom, 0px)); /* ✅ più basso ma sicuro */
   }
 }
 
