@@ -105,7 +105,7 @@ body {
 /* ===============================
    RESPONSIVE
 =============================== */
-@media (max-width:480px){
+@media (max-width:280px){
   .flyer-header, .flyer-image, .flyer-info { width:95%; max-width:95%; }
   .flyer-scroll{ font-size:.85em; }
   .site-header, .site-footer { padding:15px 25px; }
