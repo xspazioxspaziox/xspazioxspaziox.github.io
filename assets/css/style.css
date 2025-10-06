@@ -87,7 +87,7 @@ body {
   display:flex;
   justify-content:space-between;
   align-items:baseline;
-  font-size:.9em;
+  font-size:.7em;
   color:#444;
   margin-bottom:6px;
 }
@@ -126,7 +126,7 @@ body {
 /* Riga inferiore (info) */
 .flyer-info {
   text-align:right;
-  font-size:.9em;
+  font-size:.7em;
   color:#444;
   border-top:1px solid #ccc;
   padding-top:8px;
@@ -305,7 +305,7 @@ a:active {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  font-size: 0.9em;
+  font-size: 0.7em;
   color: #444;
   border-top: 1px solid #ccc;
   padding-top: 8px;
