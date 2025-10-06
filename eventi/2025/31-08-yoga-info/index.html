@@ -5,33 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- CSS -->
-  <link rel="preload" href="../../assets/css/style.css" as="style">
-  <link rel="stylesheet" href="../../assets/css/style.css">
+  <!-- Usa uno dei due: RELATIVO CORRETTO oppure ROOT-BASED -->
+  <!-- RELATIVO (3 livelli su): -->
+  <!-- <link rel="preload" href="../../../assets/css/style.css" as="style"> -->
+  <!-- <link rel="stylesheet" href="../../../assets/css/style.css"> -->
+
+  <!-- CONSIGLIATO: ROOT-BASED (più robusto su GitHub Pages utente) -->
+  <link rel="preload" href="/assets/css/style.css" as="style">
+  <link rel="stylesheet" href="/assets/css/style.css">
 
   <!-- JS include -->
-  <script src="../../assets/js/include.js" defer></script>
+  <!-- RELATIVO: ../../../assets/js/include.js -->
+  <!-- oppure root-based: -->
+  <script src="/assets/js/include.js" defer></script>
 
   <title>Spazio X — Evento yoga 31.08.25</title>
-  <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+  <!-- RELATIVO: ../../../assets/img/favicon.ico -->
+  <!-- oppure root-based: -->
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-  <!-- Header iniettato -->
   <div id="header"></div>
 
-  <!-- Titolo di pagina specifico -->
   <h1 class="page-title"></h1>
 
   <main class="flyer-container">
     <div class="flyer-block">
 
-      <!-- Riga superiore -->
       <div class="flyer-header">
         <div class="flyer-date">31/08/25</div>
         <div class="flyer-time">10→11</div>
       </div>
 
-      <!-- Cornice testo (identica a quella del flyer) -->
       <div class="flyer-image">
         <div class="flyer-frame">
           <div class="flyer-scroll">
@@ -47,37 +53,21 @@
               Phasellus varius tincidunt eros, eget blandit est congue non. 
               Donec sed tortor nec lorem congue malesuada eget sit amet ante.
             </p>
-            <p>
-              Nam porttitor lacinia ligula nec convallis. Mauris rhoncus 
-              cursus sapien, ac pharetra mi ultricies non. Ut dictum 
-              blandit lacus, in fringilla nisl gravida vitae.
-            </p>
-            <p>
-              Curabitur commodo at est at tempus. Praesent faucibus, 
-              purus vitae ullamcorper facilisis, enim justo hendrerit 
-              lectus, a ultricies lorem urna sed ligula.
-            </p>
-            <p>
-              Integer gravida odio vitae metus posuere, eget facilisis 
-              sapien suscipit. Integer at sem at erat elementum 
-              scelerisque. Donec blandit semper sapien, ac hendrerit 
-              ex hendrerit nec.
-            </p>
+            <p>Nam porttitor lacinia ligula nec convallis…</p>
+            <p>Curabitur commodo at est at tempus…</p>
+            <p>Integer gravida odio vitae metus posuere…</p>
           </div>
         </div>
       </div>
 
-      <!-- Riga inferiore allineata alla cornice -->
-<div class="flyer-footer">
-  <div class="footer-left"><a href="../../">eventi</a></div>
-  <div class="footer-right"><a href="../31-08-yoga-flyer/">flyer→</a></div>
-</div>
-
+      <div class="flyer-footer">
+        <div class="footer-left"><a href="../../">eventi</a></div>
+        <div class="footer-right"><a href="../31-08-yoga-flyer/">flyer→</a></div>
+      </div>
 
     </div>
   </main>
 
-  <!-- Footer iniettato -->
   <div id="footer"></div>
 </body>
 </html>
