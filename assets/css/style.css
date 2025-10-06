@@ -58,23 +58,22 @@ body {
 =============================== */
 .flyer-image { /* wrapper già 100% / max 400px */ }
 
-/* Cornice immagine e cornice testo: STESSE REGOLE */
 .flyer-image > img,
 .flyer-image > .flyer-frame {
   display:block;
   width:100%;
-  border:1px solid #000;         /* cornice uguale */
-  box-sizing:border-box;          /* il bordo non “allarga” */
-  max-height: var(--flyer-box-h); /* stessa altezza visiva */
+  border:1px solid #000;
+  box-sizing:border-box;
+  max-height: var(--flyer-box-h);
 }
 
-/* Solo per il box testo */
 .flyer-frame { background:#fafafa; overflow:hidden; }
 .flyer-scroll{
-  height: calc(var(--flyer-box-h) - 2px - 20px); /* 2px (bordi) + 20px (padding) */
+  height: calc(var(--flyer-box-h) - 2px - 20px);
   overflow:auto; padding:10px 12px;
   text-align:left; font-size:.9em; line-height:1.5; color:#333;
 }
+
 /* Scrollbar */
 .flyer-scroll::-webkit-scrollbar{ width:6px; }
 .flyer-scroll::-webkit-scrollbar-thumb{ background:#888; border-radius:3px; }
@@ -111,4 +110,52 @@ body {
   .site-header, .site-footer { padding:15px 25px; }
   .site-footer { font-size:13px; margin-bottom: calc(20px + env(safe-area-inset-bottom,0px)); }
   .flier img{ width:36px!important; height:36px!important; animation-duration:110s; }
+}
+
+/* ===== LAYOUT CENTRATO + CORNICE 300×375 (desktop/tablet) ===== */
+@media (min-width: 481px) {
+  :root { --flyer-box-h: 375px; }
+
+  .flyer-header,
+  .flyer-image,
+  .flyer-info {
+    width: 300px;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  .flyer-image {
+    height: 375px;
+  }
+  .flyer-image > img,
+  .flyer-image > .flyer-frame {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: none;
+  }
+
+  .flyer-scroll {
+    height: calc(375px - 2px - 20px);
+  }
+
+  .flyer-container {
+    transform: translateY(-2svh);
+  }
+}
+
+/* ===== ADATTAMENTO PER SCHERMI MOLTO GRANDI (≥1200px) ===== */
+@media (min-width: 1200px) {
+  .flyer-block {
+    transform: scale(1.15);
+    transform-origin: center top;
+  }
+  .flyer-container {
+    transform: translateY(-3svh);
+  }
+  .page-title {
+    margin-bottom: 12px;
+  }
 }
