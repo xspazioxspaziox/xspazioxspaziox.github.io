@@ -41,11 +41,20 @@
       padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
+      font-size: 0.85em; /* testo leggermente più piccolo */
+      line-height: 1.4;
     }
 
     .link-list a {
       display: block;
+    }
+
+    /* Su schermi molto piccoli riduci ancora un po' */
+    @media (max-width: 380px) {
+      .link-list {
+        font-size: 0.8em;
+      }
     }
   </style>
 </head>
