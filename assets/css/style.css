@@ -1,4 +1,4 @@
-/* Import font: ottimizzato con display=swap per evitare reflow */
+/* Import font con display=swap per evitare reflow */
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 /* ===============================
@@ -7,8 +7,6 @@
 :root {
   --flyer-offset: -6svh;
   --flyer-box-h: 48svh;
-
-  /* Altezze “prenotate” per header/footer (riduce CLS) */
   --header-h: 64px;
   --footer-h: 40px;
 }
@@ -35,7 +33,7 @@ body {
   overflow: hidden;
 }
 
-/* Riserva spazio per evitare “saltini” quando arrivano gli include */
+/* Riserva spazio per evitare “saltini” */
 #header { min-height: var(--header-h); }
 #footer { min-height: var(--footer-h); }
 
@@ -267,4 +265,35 @@ html, body { overscroll-behavior: none; }
 .flyer-scroll {
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+}
+
+/* ===============================
+   STILE LINK
+=============================== */
+
+/* Link generali */
+a {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+  transition: all 0.2s ease;
+}
+a:hover,
+a:focus {
+  color: #555;
+  border-color: #555;
+}
+a:active {
+  opacity: 0.7;
+}
+
+/* Link dentro la cornice testuale */
+.flyer-scroll a {
+  color: #333;
+  border-bottom: 1px dashed #666;
+}
+.flyer-scroll a:hover,
+.flyer-scroll a:focus {
+  color: #000;
+  border-color: #000;
 }
