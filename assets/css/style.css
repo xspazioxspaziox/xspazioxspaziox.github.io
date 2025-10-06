@@ -87,7 +87,7 @@ body {
   display:flex;
   justify-content:space-between;
   align-items:baseline;
-  font-size:.7em;
+  font-size:.9em;
   color:#444;
   margin-bottom:6px;
 }
@@ -126,17 +126,7 @@ body {
 /* Riga inferiore (info) */
 .flyer-info {
   text-align:right;
-  font-size:.7em;
-  color:#444;
-  border-top:1px solid #ccc;
-  padding-top:8px;
-  margin-top:8px;
-}
-
-/* Riga inferiore (index) */
-.flyer-index {
-  text-align:left;
-  font-size:.7em;
+  font-size:.9em;
   color:#444;
   border-top:1px solid #ccc;
   padding-top:8px;
@@ -305,4 +295,37 @@ a:active {
 .flyer-scroll a:focus {
   color: #000;
   border-color: #000;
+}
+
+/* ===============================
+   NUOVO BLOCCO INFERIORE (indice + info)
+=============================== */
+
+.flyer-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.9em;
+  color: #444;
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  margin-top: 8px;
+  width: 100%;
+  max-width: 250px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 481px) {
+  .flyer-footer {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 380px) {
+  .flyer-footer {
+    width: 95%;
+    max-width: 95%;
+  }
 }
