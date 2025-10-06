@@ -1,7 +1,10 @@
 // include.js – inietta header e footer usando #header e #footer.
-// Riscrive href/src che iniziano con ./assets/ o /assets/ per funzionare
+// Riscrive href/src (e srcset) che iniziano con ./assets/ o /assets/ per funzionare
 // sia dalla root che dalle sottocartelle.
-// + Fix iOS: blocca l'elastic scroll della pagina, consentendolo solo dentro .flyer-scroll
+// Migliorie:
+// - Placeholder immediato per #header/#footer (riduce CLS)
+// - Cache-busting leggero in fetch
+// - Fix iOS: blocca elastic scroll della pagina salvo .flyer-scroll
 
 (function () {
   'use strict';
@@ -21,17 +24,25 @@
 
   var BASE = getBase();
 
-  // Riscrive href/src che puntano a ./assets/... o /assets/... in {BASE}/assets/...
+  // Riscrive href/src e srcset che puntano a ./assets/... o /assets/... in {BASE}/assets/...
   function rewrite(html) {
-    // Nota: semplice e veloce; se servisse coprire anche srcset, si può estendere.
-    return html.replace(/(href|src)=["']\/?assets\//g, '$1="' + BASE + '/assets/');
+    // href/src
+    html = html.replace(/(href|src)=["']\/?assets\//g, '$1="' + BASE + '/assets/');
+    // srcset (copre casi con multipli URL, separati da virgole)
+    html = html.replace(/srcset=["']([^"']+)["']/g, function (m, set) {
+      var rewritten = set.replace(/(?:^|\s)(\/?assets\/[^\s,]+)/g, function (_, url) {
+        return ' ' + BASE + '/' + url.replace(/^\/?/, '');
+      });
+      return 'srcset="' + rewritten + '"';
+    });
+    return html;
   }
 
+  // Inietta il contenuto di un partial in un target
   function inject(targetId, partialPath) {
     var el = document.getElementById(targetId);
     if (!el) return;
 
-    // Aggiunge cache-busting minimo basato su timestamp per evitare cache ostinate in dev
     var url = BASE + partialPath;
     var sep = url.includes('?') ? '&' : '?';
     var bust = sep + 'v=' + String(Date.now()).slice(-7);
@@ -42,29 +53,52 @@
       .catch(function (u) { console.warn('Include fallito:', u); });
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  // Placeholder immediato per ridurre il layout shift
+  function putPlaceholders() {
+    var hdr = document.getElementById('header');
+    var ftr = document.getElementById('footer');
+    if (hdr && !hdr.firstElementChild) {
+      hdr.innerHTML = '<div style="height:var(--header-h)"></div>';
+    }
+    if (ftr && !ftr.firstElementChild) {
+      ftr.innerHTML = '<div style="height:var(--footer-h)"></div>';
+    }
+  }
+
+  // Avvio: metti i placeholder subito (DOM già parse se script è defer)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', putPlaceholders, { once: true });
+  } else {
+    putPlaceholders();
+  }
+
+  // Quando il DOM è pronto, effettua le iniezioni
+  function startInjection() {
     inject('header', '/partials/header.html');
     inject('footer', '/partials/footer.html');
-  });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startInjection, { once: true });
+  } else {
+    startInjection();
+  }
 
-  // ===== iOS elastic scroll fix (fallback JS per versioni vecchie di iOS) =====
-  // La parte principale è già gestita via CSS (overscroll-behavior), ma su iOS vecchi non è supportato.
+  // ===== iOS elastic scroll fix (fallback JS per versioni vecchie) =====
   (function () {
-    var isOldiOS = /iP(ad|hone|od)/.test(navigator.userAgent) && !CSS.supports('overscroll-behavior: none');
+    var isOldiOS = /iP(ad|hone|od)/.test(navigator.userAgent) && !(window.CSS && CSS.supports('overscroll-behavior: none'));
     if (!isOldiOS) return;
 
-    // Permette lo scroll solo quando il gesto parte dentro .flyer-scroll
+    // Consenti scroll solo nelle aree .flyer-scroll
     document.addEventListener('touchmove', function (e) {
       if (!e.target.closest('.flyer-scroll')) {
-        e.preventDefault(); // blocca il rimbalzo della pagina
+        e.preventDefault();
       }
     }, { passive: false });
 
-    // Migliora l'inerzia nello scroll dell'area testuale
+    // Evita pass-through ai limiti
     document.addEventListener('touchstart', function (e) {
       var scroller = e.target.closest('.flyer-scroll');
       if (!scroller) return;
-      // se siamo in cima o in fondo, spingiamo di 1px per evitare il "pass-through" del gesto
       if (scroller.scrollTop <= 0) scroller.scrollTop = 1;
       var max = scroller.scrollHeight - scroller.clientHeight;
       if (scroller.scrollTop >= max) scroller.scrollTop = max - 1;
