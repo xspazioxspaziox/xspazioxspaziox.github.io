@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+/* Import font: ottimizzato con display=swap per evitare reflow */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 /* ===============================
    VARIABILI GLOBALI
@@ -6,9 +7,18 @@
 :root {
   --flyer-offset: -6svh;
   --flyer-box-h: 48svh;
+
+  /* Altezze “prenotate” per header/footer (riduce CLS) */
+  --header-h: 64px;
+  --footer-h: 40px;
 }
-@media (max-width: 380px) {
-  :root { --flyer-offset: -4svh; --flyer-box-h: 42svh; }
+@media (max-width: 480px) {
+  :root {
+    --flyer-offset: -4svh;
+    --flyer-box-h: 42svh;
+    --header-h: 56px;
+    --footer-h: 36px;
+  }
 }
 
 /* ===============================
@@ -16,7 +26,7 @@
 =============================== */
 body {
   margin: 0;
-  font-family: 'Source Code Pro', monospace;
+  font-family: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   color: #333;
   background: #fff;
   height: 100vh;
@@ -24,6 +34,11 @@ body {
   grid-template-rows: auto auto 1fr auto;
   overflow: hidden;
 }
+
+/* Riserva spazio per evitare “saltini” quando arrivano gli include */
+#header { min-height: var(--header-h); }
+#footer { min-height: var(--footer-h); }
+
 .site-header { padding: 20px 40px; text-align: left; }
 .site-footer {
   text-align: left;
@@ -31,6 +46,7 @@ body {
   white-space: nowrap;
   padding: 10px 40px;
   margin-bottom:16px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
 }
 .page-title {
   padding: 0 40px;
@@ -220,11 +236,6 @@ body {
 .flyer-scroll > :last-child { margin-bottom:0; }
 .flyer-scroll p { margin:0 0 1em; }
 
-/* (Piano B opzionale: bordo sul wrapper, non dentro)
-.flyer-image { border:1px solid #000; }
-.flyer-image > img, .flyer-image > .flyer-frame { border:0; }
-*/
-
 /* ===== Mobile: nessuno scroll + footer adattato ===== */
 @supports (height: 100dvh) {
   body { height: 100dvh; }
@@ -247,6 +258,7 @@ body {
     margin-bottom:env(safe-area-inset-bottom,0px);
     overflow:hidden;
     text-overflow:ellipsis;
+    padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
   }
 }
 
