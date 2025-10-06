@@ -17,47 +17,73 @@
 body {
   margin: 0;
   font-family: 'Source Code Pro', monospace;
-  color: #333; background: #fff;
+  color: #333;
+  background: #fff;
   height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   overflow: hidden;
 }
 .site-header { padding: 20px 40px; text-align: left; }
-.site-footer { text-align: left; font-size: 14px; white-space: nowrap; padding: 10px 40px; margin-bottom:16px; }
-.page-title { padding: 0 40px; margin: 0 0 8px; font-size: 2rem; line-height:1.2; }
-@media (max-width:480px){ .page-title{ padding:0 25px; font-size:1.6rem; } }
+.site-footer {
+  text-align: left;
+  font-size: 14px;
+  white-space: nowrap;
+  padding: 10px 40px;
+  margin-bottom:16px;
+}
+.page-title {
+  padding: 0 40px;
+  margin: 0 0 8px;
+  font-size: 2rem;
+  line-height:1.2;
+}
+@media (max-width:480px){
+  .page-title{ padding:0 25px; font-size:1.6rem; }
+}
 
 /* ===============================
    BLOCCO FLYER (centrato)
 =============================== */
 .flyer-container {
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   transform: translateY(var(--flyer-offset));
 }
-.flyer-block { display:flex; flex-direction:column; align-items:center; }
+.flyer-block {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
-/* --- LARGHEZZA UNICA (come la pagina con immagine) --- */
+/* --- LARGHEZZA UNICA --- */
 .flyer-header,
 .flyer-image,
 .flyer-info {
   width: 100%;
-  max-width: 250px;   /* ← identico alla pagina con img */
+  max-width: 250px;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
 /* Riga superiore */
 .flyer-header {
-  display:flex; justify-content:space-between; align-items:baseline;
-  font-size:.9em; color:#444; margin-bottom:6px;
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  font-size:.9em;
+  color:#444;
+  margin-bottom:6px;
 }
 
 /* ===============================
    CORNICE (IMMAGINE o TESTO)
 =============================== */
-.flyer-image { /* wrapper già 100% / max 400px */ }
+.flyer-image {}
 
+/* Cornice immagine e cornice testo: stesse regole */
 .flyer-image > img,
 .flyer-image > .flyer-frame {
   display:block;
@@ -67,11 +93,16 @@ body {
   max-height: var(--flyer-box-h);
 }
 
+/* Box testo */
 .flyer-frame { background:#fafafa; overflow:hidden; }
 .flyer-scroll{
   height: calc(var(--flyer-box-h) - 2px - 20px);
-  overflow:auto; padding:10px 12px;
-  text-align:left; font-size:.9em; line-height:1.5; color:#333;
+  overflow:auto;
+  padding:10px 12px;
+  text-align:left;
+  font-size:.9em;
+  line-height:1.5;
+  color:#333;
 }
 
 /* Scrollbar */
@@ -81,15 +112,35 @@ body {
 
 /* Riga inferiore (info) */
 .flyer-info {
-  text-align:right; font-size:.9em; color:#444;
-  border-top:1px solid #ccc; padding-top:8px; margin-top:8px;
+  text-align:right;
+  font-size:.9em;
+  color:#444;
+  border-top:1px solid #ccc;
+  padding-top:8px;
+  margin-top:8px;
 }
 
 /* ===============================
    OGGETTO VOLANTE
 =============================== */
-.flier{ pointer-events:none; position:fixed; top:0; left:0; z-index:2147483647; width:0; height:0; overflow:visible!important; }
-.flier img{ width:48px!important; height:48px!important; opacity:.75; object-fit:contain; will-change:transform; animation:flyAcross 90s linear infinite; }
+.flier{
+  pointer-events:none;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:2147483647;
+  width:0;
+  height:0;
+  overflow:visible!important;
+}
+.flier img{
+  width:48px!important;
+  height:48px!important;
+  opacity:.75;
+  object-fit:contain;
+  will-change:transform;
+  animation:flyAcross 90s linear infinite;
+}
 @keyframes flyAcross{
   0%,98.001%{ transform:translate3d(-200%,100vh,0) rotateZ(0deg); }
   15%{ transform:translate3d(100vw,-100%,0) rotateZ(180deg); }
@@ -108,7 +159,10 @@ body {
   .flyer-header, .flyer-image, .flyer-info { width:95%; max-width:95%; }
   .flyer-scroll{ font-size:.85em; }
   .site-header, .site-footer { padding:15px 25px; }
-  .site-footer { font-size:13px; margin-bottom: calc(20px + env(safe-area-inset-bottom,0px)); }
+  .site-footer {
+    font-size:13px;
+    margin-bottom: calc(20px + env(safe-area-inset-bottom,0px));
+  }
   .flier img{ width:36px!important; height:36px!important; animation-duration:110s; }
 }
 
@@ -126,9 +180,8 @@ body {
     box-sizing: border-box;
   }
 
-  .flyer-image {
-    height: 375px;
-  }
+  .flyer-image { height: 375px; }
+
   .flyer-image > img,
   .flyer-image > .flyer-frame {
     width: 100%;
@@ -155,7 +208,45 @@ body {
   .flyer-container {
     transform: translateY(-3svh);
   }
-  .page-title {
-    margin-bottom: 12px;
+  .page-title { margin-bottom: 12px; }
+}
+
+/* ===== FIX: Riga bianca in alto nel box testo ===== */
+.flyer-frame { background:#fafafa; }
+.flyer-scroll {
+  background:#fafafa;
+  padding:12px 12px 10px;
+}
+.flyer-scroll > :first-child { margin-top:0; }
+.flyer-scroll > :last-child { margin-bottom:0; }
+.flyer-scroll p { margin:0 0 1em; }
+
+/* (Piano B opzionale: bordo sul wrapper, non dentro)
+.flyer-image { border:1px solid #000; }
+.flyer-image > img, .flyer-image > .flyer-frame { border:0; }
+*/
+
+/* ===== Mobile: nessuno scroll + footer adattato ===== */
+@supports (height: 100dvh) {
+  body { height: 100dvh; }
+}
+@supports not (height: 100dvh) {
+  body { height: 100svh; }
+}
+
+@media (max-width: 480px) {
+  :root { --flyer-box-h: 40svh; --flyer-offset: -2svh; }
+
+  .page-title { margin:0 0 6px; }
+  .flyer-header { margin-bottom:4px; }
+  .flyer-info { padding-top:6px; margin-top:6px; }
+
+  .site-footer {
+    padding:8px 16px;
+    font-size:12px;
+    white-space:normal;
+    margin-bottom:env(safe-area-inset-bottom,0px);
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
 }
