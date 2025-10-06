@@ -83,7 +83,6 @@ body {
 =============================== */
 .flyer-image {}
 
-/* Cornice immagine e cornice testo: stesse regole */
 .flyer-image > img,
 .flyer-image > .flyer-frame {
   display:block;
@@ -249,4 +248,11 @@ body {
     overflow:hidden;
     text-overflow:ellipsis;
   }
+}
+
+/* ===== Stop elastic scroll della pagina + niente scroll chaining ===== */
+html, body { overscroll-behavior: none; }
+.flyer-scroll {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
