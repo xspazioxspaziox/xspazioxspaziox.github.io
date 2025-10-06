@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS -->
+  <link rel="preload" href="../../assets/css/style.css" as="style">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- JS include -->
+  <script src="../../assets/js/include.js" defer></script>
+
+  <title>Indice — Link</title>
+  <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+
+  <!-- Stili minimi specifici della pagina -->
+  <style>
+    /* Wrapper della lista: area scrollabile al posto della cornice */
+    .list-wrap{
+      width: 100%;
+      max-width: 250px;            /* combacia con il layout di default */
+      height: var(--flyer-box-h);  /* usa la stessa altezza del flyer */
+      overflow: auto;
+      padding: 10px 12px;
+      box-sizing: border-box;
+    }
+    /* Su desktop/tablet rispetta 300×375 come il flyer immagine */
+    @media (min-width: 481px){
+      .list-wrap{
+        width: 300px;
+        max-width: none;
+        height: 375px;
+      }
+    }
+
+    /* Lista link: pulita, spaziata, senza pallini */
+    .link-list{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .link-list a{
+      display: block;              /* aumenta l’area cliccabile */
+      /* eredita lo stile link generale dal tuo CSS (grigio, no underline) */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header iniettato -->
+  <div id="header"></div>
+
+  <!-- Titolo di pagina specifico -->
+  <h1 class="page-title">Indice</h1>
+
+  <main class="flyer-container">
+    <div class="flyer-block">
+
+      <!-- Riga superiore -->
+      <div class="flyer-header">
+        <div class="flyer-date">Seleziona</div>
+        <div class="flyer-time">Link</div>
+      </div>
+
+      <!-- AREA LISTA SCROLLABILE (nessuna cornice) -->
+      <nav class="list-wrap" aria-label="Indice dei link">
+        <ul class="link-list">
+          <!-- ESEMPI: sostituisci con i tuoi link -->
+          <li><a href="../../eventi/2025/31-08.html">Pino Scoppon — 31/08</a></li>
+          <li><a href="../../eventi/2025/12-09.html">Flying Object — 12/09</a></li>
+          <li><a href="../../artisti/pino.html">Artista: Pino</a></li>
+          <li><a href="https://xspazioxspaziox.github.io/" target="_blank" rel="noopener">Sito — Home</a></li>
+          <li><a href="https://www.instagram.com/xspazioxspaziox/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://t.me/xspazioxspaziox" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="../../eventi/2025/05-10.html">Evento — 05/10</a></li>
+          <li><a href="../../eventi/2025/18-10.html">Evento — 18/10</a></li>
+          <li><a href="../../eventi/2025/22-11.html">Evento — 22/11</a></li>
+          <li><a href="../../eventi/2025/31-12.html">Evento — 31/12</a></li>
+          <!-- aggiungi pure altri <li>…</li> -->
+        </ul>
+      </nav>
+
+      <!-- Info sotto -->
+      <div class="flyer-info">indice / scorri la lista</div>
+
+    </div>
+  </main>
+
+  <!-- Footer iniettato -->
+  <div id="footer"></div>
+</body>
+</html>
 
