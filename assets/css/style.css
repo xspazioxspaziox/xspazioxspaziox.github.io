@@ -271,17 +271,15 @@ html, body { overscroll-behavior: none; }
    STILE LINK
 =============================== */
 
-/* Link generali */
+/* Link generali (fuori dalla cornice) */
 a {
-  color: #444;
-  text-decoration: none;
-  border-bottom: none;
-  transition: all 0.2s ease;
+  color: #555;               /* grigio medio-scuro */
+  text-decoration: none;     /* nessuna underline */
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 a:hover,
 a:focus {
-  color: #555;
-  border-color: #555;
+  color: #000;               /* più scuro al passaggio */
 }
 a:active {
   opacity: 0.7;
@@ -291,6 +289,7 @@ a:active {
 .flyer-scroll a {
   color: #333;
   border-bottom: 1px dashed #666;
+  text-decoration: none;
 }
 .flyer-scroll a:hover,
 .flyer-scroll a:focus {
