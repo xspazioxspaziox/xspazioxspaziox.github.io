@@ -1,6 +1,3 @@
-// hydra.js — setup e patch Hydra per la home
-
-// Assicurati che esista il canvas #hydra-canvas
 const hydraCanvas = document.getElementById('hydra-canvas');
 if (hydraCanvas) {
   const hydra = new Hydra({
@@ -8,7 +5,7 @@ if (hydraCanvas) {
     detectAudio: false
   });
 
-  // Patch visual Hydra (puoi modificarla liberamente)
+  // Patch visual Hydra
   osc(4, 0.1, 1.2)
       .modulateScale(osc(8).rotate(Math.sin(time)), .5)
       .thresh(.8)
