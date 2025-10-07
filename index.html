@@ -1,123 +1,183 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- =======================
-       METADATI DI BASE
-  ======================= -->
+  <!-- Meta e responsive -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- =======================
-       STILI GLOBALI
-       - preload per performance
-  ======================= -->
+  <!-- Stili globali -->
   <link rel="preload" href="./assets/css/style.css" as="style">
   <link rel="stylesheet" href="./assets/css/style.css">
 
-  <!-- =======================
-       SCRIPT DI INCLUDE
-       - inietta header e footer
-  ======================= -->
+  <!-- Include header/footer -->
   <script src="./assets/js/include.js" defer></script>
 
-  <!-- =======================
-       META E ICONA
-  ======================= -->
   <title>Spazio X — Home</title>
   <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
 
-  <!-- =======================
-       STILI LOCALI (SOLO HOME)
-       - piccole regole per la lista archivio
-  ======================= -->
+  <!-- Stili locali per bottoni e dropdown -->
   <style>
-    /* Area archivio scrollabile (riusa dimensioni cornice) */
-    .list-wrap {
+    /* Riga del pulsante download (sopra la cornice) */
+    .home-actions-top {
       width: 100%;
       max-width: 250px;
-      height: var(--flyer-box-h);
-      overflow: auto;
-      padding: 10px 12px;
-      box-sizing: border-box;
-      text-align: left;
+      margin: 0 auto 10px;
     }
-    @media (min-width: 481px){
-      .list-wrap { width:300px; max-width:none; height:375px; }
-    }
-    .link-text { font-size:0.75em; line-height:1.4; color:#333; }
-    .link-text a { display:inline; }
-    @media (max-width:380px){ .link-text { font-size:0.7em; } }
+    @media (min-width:481px){ .home-actions-top{ max-width:300px; } }
 
-    /* Spaziatura verticale minima tra i due blocchi centrali */
-    .home-gap { height: 12px; }
+    /* Bottoni minimali */
+    .btn {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid #888;
+      background: #f7f7f7;
+      color: #333;
+      text-decoration: none;
+      font-size: .9em;
+      line-height: 1;
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn:hover, .btn:focus { background:#eee; color:#000; }
+
+    /* Bottoni sotto la cornice */
+    .home-actions-bottom {
+      margin-top: 10px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Dropdown basato su <details> */
+    details.dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    details.dropdown > summary {
+      list-style: none;
+      outline: none;
+    }
+    details.dropdown > summary::-webkit-details-marker { display: none; }
+    details.dropdown[open] > summary.btn { background:#eee; }
+
+    /* Pannello del menu */
+    .menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      min-width: 160px;
+      border: 1px solid #888;
+      background: #fff;
+      padding: 6px;
+      z-index: 10;
+      box-sizing: border-box;
+    }
+    .menu a {
+      display: block;
+      padding: 6px 8px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      color: #333;
+      font-size: .9em;
+    }
+    .menu a:hover { border-color:#888; background:#f7f7f7; }
+
+    /* Segnaposto dentro la cornice */
+    .hero-placeholder {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #666;
+    }
   </style>
 </head>
 
 <body>
-  <!-- =======================
-       HEADER (iniettato)
-  ======================= -->
+  <!-- Header iniettato -->
   <div id="header"></div>
 
-  <!-- =======================
-       TITOLO HOME
-       - Link diretti all’evento corrente (flyer + info)
-       - Aggiorna questi due href ad ogni nuovo evento
-  ======================= -->
-  <h1 class="page-title">
-    <a href="eventi/2025/31-08-yoga-flyer/">flyer</a>
-    <a href="eventi/2025/31-08-yoga-info/">— info</a>
-  </h1>
+  <!-- Titolo (puoi lasciarlo vuoto o personalizzarlo) -->
+  <h1 class="page-title"></h1>
 
-  <!-- =======================
-       BLOCCO CENTRALE
-       - 1) In evidenza: mini-flyer dell’evento corrente
-       - 2) Archivio rapido (opzionale): lista scrollabile
-  ======================= -->
+  <!-- Blocco centrale -->
   <main class="flyer-container">
     <div class="flyer-block">
 
-      <!-- ===== (1) EVENTO IN EVIDENZA =====
-           - Identico a una pagina flyer, ma sintetico (solo immagine + link sotto)
-           - Aggiorna src dell’immagine e i link nel footer locale -->
-      <div class="flyer-header">
-        <div class="flyer-date">31/08/25</div>
-        <div class="flyer-time">10→11</div>
+      <!-- Pulsante download sopra la cornice -->
+      <div class="home-actions-top">
+        <!-- TODO: aggiorna l’href al tuo PDF reale -->
+        <a class="btn" href="/assets/docs/programma-ottobre.pdf" download>
+          Scarica il programma di ottobre
+        </a>
       </div>
 
+      <!-- Cornice centrale (riusa il layout 300×375) -->
       <div class="flyer-image">
-        <img src="eventi/img/31-08-25-yoga.jpg" alt="flyer 31 agosto">
-      </div>
-
-      <div class="flyer-footer">
-        <div class="footer-left"><a href="eventi/">eventi</a></div>
-        <div class="footer-right">
-          <a href="eventi/2025/31-08-yoga-info/">info→</a>
+        <!-- Riutilizziamo .flyer-frame per ottenere bordo e dimensioni coerenti -->
+        <div class="flyer-frame">
+          <div class="hero-placeholder">elemento</div>
         </div>
       </div>
 
-      <!-- Piccola distanza tra i due blocchi -->
-      <div class="home-gap" aria-hidden="true"></div>
+      <!-- Tre bottoni sotto la cornice -->
+      <div class="home-actions-bottom">
+        <!-- Dropdown “eventi” -->
+        <details class="dropdown">
+          <summary class="btn">eventi</summary>
+          <div class="menu">
+            <!-- aggiorna gli URL con quelli dei tuoi eventi -->
+            <a href="eventi/2025/31-08-yoga-flyer/">31.08.25</a>
+            <a href="eventi/2025/27-09-xxx-flyer/">27.09.25</a>
+            <a href="eventi/2025/28-09-xxx-flyer/">28.09.25</a>
+          </div>
+        </details>
 
-      <!-- ===== (2) ARCHIVIO RAPIDO (OPZIONALE) =====
-           - Lista link separati da virgole, scrollabile
-           - Aggiungi/rimuovi eventi qui; i percorsi sono relativi alla home -->
-      <div class="list-wrap" aria-label="Archivio rapido eventi">
-        <p class="link-text">
-          <a href="eventi/2025/31-08-yoga-flyer/">31·08 Yoga — flyer</a>,
-          <a href="eventi/2025/31-08-yoga-info/">31·08 Yoga — info</a>
-          <!-- , aggiungi qui nuovi eventi: -->
-          <!-- , <a href="eventi/2025/xx-xx-nuovo-flyer/">xx·xx Nuovo — flyer</a>,
-               <a href="eventi/2025/xx-xx-nuovo-info/">xx·xx Nuovo — info</a> -->
-        </p>
+        <!-- Dropdown “archivio” -->
+        <details class="dropdown">
+          <summary class="btn">archivio</summary>
+          <div class="menu">
+            <a href="eventi/">/eventi</a>
+            <a href="artisti/">/artisti</a>
+          </div>
+        </details>
+
+        <!-- Bottone “?” → link casuale -->
+        <button id="randomBtn" class="btn" type="button">?</button>
       </div>
 
     </div>
   </main>
 
-  <!-- =======================
-       FOOTER (iniettato)
-  ======================= -->
+  <!-- Footer iniettato -->
   <div id="footer"></div>
+
+  <!-- JS per link casuale -->
+  <script>
+    // Aggiungi qui gli URL candidati per il “?” (interni al tuo sito)
+    const RANDOM_LINKS = [
+      '/eventi/2025/31-08-yoga-flyer/',
+      '/eventi/2025/31-08-yoga-info/',
+      '/eventi/',
+      '/artisti/',
+      '/artisti/pino-scoppon/'
+    ];
+    document.getElementById('randomBtn').addEventListener('click', function () {
+      const url = RANDOM_LINKS[Math.floor(Math.random() * RANDOM_LINKS.length)];
+      location.href = url;
+    });
+
+    // Chiudi un dropdown quando se ne apre un altro (qualità UX)
+    document.querySelectorAll('details.dropdown summary').forEach(s => {
+      s.addEventListener('click', e => {
+        const parent = s.parentElement;
+        document.querySelectorAll('details.dropdown[open]').forEach(d => {
+          if (d !== parent) d.removeAttribute('open');
+        });
+      });
+    });
+  </script>
 </body>
 </html>
