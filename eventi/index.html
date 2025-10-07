@@ -4,40 +4,58 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- CSS -->
+  <!-- =======================
+       STILI GLOBALI
+       - Carica il CSS principale del sito.
+       - Percorso relativo (due livelli su rispetto a /assets/).
+  ======================= -->
   <link rel="preload" href="../../assets/css/style.css" as="style">
   <link rel="stylesheet" href="../../assets/css/style.css">
 
-  <!-- JS include -->
+  <!-- =======================
+       SCRIPT DI INCLUDE
+       - Inietta header e footer comuni (via include.js).
+       - defer = esecuzione dopo il parsing HTML.
+  ======================= -->
   <script src="../../assets/js/include.js" defer></script>
 
+  <!-- =======================
+       META E TITOLI
+       - Titolo della pagina indice eventi.
+       - Favicon comune a tutto il sito.
+  ======================= -->
   <title>Indice</title>
   <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
 
-  <!-- Stili minimi specifici della pagina -->
+  <!-- =======================
+       STILI SPECIFICI DELLA PAGINA
+       - Questa pagina non ha cornice: mostra solo una lista scrollabile.
+       - Include regole locali per il layout centrale e la tipografia dei link.
+  ======================= -->
   <style>
-    /* Area scrollabile centrale */
+    /* Area scrollabile centrale (contenitore della lista) */
     .list-wrap {
       width: 100%;
       max-width: 250px;
-      height: var(--flyer-box-h);
-      overflow: auto;
+      height: var(--flyer-box-h);   /* stessa altezza visiva del flyer */
+      overflow: auto;               /* abilita scroll verticale */
       padding: 10px 12px;
       box-sizing: border-box;
       text-align: left;
     }
 
+    /* Layout desktop / tablet */
     @media (min-width: 481px) {
       .list-wrap {
         width: 300px;
         max-width: none;
-        height: 375px;
+        height: 375px; /* altezza fissa come la cornice */
       }
     }
 
-    /* Testo e link */
+    /* Stile del testo e dei link interni */
     .link-text {
-      font-size: 0.75em; /* testo più piccolo */
+      font-size: 0.75em;   /* leggermente più piccolo rispetto al corpo testo */
       line-height: 1.4;
       color: #333;
     }
@@ -46,7 +64,7 @@
       display: inline;
     }
 
-    /* Per schermi piccoli ancora un po’ più compatto */
+    /* Layout per schermi molto piccoli (smartphone) */
     @media (max-width: 380px) {
       .link-text {
         font-size: 0.7em;
@@ -56,33 +74,54 @@
 </head>
 
 <body>
-  <!-- Header iniettato -->
+  <!-- =======================
+       HEADER
+       - Iniettato dinamicamente da include.js.
+       - Contiene gli elementi comuni (logo, menu, ecc.).
+  ======================= -->
   <div id="header"></div>
 
-  <!-- Titolo di pagina specifico -->
+  <!-- =======================
+       TITOLO DELLA PAGINA
+       - Specifica la sezione attuale (archivio eventi).
+  ======================= -->
   <h1 class="page-title">Archivio eventi</h1>
 
+  <!-- =======================
+       CONTENUTO PRINCIPALE
+       - Contiene un blocco centrato con lista di link scrollabile.
+       - Usa la stessa struttura dei flyer per mantenere coerenza visiva.
+  ======================= -->
   <main class="flyer-container">
     <div class="flyer-block">
 
-      <!-- Area testo scrollabile con link separati da virgole -->
+      <!-- =======================
+           LISTA DI LINK
+           - Mostra gli eventi come coppie di link (flyer e info).
+           - Scrollabile se supera l’altezza massima.
+           - I link sono separati da virgole, non da elenchi <ul>.
+      ======================= -->
       <div class="list-wrap" aria-label="Indice dei link">
         <p class="link-text">
-        <a href="2025/31-08-yoga-flyer/">31·08 Yoga — flyer</a>,
-<a href="2025/31-08-yoga-info/">31·08 Yoga — info</a>,
           <a href="2025/31-08-yoga-flyer/">31·08 Yoga — flyer</a>,
-<a href="2025/31-08-yoga-info/">31·08 Yoga — info</a>,
+          <a href="2025/31-08-yoga-info/">31·08 Yoga — info</a>,
           <a href="2025/31-08-yoga-flyer/">31·08 Yoga — flyer</a>,
-<a href="2025/31-08-yoga-info/">31·08 Yoga — info</a>,
+          <a href="2025/31-08-yoga-info/">31·08 Yoga — info</a>,
           <a href="2025/31-08-yoga-flyer/">31·08 Yoga — flyer</a>,
-<a href="2025/31-08-yoga-info/">31·08 Yoga — info</a>
+          <a href="2025/31-08-yoga-info/">31·08 Yoga — info</a>,
+          <a href="2025/31-08-yoga-flyer/">31·08 Yoga — flyer</a>,
+          <a href="2025/31-08-yoga-info/">31·08 Yoga — info</a>
         </p>
       </div>
 
     </div>
   </main>
 
-  <!-- Footer iniettato -->
+  <!-- =======================
+       FOOTER
+       - Iniettato automaticamente via include.js.
+       - Contiene contatti, social o crediti.
+  ======================= -->
   <div id="footer"></div>
 </body>
 </html>
