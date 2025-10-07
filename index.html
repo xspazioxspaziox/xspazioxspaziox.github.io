@@ -142,8 +142,7 @@
       <!-- Credito Hydra -->
       <div class="hydra-credit">
         *visual generated with
-        <a href="https://hydra.ojack.xyz/" target="_blank">Hydra</a> by O. Jack - 
-        <a href="https://github.com/xspazioxspaziox/xspazioxspaziox.github.io/blob/6da357b8d0e677cbdbd0e2df02754e34b4170140/assets/js/hydra.js" target="_blank">code</a>
+        <a href="https://hydra.ojack.xyz/" target="_blank">Hydra</a> by O. Jack
       </div>
 
       <!-- Bottoni -->
@@ -173,11 +172,23 @@
 
   <div id="footer"></div>
 
-  <!-- Hydra: libreria + patch esterna -->
   <script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
-  <script src="./assets/js/hydra.js"></script>
-
   <script>
+    // === HYDRA ===
+    const hydraCanvas = document.getElementById('hydra-canvas');
+    const hydra = new Hydra({ canvas: hydraCanvas, detectAudio: false });
+
+    osc(4, 0.1, 1.2)
+      .modulateScale(osc(8).rotate(Math.sin(time)), .5)
+      .thresh(.8)
+.colorama(5)
+.modulateScale(o0)
+      .diff(src(o0).scale(1.8))
+      .modulateScale(osc(2).modulateRotate(o0, .74))
+      .diff(src(o0).rotate([-.012, .01, -.002, 0]).scrollY(0, [-1/199800, 0].fast(0.7)))
+      .out();
+
+
     // === SUONI PERSONALIZZATI ===
     const sounds = {
       download: new Audio('/assets/sfx/download.mp3'),
@@ -186,11 +197,13 @@
       random: new Audio('/assets/sfx/random.mp3'),
     };
 
+    // Imposta preload e volume
     Object.values(sounds).forEach(a => {
       a.preload = 'auto';
       a.volume = 0.8;
     });
 
+    // Funzione per clonare e suonare (evita sovrapposizioni tagliate)
     function playSound(key) {
       const base = sounds[key];
       if (!base) return;
