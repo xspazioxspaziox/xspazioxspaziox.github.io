@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- Meta e responsive -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Stili globali -->
   <link rel="preload" href="./assets/css/style.css" as="style">
   <link rel="stylesheet" href="./assets/css/style.css">
 
-  <!-- Include header/footer -->
   <script src="./assets/js/include.js" defer></script>
 
   <title>Spazio X — Home</title>
   <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
 
-  <!-- Stili locali -->
   <style>
-    /* alza il blocco centrale */
+    /* Alza il blocco centrale */
     .flyer-container { transform: translateY(-8svh); }
 
-    /* cornice ridotta */
+    /* Cornice ridotta (200px) */
     .flyer-image {
       height: 200px;
       max-width: 300px;
@@ -34,10 +30,9 @@
       display: flex;
       align-items: stretch;
       justify-content: center;
-      overflow: hidden; /* niente sbordi del canvas */
+      overflow: hidden;
     }
 
-    /* canvas di Hydra: riempie la cornice */
     #hydra-canvas {
       width: 100%;
       height: 100%;
@@ -45,17 +40,26 @@
       image-rendering: crisp-edges;
     }
 
-    /* piccolo testo sotto la cornice */
+    .page-title { text-align: left; }
+
+    .home-actions-top {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto 10px;
+      text-align: center;
+    }
+
     .hydra-credit {
       width: 100%;
       max-width: 300px;
       margin: 4px auto 0;
-      text-align: left;
-      font-size: 0.6em;
-      color: #666;
+      text-align: center;
+      font-size: 0.5em;
+      color: #777;
+      letter-spacing: 0.02em;
     }
     .hydra-credit a {
-      color: #666;
+      color: #777;
       text-decoration: none;
       border-bottom: 1px dotted #aaa;
     }
@@ -64,18 +68,6 @@
       border-color: #000;
     }
 
-    /* titolo come nelle altre pagine */
-    .page-title { text-align: left; }
-
-    /* bottone sopra cornice */
-    .home-actions-top {
-      width: 100%;
-      max-width: 300px;
-      margin: 0 auto 10px;
-      text-align: center;
-    }
-
-    /* bottoni */
     .btn {
       display: inline-block;
       padding: 8px 14px;
@@ -126,39 +118,37 @@
 </head>
 
 <body>
-  <!-- Header iniettato -->
   <div id="header"></div>
 
-  <!-- Titolo come nelle altre pagine -->
   <h1 class="page-title">Spazio X</h1>
 
   <main class="flyer-container">
     <div class="flyer-block">
 
-      <!-- Pulsante download sopra la cornice -->
+      <!-- Pulsante download -->
       <div class="home-actions-top">
-        <a class="btn" href="/assets/docs/programma-ottobre.pdf" download>
+        <a class="btn btn-download" href="/assets/docs/programma-ottobre.pdf" download>
           Scarica il programma di ottobre
         </a>
       </div>
 
-      <!-- Cornice con Hydra dentro -->
+      <!-- Cornice con Hydra -->
       <div class="flyer-image">
         <div class="flyer-frame">
           <canvas id="hydra-canvas"></canvas>
         </div>
       </div>
 
-      <!-- ✅ Credito Hydra -->
+      <!-- Credito Hydra -->
       <div class="hydra-credit">
-        *visual generated with 
+        *visual generated with
         <a href="https://hydra.ojack.xyz/" target="_blank">Hydra</a> by O. Jack
       </div>
 
-      <!-- Bottoni sotto la cornice -->
+      <!-- Bottoni -->
       <div class="home-actions-bottom">
         <details class="dropdown">
-          <summary class="btn">eventi</summary>
+          <summary class="btn btn-eventi">eventi</summary>
           <div class="menu">
             <a href="eventi/2025/31-08-yoga-flyer/">31.08.25</a>
             <a href="eventi/2025/27-09-xxx-flyer/">27.09.25</a>
@@ -167,14 +157,14 @@
         </details>
 
         <details class="dropdown">
-          <summary class="btn">archivio</summary>
+          <summary class="btn btn-archivio">archivio</summary>
           <div class="menu">
             <a href="eventi/">/eventi</a>
             <a href="artisti/">/artisti</a>
           </div>
         </details>
 
-        <button id="randomBtn" class="btn" type="button">?</button>
+        <button id="randomBtn" class="btn btn-random" type="button">?</button>
       </div>
 
     </div>
@@ -182,28 +172,52 @@
 
   <div id="footer"></div>
 
-  <!-- Hydra nella cornice -->
   <script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
   <script>
-    // Inizializza Hydra sul canvas della cornice
+    // === HYDRA ===
     const hydraCanvas = document.getElementById('hydra-canvas');
-    const hydra = new Hydra({
-      canvas: hydraCanvas,
-      detectAudio: false
-    });
+    const hydra = new Hydra({ canvas: hydraCanvas, detectAudio: false });
 
-    // Patch attuale
     osc(4, 0.1, 1.2)
-      .modulateScale(osc(8).rotate(Math.sin(time)),.5)
+      .modulateScale(osc(8).rotate(Math.sin(time)), .5)
       .thresh(.8)
-      .modulateRotate(osc(7),.4)
+      .modulateRotate(osc(7), .4)
       .thresh(.7)
       .diff(src(o0).scale(1.8))
-      .modulateScale(osc(2).modulateRotate(o0,.74))
-      .diff(src(o0).rotate([-.012,.01,-.002,0]).scrollY(0,[-1/199800,0].fast(0.7)))
+      .modulateScale(osc(2).modulateRotate(o0, .74))
+      .diff(src(o0).rotate([-.012, .01, -.002, 0]).scrollY(0, [-1/199800, 0].fast(0.7)))
       .out();
 
-    // Bottone “?” casuale
+
+    // === SUONI PERSONALIZZATI ===
+    const sounds = {
+      download: new Audio('/assets/sfx/download.mp3'),
+      eventi: new Audio('/assets/sfx/eventi.mp3'),
+      archivio: new Audio('/assets/sfx/archivio.mp3'),
+      random: new Audio('/assets/sfx/random.mp3'),
+    };
+
+    // Imposta preload e volume
+    Object.values(sounds).forEach(a => {
+      a.preload = 'auto';
+      a.volume = 0.8;
+    });
+
+    // Funzione per clonare e suonare (evita sovrapposizioni tagliate)
+    function playSound(key) {
+      const base = sounds[key];
+      if (!base) return;
+      const clone = base.cloneNode(true);
+      clone.play().catch(()=>{});
+    }
+
+    // Collega i suoni
+    document.querySelector('.btn-download')?.addEventListener('click', () => playSound('download'));
+    document.querySelector('.btn-eventi')?.addEventListener('click', () => playSound('eventi'));
+    document.querySelector('.btn-archivio')?.addEventListener('click', () => playSound('archivio'));
+    document.querySelector('.btn-random')?.addEventListener('click', () => playSound('random'));
+
+    // === RANDOM LINK “?” ===
     const RANDOM_LINKS = [
       '/eventi/2025/31-08-yoga-flyer/',
       '/eventi/2025/31-08-yoga-info/',
@@ -216,7 +230,7 @@
       location.href = url;
     });
 
-    // Chiudi altri dropdown quando se ne apre uno
+    // === Dropdown: chiusura automatica ===
     document.querySelectorAll('details.dropdown summary').forEach(s => {
       s.addEventListener('click', () => {
         const parent = s.parentElement;
