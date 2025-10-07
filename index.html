@@ -15,36 +15,40 @@
   <title>Spazio X — Home</title>
   <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
 
-  <!-- =======================
-       STILI LOCALI (SOLO HOME)
-       - Cornice ridotta a 200px
-       - Bottoni e dropdown come nel layout desiderato
-  ======================= -->
+  <!-- Stili locali -->
   <style>
-    /* Riduce altezza cornice principale */
+    /* alza il blocco centrale */
+    .flyer-container { transform: translateY(-8svh); }
+
+    /* cornice ridotta */
     .flyer-image {
       height: 200px;
       max-width: 300px;
       width: 100%;
       margin: 0 auto;
     }
-
     .flyer-image > .flyer-frame {
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       border: 1px solid #000;
       background: #fafafa;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      overflow: hidden; /* niente sbordi del canvas */
     }
 
-    .hero-placeholder {
-      font-size: 1rem;
-      color: #666;
-      text-align: center;
+    /* canvas di Hydra: riempie la cornice */
+    #hydra-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;      /* elimina spazi bianchi inline */
+      image-rendering: crisp-edges;
     }
 
-    /* Pulsante sopra la cornice */
+    /* titolo come nelle altre pagine (usa .page-title globale) */
+    .page-title { text-align: left; }
+
+    /* bottone sopra cornice */
     .home-actions-top {
       width: 100%;
       max-width: 300px;
@@ -52,7 +56,7 @@
       text-align: center;
     }
 
-    /* Bottoni minimali */
+    /* bottoni */
     .btn {
       display: inline-block;
       padding: 8px 14px;
@@ -66,7 +70,6 @@
     }
     .btn:hover, .btn:focus { background:#eee; color:#000; }
 
-    /* Bottoni sotto la cornice */
     .home-actions-bottom {
       margin-top: 12px;
       display: flex;
@@ -75,15 +78,8 @@
       align-items: center;
     }
 
-    /* Dropdown (basato su <details>) */
-    details.dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    details.dropdown > summary {
-      list-style: none;
-      outline: none;
-    }
+    details.dropdown { position: relative; display: inline-block; }
+    details.dropdown > summary { list-style: none; outline: none; }
     details.dropdown > summary::-webkit-details-marker { display: none; }
     details.dropdown[open] > summary.btn { background:#eee; }
 
@@ -114,10 +110,9 @@
   <!-- Header iniettato -->
   <div id="header"></div>
 
-  <!-- Titolo (puoi lasciarlo vuoto o personalizzarlo) -->
-  <h1 class="page-title"></h1>
+  <!-- Titolo come nelle altre pagine -->
+  <h1 class="page-title">Spazio X</h1>
 
-  <!-- Blocco centrale -->
   <main class="flyer-container">
     <div class="flyer-block">
 
@@ -128,19 +123,11 @@
         </a>
       </div>
 
-      <!-- Cornice centrale ridotta -->
+      <!-- Cornice con Hydra dentro -->
       <div class="flyer-image">
         <div class="flyer-frame">
-          <div class="hero-placeholder">
-
-<script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
-<script>
-      // create a new hydra-synth instance
-      var hydra = new Hydra({ detectAudio: false })
-      osc(4, 0.1, 1.2).out()
-</script>
-            
-          </div>
+          <!-- canvas dedicato a hydra -->
+          <canvas id="hydra-canvas"></canvas>
         </div>
       </div>
 
@@ -165,7 +152,7 @@
           </div>
         </details>
 
-        <!-- Bottone “?” → link casuale -->
+        <!-- Bottone “?” -->
         <button id="randomBtn" class="btn" type="button">?</button>
       </div>
 
@@ -175,9 +162,20 @@
   <!-- Footer iniettato -->
   <div id="footer"></div>
 
-  <!-- JS per link casuale -->
+  <!-- Hydra nella cornice -->
+  <script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
   <script>
-    // Link casuali del sito
+    // Inizializza Hydra sul canvas della cornice
+    const hydraCanvas = document.getElementById('hydra-canvas');
+    const hydra = new Hydra({
+      canvas: hydraCanvas,
+      detectAudio: false
+    });
+
+    // Patch di esempio (la tua)
+    osc(4, 0.1, 1.2).out();
+
+    // --- Bottone "?" casuale ---
     const RANDOM_LINKS = [
       '/eventi/2025/31-08-yoga-flyer/',
       '/eventi/2025/31-08-yoga-info/',
@@ -185,14 +183,14 @@
       '/artisti/',
       '/artisti/pino-scoppon/'
     ];
-    document.getElementById('randomBtn').addEventListener('click', function () {
+    document.getElementById('randomBtn').addEventListener('click', () => {
       const url = RANDOM_LINKS[Math.floor(Math.random() * RANDOM_LINKS.length)];
       location.href = url;
     });
 
-    // Chiudi dropdown quando se ne apre un altro
+    // Chiudi gli altri dropdown quando se ne apre uno
     document.querySelectorAll('details.dropdown summary').forEach(s => {
-      s.addEventListener('click', e => {
+      s.addEventListener('click', () => {
         const parent = s.parentElement;
         document.querySelectorAll('details.dropdown[open]').forEach(d => {
           if (d !== parent) d.removeAttribute('open');
