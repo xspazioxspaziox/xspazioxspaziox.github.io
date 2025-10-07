@@ -178,6 +178,7 @@
     const hydraCanvas = document.getElementById('hydra-canvas');
     const hydra = new Hydra({ canvas: hydraCanvas, detectAudio: false });
 
+    // === codice visuals hydra, se lo cambi aggiorna /assets/js/hydra.js ===
     osc(4, 0.1, 1.2)
       .modulateScale(osc(8).rotate(Math.sin(time)), .5)
       .thresh(.8)
