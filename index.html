@@ -41,11 +41,30 @@
     #hydra-canvas {
       width: 100%;
       height: 100%;
-      display: block;      /* elimina spazi bianchi inline */
+      display: block;
       image-rendering: crisp-edges;
     }
 
-    /* titolo come nelle altre pagine (usa .page-title globale) */
+    /* piccolo testo sotto la cornice */
+    .hydra-credit {
+      width: 100%;
+      max-width: 300px;
+      margin: 4px auto 0;
+      text-align: left;
+      font-size: 0.6em;
+      color: #666;
+    }
+    .hydra-credit a {
+      color: #666;
+      text-decoration: none;
+      border-bottom: 1px dotted #aaa;
+    }
+    .hydra-credit a:hover {
+      color: #000;
+      border-color: #000;
+    }
+
+    /* titolo come nelle altre pagine */
     .page-title { text-align: left; }
 
     /* bottone sopra cornice */
@@ -126,14 +145,18 @@
       <!-- Cornice con Hydra dentro -->
       <div class="flyer-image">
         <div class="flyer-frame">
-          <!-- canvas dedicato a hydra -->
           <canvas id="hydra-canvas"></canvas>
         </div>
       </div>
 
+      <!-- ✅ Credito Hydra -->
+      <div class="hydra-credit">
+        *visual generated with 
+        <a href="https://hydra.ojack.xyz/" target="_blank">Hydra</a> by O. Jack
+      </div>
+
       <!-- Bottoni sotto la cornice -->
       <div class="home-actions-bottom">
-        <!-- Dropdown “eventi” -->
         <details class="dropdown">
           <summary class="btn">eventi</summary>
           <div class="menu">
@@ -143,7 +166,6 @@
           </div>
         </details>
 
-        <!-- Dropdown “archivio” -->
         <details class="dropdown">
           <summary class="btn">archivio</summary>
           <div class="menu">
@@ -152,14 +174,12 @@
           </div>
         </details>
 
-        <!-- Bottone “?” -->
         <button id="randomBtn" class="btn" type="button">?</button>
       </div>
 
     </div>
   </main>
 
-  <!-- Footer iniettato -->
   <div id="footer"></div>
 
   <!-- Hydra nella cornice -->
@@ -172,18 +192,18 @@
       detectAudio: false
     });
 
-    // Patch di esempio (la tua)
+    // Patch attuale
     osc(4, 0.1, 1.2)
       .modulateScale(osc(8).rotate(Math.sin(time)),.5)
-  	.thresh(.8)
-	.modulateRotate(osc(7),.4)
-	.thresh(.7)
-  	.diff(src(o0).scale(1.8))
-	.modulateScale(osc(2).modulateRotate(o0,.74))
-	.diff(src(o0).rotate([-.012,.01,-.002,0]).scrollY(0,[-1/199800,0].fast(0.7)))
+      .thresh(.8)
+      .modulateRotate(osc(7),.4)
+      .thresh(.7)
+      .diff(src(o0).scale(1.8))
+      .modulateScale(osc(2).modulateRotate(o0,.74))
+      .diff(src(o0).rotate([-.012,.01,-.002,0]).scrollY(0,[-1/199800,0].fast(0.7)))
       .out();
 
-    // --- Bottone "?" casuale ---
+    // Bottone “?” casuale
     const RANDOM_LINKS = [
       '/eventi/2025/31-08-yoga-flyer/',
       '/eventi/2025/31-08-yoga-info/',
@@ -196,7 +216,7 @@
       location.href = url;
     });
 
-    // Chiudi gli altri dropdown quando se ne apre uno
+    // Chiudi altri dropdown quando se ne apre uno
     document.querySelectorAll('details.dropdown summary').forEach(s => {
       s.addEventListener('click', () => {
         const parent = s.parentElement;
