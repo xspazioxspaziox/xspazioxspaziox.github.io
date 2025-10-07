@@ -56,4 +56,68 @@
 <body>
   <!-- =======================
        HEADER (iniettato)
-  ======================
+  ======================= -->
+  <div id="header"></div>
+
+  <!-- =======================
+       TITOLO HOME
+       - Link diretti all’evento corrente (flyer + info)
+       - Aggiorna questi due href ad ogni nuovo evento
+  ======================= -->
+  <h1 class="page-title">
+    <a href="eventi/2025/31-08-yoga-flyer/">flyer</a>
+    <a href="eventi/2025/31-08-yoga-info/">— info</a>
+  </h1>
+
+  <!-- =======================
+       BLOCCO CENTRALE
+       - 1) In evidenza: mini-flyer dell’evento corrente
+       - 2) Archivio rapido (opzionale): lista scrollabile
+  ======================= -->
+  <main class="flyer-container">
+    <div class="flyer-block">
+
+      <!-- ===== (1) EVENTO IN EVIDENZA =====
+           - Identico a una pagina flyer, ma sintetico (solo immagine + link sotto)
+           - Aggiorna src dell’immagine e i link nel footer locale -->
+      <div class="flyer-header">
+        <div class="flyer-date">31/08/25</div>
+        <div class="flyer-time">10→11</div>
+      </div>
+
+      <div class="flyer-image">
+        <img src="eventi/img/31-08-25-yoga.jpg" alt="flyer 31 agosto">
+      </div>
+
+      <div class="flyer-footer">
+        <div class="footer-left"><a href="eventi/">eventi</a></div>
+        <div class="footer-right">
+          <a href="eventi/2025/31-08-yoga-info/">info→</a>
+        </div>
+      </div>
+
+      <!-- Piccola distanza tra i due blocchi -->
+      <div class="home-gap" aria-hidden="true"></div>
+
+      <!-- ===== (2) ARCHIVIO RAPIDO (OPZIONALE) =====
+           - Lista link separati da virgole, scrollabile
+           - Aggiungi/rimuovi eventi qui; i percorsi sono relativi alla home -->
+      <div class="list-wrap" aria-label="Archivio rapido eventi">
+        <p class="link-text">
+          <a href="eventi/2025/31-08-yoga-flyer/">31·08 Yoga — flyer</a>,
+          <a href="eventi/2025/31-08-yoga-info/">31·08 Yoga — info</a>
+          <!-- , aggiungi qui nuovi eventi: -->
+          <!-- , <a href="eventi/2025/xx-xx-nuovo-flyer/">xx·xx Nuovo — flyer</a>,
+               <a href="eventi/2025/xx-xx-nuovo-info/">xx·xx Nuovo — info</a> -->
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =======================
+       FOOTER (iniettato)
+  ======================= -->
+  <div id="footer"></div>
+</body>
+</html>
