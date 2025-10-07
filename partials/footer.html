@@ -1,13 +1,33 @@
+<!-- =======================
+     SCRIPT DI STATO PAGINA
+     - Attende il caricamento completo della finestra (immagini incluse).
+     - Aggiunge la classe "ready" al <body>.
+     - Utile se si vogliono applicare animazioni o transizioni
+       solo dopo che la pagina è completamente pronta.
+======================= -->
 <script>
   window.addEventListener('load', () => {
     document.body.classList.add('ready');
   });
 </script>
 
+<!-- =======================
+     FOOTER GLOBALE
+     - Sezione comune a tutto il sito, iniettata o inclusa.
+     - Contiene link esterni e contatti principali.
+     - I separatori “/” mantengono un’estetica minimale coerente.
+======================= -->
 <footer class="site-footer">
-  <p><a href="https://xspazioxspaziox.github.io/">spazio x</a> /
-    <a href="https://www.instagram.com/xspazioxspaziox/" target="_blank">ig</a> /  
-    <a href="https://t.me/xspazioxspaziox" target="_blank">telegram</a> / <a href="https://forms.gle/9TmQBjghcWcK9nEg6" target="_blank">newsletter</a> / 
-    <a href="mailto:xspazioxspaziox@gmail.com" target="_blank">contact</a></p>
-</footer>
+  <p>
+    <!-- Link al sito principale -->
+    <a href="https://xspazioxspaziox.github.io/">spazio x</a> /
 
+    <!-- Link ai canali social -->
+    <a href="https://www.instagram.com/xspazioxspaziox/" target="_blank">ig</a> /
+    <a href="https://t.me/xspazioxspaziox" target="_blank">telegram</a> /
+
+    <!-- Link alla newsletter e ai contatti -->
+    <a href="https://forms.gle/9TmQBjghcWcK9nEg6" target="_blank">newsletter</a> /
+    <a href="mailto:xspazioxspaziox@gmail.com" target="_blank">contact</a>
+  </p>
+</footer>
