@@ -3,69 +3,57 @@
 <head>
   <!-- =======================
        METADATI DI BASE
-       - charset UTF-8 per supportare caratteri internazionali.
-       - viewport per il layout responsive su mobile e desktop.
   ======================= -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- =======================
        STILI GLOBALI
-       - Carica il foglio di stile principale del sito.
-       - preload anticipa il caricamento per migliorare la performance.
+       - preload per performance
   ======================= -->
   <link rel="preload" href="./assets/css/style.css" as="style">
   <link rel="stylesheet" href="./assets/css/style.css">
 
   <!-- =======================
        SCRIPT DI INCLUDE
-       - include.js inietta automaticamente header e footer.
-       - defer: eseguito solo dopo che l’HTML è stato caricato.
+       - inietta header e footer
   ======================= -->
   <script src="./assets/js/include.js" defer></script>
 
   <!-- =======================
        META E ICONA
-       - Titolo della home visualizzato nella scheda del browser.
-       - Favicon comune a tutto il sito.
   ======================= -->
   <title>Spazio X — Home</title>
   <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
+
+  <!-- =======================
+       STILI LOCALI (SOLO HOME)
+       - piccole regole per la lista archivio
+  ======================= -->
+  <style>
+    /* Area archivio scrollabile (riusa dimensioni cornice) */
+    .list-wrap {
+      width: 100%;
+      max-width: 250px;
+      height: var(--flyer-box-h);
+      overflow: auto;
+      padding: 10px 12px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    @media (min-width: 481px){
+      .list-wrap { width:300px; max-width:none; height:375px; }
+    }
+    .link-text { font-size:0.75em; line-height:1.4; color:#333; }
+    .link-text a { display:inline; }
+    @media (max-width:380px){ .link-text { font-size:0.7em; } }
+
+    /* Spaziatura verticale minima tra i due blocchi centrali */
+    .home-gap { height: 12px; }
+  </style>
 </head>
 
 <body>
   <!-- =======================
-       HEADER
-       - Popolato dinamicamente da include.js (logo, menu, ecc.).
-       - Rimane coerente con il layout di tutte le altre pagine.
-  ======================= -->
-  <div id="header"></div>
-
-  <!-- =======================
-       TITOLO DI PAGINA (HOME)
-       - Contiene i link principali verso la sezione eventi.
-       - Qui collegati due esempi: flyer e info dell’evento del 31/08/25.
-       - I link usano percorsi relativi per funzionare su GitHub Pages.
-  ======================= -->
-  <h1 class="page-title">
-    <a href="eventi/2025/31-08-yoga-flyer/">flyer</a>
-    <a href="eventi/2025/31-08-yoga-info/">— info</a>
-  </h1>
-
-  <!-- =======================
-       CONTENUTO PRINCIPALE
-       - Area disponibile per eventuali sezioni introduttive, immagini
-         o elementi interattivi futuri.
-       - Attualmente lasciata vuota per un design minimale.
-  ======================= -->
-  <main>
-  </main>
-
-  <!-- =======================
-       FOOTER
-       - Iniettato automaticamente da include.js.
-       - Contiene i contatti e i link ai social network.
-  ======================= -->
-  <div id="footer"></div>
-</body>
-</html>
+       HEADER (iniettato)
+  ======================
