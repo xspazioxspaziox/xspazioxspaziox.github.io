@@ -15,15 +15,42 @@
   <title>Spazio X — Home</title>
   <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
 
-  <!-- Stili locali per bottoni e dropdown -->
+  <!-- =======================
+       STILI LOCALI (SOLO HOME)
+       - Cornice ridotta a 200px
+       - Bottoni e dropdown come nel layout desiderato
+  ======================= -->
   <style>
-    /* Riga del pulsante download (sopra la cornice) */
+    /* Riduce altezza cornice principale */
+    .flyer-image {
+      height: 200px;
+      max-width: 300px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .flyer-image > .flyer-frame {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #000;
+      background: #fafafa;
+    }
+
+    .hero-placeholder {
+      font-size: 1rem;
+      color: #666;
+      text-align: center;
+    }
+
+    /* Pulsante sopra la cornice */
     .home-actions-top {
       width: 100%;
-      max-width: 250px;
+      max-width: 300px;
       margin: 0 auto 10px;
+      text-align: center;
     }
-    @media (min-width:481px){ .home-actions-top{ max-width:300px; } }
 
     /* Bottoni minimali */
     .btn {
@@ -34,7 +61,6 @@
       color: #333;
       text-decoration: none;
       font-size: .9em;
-      line-height: 1;
       cursor: pointer;
       user-select: none;
     }
@@ -42,14 +68,14 @@
 
     /* Bottoni sotto la cornice */
     .home-actions-bottom {
-      margin-top: 10px;
+      margin-top: 12px;
       display: flex;
       gap: 16px;
       justify-content: center;
       align-items: center;
     }
 
-    /* Dropdown basato su <details> */
+    /* Dropdown (basato su <details>) */
     details.dropdown {
       position: relative;
       display: inline-block;
@@ -61,7 +87,6 @@
     details.dropdown > summary::-webkit-details-marker { display: none; }
     details.dropdown[open] > summary.btn { background:#eee; }
 
-    /* Pannello del menu */
     .menu {
       position: absolute;
       top: calc(100% + 6px);
@@ -82,16 +107,6 @@
       font-size: .9em;
     }
     .menu a:hover { border-color:#888; background:#f7f7f7; }
-
-    /* Segnaposto dentro la cornice */
-    .hero-placeholder {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      color: #666;
-    }
   </style>
 </head>
 
@@ -108,27 +123,24 @@
 
       <!-- Pulsante download sopra la cornice -->
       <div class="home-actions-top">
-        <!-- TODO: aggiorna l’href al tuo PDF reale -->
         <a class="btn" href="/assets/docs/programma-ottobre.pdf" download>
           Scarica il programma di ottobre
         </a>
       </div>
 
-      <!-- Cornice centrale (riusa il layout 300×375) -->
+      <!-- Cornice centrale ridotta -->
       <div class="flyer-image">
-        <!-- Riutilizziamo .flyer-frame per ottenere bordo e dimensioni coerenti -->
         <div class="flyer-frame">
           <div class="hero-placeholder">elemento</div>
         </div>
       </div>
 
-      <!-- Tre bottoni sotto la cornice -->
+      <!-- Bottoni sotto la cornice -->
       <div class="home-actions-bottom">
         <!-- Dropdown “eventi” -->
         <details class="dropdown">
           <summary class="btn">eventi</summary>
           <div class="menu">
-            <!-- aggiorna gli URL con quelli dei tuoi eventi -->
             <a href="eventi/2025/31-08-yoga-flyer/">31.08.25</a>
             <a href="eventi/2025/27-09-xxx-flyer/">27.09.25</a>
             <a href="eventi/2025/28-09-xxx-flyer/">28.09.25</a>
@@ -156,7 +168,7 @@
 
   <!-- JS per link casuale -->
   <script>
-    // Aggiungi qui gli URL candidati per il “?” (interni al tuo sito)
+    // Link casuali del sito
     const RANDOM_LINKS = [
       '/eventi/2025/31-08-yoga-flyer/',
       '/eventi/2025/31-08-yoga-info/',
@@ -169,7 +181,7 @@
       location.href = url;
     });
 
-    // Chiudi un dropdown quando se ne apre un altro (qualità UX)
+    // Chiudi dropdown quando se ne apre un altro
     document.querySelectorAll('details.dropdown summary').forEach(s => {
       s.addEventListener('click', e => {
         const parent = s.parentElement;
