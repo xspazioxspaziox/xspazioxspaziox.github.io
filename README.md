@@ -9,6 +9,7 @@ STRUTTURA REPOSITORY:
 │  │  └─ style.css                 # Stili globali (layout, cornice, link, responsive)
 │  ├─ js/
 │  │  └─ include.js                # Inietta header/footer e riscrive i percorsi assets/
+│  │  └─ hydra.js                # Contiene il codice dei visual, con il solo scopo di essere visualizzato quando in homepage si clicca su "code"
 
 │  └─ img/
 │     ├─ favicon.ico               # Icona del sito
@@ -72,4 +73,12 @@ Inserisce dinamicamente:
 -Riscrive percorsi assets/... per funzionare da sottocartelle
 
 -Evita “saltini” con placeholder e gestisce fix scroll iOS.
+
+VISUALS HOMEPAGE
+
+Cerca questa riga:
+
+// === codice visuals hydra, se lo cambi aggiorna anche dentro /assets/js/hydra.js ===
+
+modifica il codice presente con codice hydra, e poi aggiorna lo stesso codice hydra dentro /assets/js/hydra.js
 
