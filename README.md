@@ -9,6 +9,7 @@ STRUTTURA REPOSITORY:
 │  │  └─ style.css                 # Stili globali (layout, cornice, link, responsive)
 │  ├─ js/
 │  │  └─ include.js                # Inietta header/footer e riscrive i percorsi assets/
+
 │  └─ img/
 │     ├─ favicon.ico               # Icona del sito
 │     ├─ volo.png                  # Oggetto volante decorativo animato
@@ -39,21 +40,23 @@ COME AGGIUNGERE UN NUOVO EVENTO:
 
 1. Aggiungi l’immagine in eventi/img/.
 2. Duplica una coppia di cartelle *-flyer e *-info in eventi/AAAA/.
-3. Aggiorna i testi, i link e la data/ora.
-4. Inserisci il link *-flyer in eventi/index.html e in /index.html.
+3. Aggiorna i testi e la data/ora.
+4. Inserisci il link *-flyer in eventi/index.html, in /index.html e nella pagina *-info.
 5. Inserisci il link *-info nella pagina *-flyer
-6. Crea pagina artista e collegala in artisti/.
+6. Crea pagina artista e collegala in artisti/ e nel testo della pagina *.info.
 7. Collega evento *-flyer nella pagina artista
 
 COLLEGAMENTI INTERNI TIPICI
 
-Da → A	Percorso relativo
-flyer → info	../DD-MM-slug-info/
-info → flyer	../DD-MM-slug-flyer/
-flyer/info → eventi	../../
-info → artista	../../../artisti/nome-artista/
-artista → eventi	../../eventi/AAAA/DD-MM-slug-flyer/
-artista → archivio artisti	../
+in info → flyer	../DD-MM-slug-flyer/
+in eventi → flyer
+in home → flyer
+in flyer → info	../DD-MM-slug-info/
+in flyer/info → eventi	../../
+in artisti → artista
+in info → artista	../../../artisti/nome-artista/
+in artista → flyer	../../eventi/AAAA/DD-MM-slug-flyer/
+in artista → artisti	../
 
 LOGICA DEI FILE DINAMICI:
 
