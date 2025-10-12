@@ -49,7 +49,7 @@ COME AGGIUNGERE UN NUOVO EVENTO:
 COLLEGAMENTI INTERNI TIPICI
 
 in info → flyer	../DD-MM-slug-flyer/
-in eventi → flyer
+in eventi → flyer AAAA/DD-MM-slug-flyer/
 in home → flyer
 in flyer → info	../DD-MM-slug-info/
 in flyer/info → eventi	../../
