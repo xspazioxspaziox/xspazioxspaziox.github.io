@@ -214,18 +214,20 @@ body {
    GRANDI SCHERMI (widescreen)
 ======================================================= */
 @media (min-width: 1200px) {
+  /* Margini laterali ridotti */
   body {
-    padding-left: 10vw;
-    padding-right: 10vw;
+    padding-left: 6vw;
+    padding-right: 6vw;
   }
 
   .site-header,
   .site-footer,
   .page-title {
-    padding-left: 10vw;
-    padding-right: 10vw;
+    padding-left: 6vw;
+    padding-right: 6vw;
   }
 
+  /* Leggera scala del contenuto centrale */
   .flyer-block {
     transform: scale(1.15);
     transform-origin: center top;
@@ -235,8 +237,16 @@ body {
     transform: translateY(-3svh);
   }
 
+  /* Titolo più grande */
   .page-title {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    font-size: 2.3rem;
+  }
+
+  /* Footer più leggibile */
+  .site-footer {
+    font-size: 16px;
+    line-height: 1.4;
   }
 }
 
