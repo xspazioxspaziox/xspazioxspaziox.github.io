@@ -53,7 +53,7 @@ in eventi → flyer   AAAA/DD-MM-slug-flyer/
 in home → flyer   eventi/AAAA/DD-MM-slug-flyer/
 in flyer → info	../DD-MM-slug-info/
 in flyer/info → eventi	../../
-in artisti → artista
+in artisti → artista nome-artista/
 in info → artista	../../../artisti/nome-artista/
 in artista → flyer	../../eventi/AAAA/DD-MM-slug-flyer/
 in artista → artisti	../
