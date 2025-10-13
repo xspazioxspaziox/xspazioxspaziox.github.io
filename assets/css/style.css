@@ -127,7 +127,7 @@ body {
    CORNICE (IMMAGINE o TESTO)
    - Definisce la struttura visiva del box centrale
 ======================================================= */
-.flyer-image {}
+.flyer-image {} /* wrapper */
 
 .flyer-image > img,
 .flyer-image > .flyer-frame {
@@ -249,8 +249,10 @@ body {
    GRANDI SCHERMI (≥1600px)
    - Padding extra solo per widescreen
    - Mantiene il centro invariato
+   - Ingrandisce la parte centrale del 15%
 ======================================================= */
 @media (min-width: 1600px) {
+  /* Respiro laterale SOLO su widescreen */
   .site-header,
   .site-footer,
   .page-title {
@@ -258,6 +260,7 @@ body {
     padding-right: 6vw;
   }
 
+  /* 👉 Ingrandimento del blocco centrale: +15% */
   .flyer-block {
     transform: scale(1.15);
     transform-origin: center top;
@@ -265,6 +268,7 @@ body {
 
   .flyer-container { transform: translateY(-3svh); }
 
+  /* Titolo e footer leggermente più grandi */
   .page-title {
     margin-bottom: 14px;
     font-size: 2.3rem;
