@@ -1,5 +1,7 @@
 STRUTTURA REPOSITORY:  
-  
+
+
+BRANCH MAIN (ora prove-sito-1):
 /  
 ├─ index.html                      # Home minimale (link principali a flyer/info correnti)  
 ├─ 404.html                        # Pagina di errore "Pagina non trovata"  
@@ -36,7 +38,9 @@ STRUTTURA REPOSITORY:
    └─ pino-scoppon/  
       └─ index.html                # Scheda artista: testo in cornice + link evento correlato  
   
-  
+  BRANCH: PROGRAMMI-PDF
+  - file pdf con programma del mese
+    
 COME AGGIUNGERE UN NUOVO EVENTO:
 
 1. Aggiungi l’immagine in eventi/img/.
@@ -59,7 +63,11 @@ in artisti → artista nome-artista/
 in info → artista	../../../artisti/nome-artista/  
 in artista → flyer	../../eventi/AAAA/DD-MM-slug-flyer/  
 in artista → artisti	../  
-  
+
+CARICARE PROGRAMMA DEL MESE IN HOME PAGE
+
+Caricare pdf del programma nel branch programmi-pdf
+linkare pdf per il download, nell'index della home page al posto di quello vecchio.
 
 VISUALS HOMEPAGE
 
