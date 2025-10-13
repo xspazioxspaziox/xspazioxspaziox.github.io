@@ -68,10 +68,7 @@ CARICARE PROGRAMMA DEL MESE IN HOME PAGE
   
 Caricare pdf del programma nel branch programmi-pdf con nome spazio-x-MESE-ANNO.pdf  
 linkare pdf per il download, nell'index della home page al posto di quello vecchio:  
-**// <a class="btn btn-download" 
-          href="https://raw.githubusercontent.com/xspazioxspaziox/xspazioxspaziox.github.io/545db9824541a67d9cfb6aff027abd2853e1a9cf/spazio-x-MESE-ANNO.pdf" download>
-          Scarica il programma di MESE
-        </a>
+https://raw.githubusercontent.com/xspazioxspaziox/xspazioxspaziox.github.io/545db9824541a67d9cfb6aff027abd2853e1a9cf/spazio-x-MESE-ANNO.pdf
 
 VISUALS HOMEPAGE
 
