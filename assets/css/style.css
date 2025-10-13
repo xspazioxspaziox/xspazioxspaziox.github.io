@@ -376,3 +376,12 @@ a:active { opacity: 0.7; }
 @media (max-width: 380px) {
   .flyer-footer { width: 95%; max-width: 95%; }
 }
+
+/* =======================================================
+   SFONDO PAGINA PERSONALIZZATO
+   ======================================================= */
+body {
+  background: url('/assets/img/background.jpg') center center no-repeat;
+  background-size: cover; /* oppure 100% 100% se vuoi stretch */
+  background-attachment: fixed; /* opzionale: effetto parallax */
+}
