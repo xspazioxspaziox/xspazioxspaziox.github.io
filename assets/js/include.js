@@ -113,10 +113,10 @@
   (function () {
     // Elenco delle immagini di sfondo (personalizza i percorsi)
     const sfondi = [
-      '/assets/img/sfondo1.jpg',
-      '/assets/img/sfondo2.jpg',
-      '/assets/img/sfondo3.jpg',
-      '/assets/img/sfondo4.jpg'
+      '/assets/img/background.jpg',
+      '/assets/img/background2.jpg',
+      '/assets/img/background.jpg',
+      '/assets/img/background2.jpg'
     ];
 
     if (!sfondi.length) return;
