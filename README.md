@@ -65,9 +65,13 @@ in artista → flyer	../../eventi/AAAA/DD-MM-slug-flyer/
 in artista → artisti	../  
 
 CARICARE PROGRAMMA DEL MESE IN HOME PAGE
-
-Caricare pdf del programma nel branch programmi-pdf
-linkare pdf per il download, nell'index della home page al posto di quello vecchio.
+  
+Caricare pdf del programma nel branch programmi-pdf  
+linkare pdf per il download, nell'index della home page al posto di quello vecchio:  
+<a class="btn btn-download" 
+          href="https://raw.githubusercontent.com/xspazioxspaziox/xspazioxspaziox.github.io/545db9824541a67d9cfb6aff027abd2853e1a9cf/spazio-x-MESE-ANNO.pdf" download>
+          Scarica il programma di MESE
+        </a>
 
 VISUALS HOMEPAGE
 
