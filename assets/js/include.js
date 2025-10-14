@@ -7,7 +7,6 @@
 //   sia dalla root che da sottocartelle (es. /eventi/...).
 // - Aggiunge placeholder temporanei per evitare "saltelli" (CLS).
 // - Corregge lo scroll elastico su vecchie versioni iOS.
-// - (Nuovo) Applica uno sfondo casuale ad ogni refresh (configurabile).
 // ------------------------------------------------------
 // Autore: Spazio X
 // Ultimo aggiornamento: 2025
@@ -17,92 +16,113 @@
   'use strict';
 
   // ------------------------------------------------------
-  // 1) Individua il percorso BASE del sito
+  // 1. Individua il percorso BASE del sito
   //    (serve per costruire link corretti anche da sottocartelle)
   // ------------------------------------------------------
   function getBase() {
+    // Ottiene lo script corrente (compatibile con vecchi browser)
     var s = document.currentScript || document.scripts[document.scripts.length - 1];
+
+    // Ricava il percorso completo dello script include.js
     var url = new URL(s.src, location.href);
+
+    // Trova la posizione di "/assets/" e taglia il percorso lì
     var i = url.pathname.indexOf('/assets/');
+
+    // Restituisce la base del sito (es. "" oppure "/xspazioxspaziox.github.io")
     return i >= 0 ? url.pathname.slice(0, i) : '';
   }
 
-  // Percorso base (usato in tutte le fetch e utilità)
+  // Percorso base (usato in tutte le fetch)
   var BASE = getBase();
-  var withBase = function (p) { return BASE + p; };
 
   // ------------------------------------------------------
-  // 2) Riscrive gli href/src all’interno degli include
-  //    - Per far funzionare immagini e link da sottocartelle
+  // 2. Riscrive gli href/src all’interno degli include
+  //    - Serve per far funzionare correttamente immagini e link
+  //      anche da pagine in sottocartelle.
   // ------------------------------------------------------
   function rewrite(html) {
     return html.replace(/(href|src)=["']\/?assets\//g, '$1="' + BASE + '/assets/');
   }
 
   // ------------------------------------------------------
-  // 3) Funzione di iniezione (header/footer)
+  // 3. Funzione di iniezione
+  //    - Carica un file HTML (header o footer) e lo inserisce nel DOM.
+  //    - Disattiva la cache con ?v=timestamp per evitare contenuti vecchi.
   // ------------------------------------------------------
   function inject(id, path) {
     var el = document.getElementById(id);
-    if (!el) return;
+    if (!el) return; // se l’elemento non esiste, esci
 
     var url = BASE + path;
     fetch(url + '?v=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.text() : Promise.reject(path); })
-      .then(function (t) { el.innerHTML = rewrite(t); })
-      .catch(function (u) { console.warn('Include fallito:', u); });
+      .then(r => r.ok ? r.text() : Promise.reject(path))
+      .then(t => {
+        el.innerHTML = rewrite(t); // sostituisce i percorsi
+      })
+      .catch(u => console.warn('Include fallito:', u)); // log in console
   }
 
   // ------------------------------------------------------
-  // 4) Placeholder per evitare CLS
+  // 4. Inserisce subito dei "placeholder"
+  //    - Evita spostamenti di layout (CLS) mentre header/footer si caricano.
   // ------------------------------------------------------
   function putPlaceholders() {
     var h = document.getElementById('header');
     var f = document.getElementById('footer');
+
+    // se sono vuoti, aggiunge un div con altezza riservata
     if (h && !h.firstElementChild) h.innerHTML = '<div style="height:var(--header-h)"></div>';
     if (f && !f.firstElementChild) f.innerHTML = '<div style="height:var(--footer-h)"></div>';
   }
 
-  // 5) Esecuzione placeholder quando il DOM è pronto
+  // ------------------------------------------------------
+  // 5. Esegue i placeholder appena il DOM è pronto
+  // ------------------------------------------------------
   if (document.readyState === 'loading')
     document.addEventListener('DOMContentLoaded', putPlaceholders, { once: true });
   else
     putPlaceholders();
 
   // ------------------------------------------------------
-  // 6) Inietta header e footer
+  // 6. Inietta effettivamente header e footer
+  //    - Dopo che il DOM è pronto o subito se già caricato.
   // ------------------------------------------------------
-  function doInject() {
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', () => {
+      inject('header', '/partials/header.html');
+      inject('footer', '/partials/footer.html');
+    }, { once: true });
+  else {
     inject('header', '/partials/header.html');
     inject('footer', '/partials/footer.html');
   }
 
-  if (document.readyState === 'loading')
-    document.addEventListener('DOMContentLoaded', doInject, { once: true });
-  else
-    doInject();
-
   // ------------------------------------------------------
-  // 7) FIX iOS – previene lo scroll elastico globale
+  // 7. FIX iOS – previene lo scroll elastico globale
+  //    (utile per vecchie versioni che non supportano overscroll-behavior)
   // ------------------------------------------------------
   (function () {
     var isOldiOS =
       /iP(ad|hone|od)/.test(navigator.userAgent) &&
       !(window.CSS && CSS.supports('overscroll-behavior: none'));
 
+    // Se non è un vecchio iOS, non fare nulla
     if (!isOldiOS) return;
 
     // Impedisce lo scroll sulla pagina, ma lo consente nei box con .flyer-scroll
     document.addEventListener(
       'touchmove',
-      function (e) { if (!e.target.closest('.flyer-scroll')) e.preventDefault(); },
+      e => {
+        if (!e.target.closest('.flyer-scroll')) e.preventDefault();
+      },
       { passive: false }
     );
 
     // Previene il “blocco” agli estremi dello scroll interno
     document.addEventListener(
       'touchstart',
-      function (e) {
+      e => {
         var s = e.target.closest('.flyer-scroll');
         if (!s) return;
         if (s.scrollTop <= 0) s.scrollTop = 1;
@@ -112,59 +132,4 @@
       { passive: true }
     );
   })();
-
-  // ------------------------------------------------------
-  // 8) SFONDO CASUALE SU OGNI REFRESH (CONFIGURABILE)
-  //    - Nessuna modifica all’HTML richiesta.
-  //    - Modifica l’elenco BG_IMAGES qui sotto.
-  //    - Disattiva via query string: ?bg=off
-  //    - Escludi percorsi con SHOULD_APPLY() se serve.
-  // ------------------------------------------------------
-  (function () {
-    // Disattiva con ?bg=off
-    if (new URL(location.href).searchParams.get('bg') === 'off') return;
-
-    // Escludi alcune pagine se necessario
-    function SHOULD_APPLY() {
-      // Esempi:
-      // if (location.pathname.startsWith('/eventi/archivio')) return false;
-      return true;
-    }
-    if (!SHOULD_APPLY()) return;
-
-    // Elenco immagini (usa BASE per compatibilità in sottocartelle)
-    var BG_IMAGES = [
-      withBase('/assets/img/background.jpg'),
-      withBase('/assets/img/background2.jpg')
-    ];
-    if (!BG_IMAGES.length) return;
-
-    // Precarica (riduce il flash iniziale)
-    for (var i = 0; i < BG_IMAGES.length; i++) {
-      var img = new Image();
-      img.src = BG_IMAGES[i];
-    }
-
-    // Scelta casuale
-    var pick = Math.floor(Math.random() * BG_IMAGES.length);
-
-    // Applica quando il DOM è pronto (con defer dovrebbe già bastare)
-    function applyBg() {
-      var b = document.body;
-      if (!b) return;
-      b.style.backgroundImage = "url('" + BG_IMAGES[pick] + "')";
-      // Impostazioni di fallback nel caso il CSS non le definisca
-      if (!b.style.backgroundSize)        b.style.backgroundSize = 'cover';
-      if (!b.style.backgroundPosition)    b.style.backgroundPosition = 'center center';
-      if (!b.style.backgroundRepeat)      b.style.backgroundRepeat = 'no-repeat';
-      if (!b.style.backgroundAttachment)  b.style.backgroundAttachment = 'fixed';
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', applyBg, { once: true });
-    } else {
-      applyBg();
-    }
-  })();
-
 })();
