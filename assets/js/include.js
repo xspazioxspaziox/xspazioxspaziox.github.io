@@ -134,10 +134,8 @@
 
     // Elenco immagini (usa BASE per compatibilità in sottocartelle)
     var BG_IMAGES = [
-      withBase('/assets/img/sfondo1.jpg'),
-      withBase('/assets/img/sfondo2.jpg'),
-      withBase('/assets/img/sfondo3.jpg'),
-      withBase('/assets/img/sfondo4.jpg')
+      withBase('/assets/img/background.jpg'),
+      withBase('/assets/img/background2.jpg')
     ];
     if (!BG_IMAGES.length) return;
 
