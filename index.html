@@ -194,7 +194,8 @@
      .scrollY(()=>mouse.x/3000)
      .diff(gradient(.02))
 .modulate(src(o0))
-     .diff(shape(4,.8)).repeat(2,3).rotate(.2,.4).modulate(src(o0))
+     .diff(shape(4,.8)).scrollY(80,.2).repeat(6,3).modulate(src(o0).scrollX(2))
+     .diff(noise(1))
 .out(o0);
 
 
