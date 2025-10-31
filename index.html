@@ -184,15 +184,10 @@
     const hydra = new Hydra({ canvas: hydraCanvas, detectAudio: false });
 
     // === codice visuals hydra, se lo cambi aggiorna anche dentro /assets/js/hydra.js ===
-    osc(10, 0.08, 1)
-      .modulateScale(osc(6).rotate(Math.sin(time)), .5)
-      .thresh(.4)
-.colorama(50)
-.modulateScale(o0)
-      .diff(src(o0).scale(3))
-      .modulateScale(osc(1).modulateRotate(o0, .7))
-      .diff(src(o0).rotate([-.02, .01, -.002, 0]).scrollY(0, [-0.006, 0].fast(0.7)))
-      .out(o0);
+   osc(4,.02,0).rotate(.2,.3).scale(8,.2).modulateScrollX(noise(.2,.02)).modulateScrollY(noise(.4,.02))
+.modulate(noise(200,.02)).repeat(10,4).rotate(.2,.02).scrollY(()=>mouse.x/3000).diff(gradient(.02))
+.modulate(src(o0)).diff(shape(4,.8).repeat(2,3).rotate(.02,.04).modulate(src(o0))
+.out(o0);
 
 
     // === SUONI PERSONALIZZATI ===
