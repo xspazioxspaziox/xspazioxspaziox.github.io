@@ -1,6 +1,6 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   Versione aggiornata (mobile fix + footer fix + home 200px)
+   Versione aggiornata (mobile fix + footer fix + home 200px + menu visibile)
 ======================================================= */
 
 /* FONT */
@@ -345,6 +345,56 @@ body {
     height: 100%;
     display: block;
     image-rendering: crisp-edges;
+  }
+}
+
+/* =======================================================
+   HOME (solo mobile) — allineamento bottone sopra + dropdown overlay
+======================================================= */
+@media (max-width: 480px) {
+  /* allinea pulsanti e testi alla cornice */
+  body.is-home .home-actions-top,
+  body.is-home .hydra-credit,
+  body.is-home .home-actions-bottom {
+    width: var(--flyer-w);
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* bottone sopra la cornice */
+  body.is-home .home-actions-top {
+    margin: 0 auto 10px;
+    text-align: center;
+  }
+  body.is-home .home-actions-top .btn {
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  /* dropdown visibile e sempre accessibile */
+  body.is-home details.dropdown { position: static; }
+  body.is-home details.dropdown .menu {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+    top: auto;
+    width: min(var(--flyer-w), calc(100vw - (2 * var(--pad-m))));
+    max-height: 60vh;
+    overflow: auto;
+    z-index: 10000;
+    border: 1px solid #888;
+    background: #fff;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  body.is-home .home-actions-top,
+  body.is-home .home-actions-bottom,
+  body.is-home .hydra-credit {
+    position: relative;
+    z-index: 2;
   }
 }
 
