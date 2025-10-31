@@ -1,6 +1,6 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   Versione aggiornata (mobile fix + footer fix + home 200px + menu visibile)
+   Versione finale (mobile fix + footer fix + home 200px + dropdown classico)
 ======================================================= */
 
 /* FONT */
@@ -349,10 +349,9 @@ body {
 }
 
 /* =======================================================
-   HOME (solo mobile) — allineamento bottone sopra + dropdown overlay
+   HOME (solo mobile) — bottone sopra allineato + dropdown classico
 ======================================================= */
 @media (max-width: 480px) {
-  /* allinea pulsanti e testi alla cornice */
   body.is-home .home-actions-top,
   body.is-home .hydra-credit,
   body.is-home .home-actions-bottom {
@@ -362,7 +361,6 @@ body {
     margin-right: auto;
   }
 
-  /* bottone sopra la cornice */
   body.is-home .home-actions-top {
     margin: 0 auto 10px;
     text-align: center;
@@ -372,18 +370,17 @@ body {
     margin: 0 auto;
   }
 
-  /* dropdown visibile e sempre accessibile */
-  body.is-home details.dropdown { position: static; }
+  /* dropdown classico sotto il bottone */
+  body.is-home details.dropdown { position: relative; }
   body.is-home details.dropdown .menu {
-    position: fixed;
+    position: absolute;
+    top: calc(100% + 6px);
     left: 50%;
     transform: translateX(-50%);
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
-    top: auto;
-    width: min(var(--flyer-w), calc(100vw - (2 * var(--pad-m))));
-    max-height: 60vh;
-    overflow: auto;
     z-index: 10000;
+    width: max(160px, min(var(--flyer-w), calc(100vw - (2 * var(--pad-m)))));
+    max-height: 50vh;
+    overflow: auto;
     border: 1px solid #888;
     background: #fff;
     padding: 6px;
@@ -433,4 +430,4 @@ a:active { opacity: .7; }
 .flyer-scroll a:focus {
   color: #000;
   border-color: #000;
-   }
+     }
