@@ -1,6 +1,6 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   2025-11 — Mobile fix: scroll affidabile + cornici allineate
+   2025-11 — Cornici proporzionate + scroll fisso + fix anti-sbordo
 ======================================================= */
 
 /* FONT */
@@ -12,7 +12,7 @@
 :root {
   --flyer-offset: -6svh;
   --flyer-box-h: 48svh;
-  --flyer-w: 250px;   /* base, sovrascritta nei breakpoint */
+  --flyer-w: 250px;   /* larghezza base, modificata nei breakpoint */
   --header-h: 64px;
   --footer-h: 40px;
 }
@@ -28,7 +28,7 @@ body {
   height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  overflow: hidden; /* la pagina non scorre; scorre solo il contenuto della cornice */
+  overflow: hidden; /* evita lo scroll della pagina */
 }
 
 #header { min-height: var(--header-h); }
@@ -70,7 +70,6 @@ body {
   align-items:center;
 }
 
-/* Larghezze legate a variabile (poi aggiornate per breakpoint) */
 .flyer-header,
 .flyer-image,
 .flyer-info,
@@ -82,7 +81,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Riga superiore */
 .flyer-header {
   display:flex;
   justify-content:space-between;
@@ -107,7 +105,6 @@ body {
 
 .flyer-frame { background:#fafafa; overflow:hidden; }
 
-/* Testo scrollabile (valori di default; mobile/desktop li specificano meglio) */
 .flyer-scroll {
   overflow:auto;
   padding:10px 12px;
@@ -122,7 +119,7 @@ body {
 .flyer-scroll::-webkit-scrollbar-thumb{ background:#888; border-radius:3px; }
 .flyer-scroll::-webkit-scrollbar-thumb:hover{ background:#555; }
 
-/* Blocco sotto */
+/* Riga inferiore */
 .flyer-info {
   text-align:right;
   font-size:.7em;
@@ -201,16 +198,14 @@ body {
   }
 
   .flyer-scroll {
-    height: calc(var(--flyer-box-h) - 2px - 20px); /* 2px bordo interni + 20px padding */
+    height: calc(var(--flyer-box-h) - 2px - 20px);
   }
 
   .flyer-container { transform: translateY(-2svh); }
 
-  /* Allineamento e stile del blocco sotto ripristinati */
   .flyer-info,
   .flyer-footer{
     width: var(--flyer-w);
-    max-width:none;
     text-align:right;
     font-size:.7em;
     line-height:1.4;
@@ -221,7 +216,7 @@ body {
 }
 
 /* =======================================================
-   GRANDI SCHERMI (≥1600px) — come prima
+   GRANDI SCHERMI (≥1600px)
 ======================================================= */
 @media (min-width:1600px){
   .site-header, .site-footer, .page-title { padding-left:6vw; padding-right:6vw; }
@@ -236,68 +231,76 @@ body {
   .page-title { margin-bottom:14px; font-size:2.3rem; }
   .site-footer { font-size:16px; line-height:1.4; }
 
-  .flyer-info, .flyer-footer { width: var(--flyer-w); max-width:none; }
+  .flyer-info, .flyer-footer { width: var(--flyer-w); }
 }
 
 /* =======================================================
-   MOBILE (≤480px) — FIX SCROLL iOS + proporzione 4:5 + allineamenti
+   MOBILE (≤480px) — Scroll fix + proporzioni + anti-sbordo
 ======================================================= */
 @media (max-width:480px){
   :root{
-    --flyer-offset: -3svh;             /* offset visivo */
+    --flyer-offset: -3svh;
     --header-h: 56px;
     --footer-h: 36px;
-    --flyer-w: clamp(260px, 92vw, 300px);
+    --flyer-w: clamp(220px, 94vw, 300px);
   }
 
-  /* ⚠️ iOS FIX: niente transform sul container quando c’è uno scroll interno */
+  /* anti-sbordo globale */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { width:100%; max-width:100%; overflow-x:hidden; }
+
+  .flyer-container,
+  .flyer-block { width:100%; max-width:100%; overflow-x:hidden; }
+
+  .site-header,
+  .site-footer { padding-left:min(24px,5vw); padding-right:min(24px,5vw); }
+
+  .menu { max-width:94vw; overflow-wrap:anywhere; }
+  .flier { contain: paint; }
+
+  /* offset sostituito da margin-top per evitare bug iOS scroll */
   .flyer-container{
-    transform: none;                   /* disattiva translateY */
-    margin-top: var(--flyer-offset);   /* sostituisce il vecchio offset */
+    transform:none;
+    margin-top: var(--flyer-offset);
   }
 
-  /* Cornice con proporzione 4:5, bordo sul wrapper (divisore combacia) */
   .flyer-image{
-    aspect-ratio: 4 / 5;
-    height: auto;
-    border: 1px solid #000;
-    background: #fafafa;
-    display: block;
+    aspect-ratio:4/5;
+    height:auto;
+    border:1px solid #000;
+    background:#fafafa;
+    display:block;
   }
 
-  /* IMMAGINE: intera (niente tagli) */
   .flyer-image > img{
     width:100%; height:100%;
-    object-fit: contain;
+    object-fit:contain;
     border:0; display:block;
   }
 
-  /* TESTO: layout flessibile per scroll affidabile */
   .flyer-image > .flyer-frame{
     width:100%; height:100%;
     border:0; background:transparent;
-    display:flex;           /* contenitore flex */
+    display:flex;
     align-items:stretch;
     justify-content:stretch;
-    min-height:0;           /* importante sui container flex */
+    min-height:0;
     box-sizing:border-box;
   }
 
   .flyer-scroll{
     flex:1;
-    min-height:0;           /* 🔑 permette davvero lo scroll */
+    min-height:0;
     overflow:auto;
-    -webkit-overflow-scrolling: touch; /* momentum scroll iOS */
+    -webkit-overflow-scrolling:touch;
     padding:10px 12px;
-    height:auto;            /* usa l’altezza del flex */
+    height:auto;
     box-sizing:border-box;
   }
 
-  /* Allineamento perfetto di divisore + testo sotto alla larghezza cornice */
   .flyer-info,
   .flyer-footer{
     width: var(--flyer-w);
-    max-width:none;
     text-align:right;
     font-size:.7em;
     line-height:1.4;
@@ -327,22 +330,22 @@ body {
 html, body { overscroll-behavior:none; }
 .flyer-scroll { overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
 
-/* Link: coerenti con la versione iniziale */
-a{
+/* Link coerenti con l’originale */
+a {
   color:#555;
   text-decoration:none;
   transition: color .2s ease, opacity .2s ease;
 }
-a:hover, a:focus{ color:#000; }
-a:active{ opacity:.7; }
+a:hover, a:focus { color:#000; }
+a:active { opacity:.7; }
 
-.flyer-scroll a{
+.flyer-scroll a {
   color:#333;
   border-bottom:1px dashed #666;
   text-decoration:none;
 }
 .flyer-scroll a:hover,
-.flyer-scroll a:focus{
+.flyer-scroll a:focus {
   color:#000;
   border-color:#000;
 }
