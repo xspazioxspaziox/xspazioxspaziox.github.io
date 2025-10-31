@@ -1,19 +1,22 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   2025-10-31 — Fix mobile: larghezze allineate + cornice completa
+   2025-10-31 — Fix mobile:
+   - immagine non tagliata (contain)
+   - altezza cornice calcolata
+   - home esclusa tramite .is-home
 ======================================================= */
 
 /* FONT */
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 /* =======================================================
-   VARIABILI GLOBALI
+   VARIABILI GLOBALI (default)
 ======================================================= */
 :root {
   --flyer-offset: -6svh;   /* sposta il blocco centrale verso l’alto */
-  --flyer-box-h: 48svh;    /* altezza cornice (mobile default, poi override) */
-  --header-h: 64px;        /* altezza header */
-  --footer-h: 40px;        /* altezza footer */
+  --flyer-box-h: 48svh;    /* altezza cornice (verrà ri-calibrata su mobile/desktop) */
+  --header-h: 64px;
+  --footer-h: 40px;
 }
 
 /* =======================================================
@@ -27,7 +30,7 @@ body {
   height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  overflow: hidden; /* niente scroll pagina */
+  overflow: hidden; /* evita scroll del body */
 }
 
 #header { min-height: var(--header-h); }
@@ -63,14 +66,13 @@ body {
   justify-content:center;
   transform: translateY(var(--flyer-offset));
 }
-
 .flyer-block {
   display:flex;
   flex-direction:column;
   align-items:center;
 }
 
-/* Base (mobile originario: 250px / 95%) — verrà sovrascritto su mobile */
+/* Base (mobile originario) — verrà sovrascritto nelle media query */
 .flyer-header,
 .flyer-image,
 .flyer-info {
@@ -92,24 +94,21 @@ body {
 /* =======================================================
    CORNICE (IMMAGINE o TESTO)
 ======================================================= */
-.flyer-image {
-  box-sizing: border-box; /* include eventuali bordi/padding nel calcolo */
-}
+.flyer-image { box-sizing: border-box; }
 
 .flyer-image > img,
 .flyer-image > .flyer-frame {
   display:block;
   width:100%;
   border:1px solid #000;
-  box-sizing:border-box; /* evita overflow che “taglia” la cornice */
+  box-sizing:border-box;
   max-height: var(--flyer-box-h);
 }
 
 .flyer-frame { background:#fafafa; overflow:hidden; }
 
 .flyer-scroll{
-  /* 2px = bordo frame; 20px = padding verticale dello scroll */
-  height: calc(var(--flyer-box-h) - 2px - 20px);
+  height: calc(var(--flyer-box-h) - 2px - 20px); /* 2px bordo, 20px padding */
   overflow:auto;
   padding:10px 12px;
   text-align:left;
@@ -197,8 +196,10 @@ body {
   .flyer-image > .flyer-frame {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* su desktop manteniamo cover come prima */
     max-height: none;
+    border:1px solid #000;
+    box-sizing:border-box;
   }
 
   .flyer-scroll {
@@ -211,7 +212,7 @@ body {
 }
 
 /* =======================================================
-   GRANDI SCHERMI (≥1600px) — come versione originale
+   GRANDI SCHERMI (≥1600px) — come originale
 ======================================================= */
 @media (min-width: 1600px) {
   .site-header,
@@ -288,7 +289,6 @@ a:active { opacity: 0.7; }
 
 /* =======================================================
    BLOCCO INFERIORE (indice + info)
-   (le regole base restano; il mobile le sovrascrive più sotto)
 ======================================================= */
 .flyer-footer {
   display: flex;
@@ -315,48 +315,60 @@ a:active { opacity: 0.7; }
 }
 
 /* =======================================================
-   🔧 MOBILE — FIX larghezze allineate + cornice completa
-   (posto a FONDO file per vincere la cascata)
+   🔧 MOBILE — larghezza home + immagine non tagliata
+   (posto a fondo file per vincere la cascata)
 ======================================================= */
 @media (max-width: 480px) {
-  /* Variabili mobile (leggera riduzione offset per evitare taglio) */
+  /* Altezza dinamica: riempi lo schermo meno header/footer e un margine di respiro */
   :root {
-    --flyer-offset: -2svh;  /* meno spinta verso l’alto -> niente cornice tagliata */
-    --flyer-box-h: 42svh;   /* altezza unica per TUTTE le pagine */
-    --header-h: 56px;
-    --footer-h: 36px;
+    --flyer-offset: -2svh;
+    --flyer-box-h: calc(100svh - var(--header-h) - var(--footer-h) - 10svh);
   }
 
-  /* Larghezze UNIFORMI a 300px (come home) per testo e divisori */
+  /* Home: mantieni la sua altezza originale (es. 42svh) */
+  body.is-home {
+    --flyer-box-h: 42svh;
+  }
+
+  /* Larghezze come home su mobile */
   .flyer-header,
   .flyer-image,
   .flyer-info,
   .flyer-footer {
-    width: 300px !important;   /* !important per battere vecchie regole in coda */
-    max-width: none !important;
+    width: 300px;
+    max-width: none;
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
   }
 
-  /* Cornice completa, senza taglio */
+  /* Cornice completa */
   .flyer-image { height: var(--flyer-box-h); }
 
-  .flyer-image > img,
+  /* IMMAGINE: mostra sempre tutta l’immagine (niente tagli) */
+  .flyer-image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;     /* <<< evita tagli verticali/orizzontali */
+    background: #fafafa;     /* “letterbox” neutro attorno all’immagine */
+    border: 1px solid #000;
+    box-sizing: border-box;
+    max-height: none;        /* gestiamo noi l’altezza con height:100% */
+  }
+
+  /* FRAME TESTO: stessa cornice e altezza interna coerente */
   .flyer-image > .flyer-frame {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     border: 1px solid #000;
     box-sizing: border-box;
-    max-height: none; /* evitiamo che il max-height accorci la cornice */
   }
 
   .flyer-scroll {
     height: calc(var(--flyer-box-h) - 2px - 20px);
   }
 
-  /* Ritocchi tipografici */
+  /* Ritocchi */
   .page-title { margin:0 0 6px; }
   .flyer-header { margin-bottom:4px; }
   .flyer-info { padding-top:6px; margin-top:6px; }
