@@ -1,20 +1,17 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   2025-10-31 — Fix mobile:
-   - immagine non tagliata (contain)
-   - altezza cornice calcolata
-   - home esclusa tramite .is-home
+   2025-10-31 — Cornice mobile proporzionata al desktop (4:5)
 ======================================================= */
 
 /* FONT */
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 /* =======================================================
-   VARIABILI GLOBALI (default)
+   VARIABILI GLOBALI
 ======================================================= */
 :root {
   --flyer-offset: -6svh;   /* sposta il blocco centrale verso l’alto */
-  --flyer-box-h: 48svh;    /* altezza cornice (verrà ri-calibrata su mobile/desktop) */
+  --flyer-box-h: 48svh;    /* altezza di fallback (usata soprattutto su desktop con override) */
   --header-h: 64px;
   --footer-h: 40px;
 }
@@ -30,7 +27,7 @@ body {
   height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  overflow: hidden; /* evita scroll del body */
+  overflow: hidden; /* evita scroll della pagina */
 }
 
 #header { min-height: var(--header-h); }
@@ -53,7 +50,7 @@ body {
   line-height: 1.2;
 }
 @media (max-width:480px){
-  .page-title{ padding:0 25px; font-size:1.6rem; }
+  .page-title { padding:0 25px; font-size:1.6rem; }
 }
 
 /* =======================================================
@@ -72,7 +69,7 @@ body {
   align-items:center;
 }
 
-/* Base (mobile originario) — verrà sovrascritto nelle media query */
+/* Base (override nelle media query) */
 .flyer-header,
 .flyer-image,
 .flyer-info {
@@ -102,13 +99,12 @@ body {
   width:100%;
   border:1px solid #000;
   box-sizing:border-box;
-  max-height: var(--flyer-box-h);
 }
 
 .flyer-frame { background:#fafafa; overflow:hidden; }
 
 .flyer-scroll{
-  height: calc(var(--flyer-box-h) - 2px - 20px); /* 2px bordo, 20px padding */
+  /* su mobile l’altezza è % del contenitore; su desktop è calcolata in px */
   overflow:auto;
   padding:10px 12px;
   text-align:left;
@@ -117,12 +113,12 @@ body {
   color:#333;
 }
 
-/* Scrollbar */
+/* Scrollbar personalizzata */
 .flyer-scroll::-webkit-scrollbar{ width:6px; }
 .flyer-scroll::-webkit-scrollbar-thumb{ background:#888; border-radius:3px; }
 .flyer-scroll::-webkit-scrollbar-thumb:hover{ background:#555; }
 
-/* Riga inferiore */
+/* Riga inferiore (info) */
 .flyer-info {
   text-align:right;
   font-size:.7em;
@@ -163,7 +159,7 @@ body {
 }
 
 /* =======================================================
-   RESPONSIVE BASE (max 380px)
+   RESPONSIVE BASE (ritocchi tipografici very small)
 ======================================================= */
 @media (max-width:380px){
   .flyer-scroll{ font-size:.85em; }
@@ -176,7 +172,8 @@ body {
 }
 
 /* =======================================================
-   DESKTOP / TABLET (come versione originale)
+   DESKTOP / TABLET (come originale)
+   Cornice 300×375 px centrata
 ======================================================= */
 @media (min-width: 481px) {
   :root { --flyer-box-h: 375px; }
@@ -196,14 +193,11 @@ body {
   .flyer-image > .flyer-frame {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* su desktop manteniamo cover come prima */
-    max-height: none;
-    border:1px solid #000;
-    box-sizing:border-box;
+    object-fit: cover;   /* desktop: riempi la cornice */
   }
 
   .flyer-scroll {
-    height: calc(375px - 2px - 20px);
+    height: calc(375px - 2px - 20px); /* 2px bordo, 20px padding */
   }
 
   .flyer-container {
@@ -241,9 +235,79 @@ body {
 }
 
 /* =======================================================
+   MOBILE (≤480px) — Proporzione 4:5 come desktop
+   Larghezza fluida, cornice proporzionata, immagini non tagliate
+======================================================= */
+@media (max-width: 480px) {
+  :root {
+    --flyer-offset: -3svh;  /* leggero rialzo del blocco centrale */
+    --header-h: 56px;
+    --footer-h: 36px;
+  }
+
+  /* Tutti gli elementi del flyer allineati alla stessa larghezza */
+  .flyer-header,
+  .flyer-image,
+  .flyer-info,
+  .flyer-footer {
+    width: clamp(260px, 92vw, 300px);
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  /* Cornice: proporzione identica al desktop */
+  .flyer-image {
+    height: auto;           /* lascia calcolare all'aspect-ratio */
+    aspect-ratio: 4 / 5;    /* 300×375 → 4:5 */
+  }
+
+  /* Immagini: non tagliate; cornice completa */
+  .flyer-image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;     /* mostra l’intera immagine */
+    background: #fafafa;     /* bande neutre se necessario */
+    border: 1px solid #000;
+    box-sizing: border-box;
+  }
+
+  /* Frame testo: riempie la cornice */
+  .flyer-image > .flyer-frame {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    background: #fafafa;
+    overflow: hidden;
+  }
+
+  /* Area scroll interna: proporzionata alla cornice 4:5 */
+  .flyer-scroll {
+    height: calc(100% - 2px - 20px); /* 2px bordo, 20px padding */
+    padding: 10px 12px;
+  }
+
+  /* Ritocchi */
+  .page-title { margin:0 0 6px; }
+  .flyer-header { margin-bottom:4px; }
+  .flyer-info { padding-top:6px; margin-top:6px; }
+
+  .site-footer {
+    padding:8px 16px;
+    font-size:12px;
+    white-space:normal;
+    margin-bottom:env(safe-area-inset-bottom,0px);
+    overflow:hidden;
+    text-overflow:ellipsis;
+    padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* =======================================================
    FIX VISIVO
 ======================================================= */
-.flyer-frame { background:#fafafa; }
 .flyer-scroll {
   background:#fafafa;
   padding:12px 12px 10px;
@@ -269,117 +333,3 @@ html, body { overscroll-behavior: none; }
 ======================================================= */
 a {
   color: #555;
-  text-decoration: none;
-  transition: color 0.2s ease, opacity 0.2s ease;
-}
-a:hover,
-a:focus { color: #000; }
-a:active { opacity: 0.7; }
-
-.flyer-scroll a {
-  color: #333;
-  border-bottom: 1px dashed #666;
-  text-decoration: none;
-}
-.flyer-scroll a:hover,
-.flyer-scroll a:focus {
-  color: #000;
-  border-color: #000;
-}
-
-/* =======================================================
-   BLOCCO INFERIORE (indice + info)
-======================================================= */
-.flyer-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 0.7em;
-  color: #444;
-  border-top: 1px solid #ccc;
-  padding-top: 8px;
-  margin-top: 8px;
-  width: 100%;
-  max-width: 250px;
-  box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@media (min-width: 481px) {
-  .flyer-footer { max-width: 300px; }
-}
-
-@media (max-width: 380px) {
-  .flyer-footer { width: 95%; max-width: 95%; }
-}
-
-/* =======================================================
-   🔧 MOBILE — larghezza home + immagine non tagliata
-   (posto a fondo file per vincere la cascata)
-======================================================= */
-@media (max-width: 480px) {
-  /* Altezza dinamica: riempi lo schermo meno header/footer e un margine di respiro */
-  :root {
-    --flyer-offset: -2svh;
-    --flyer-box-h: calc(100svh - var(--header-h) - var(--footer-h) - 10svh);
-  }
-
-  /* Home: mantieni la sua altezza originale (es. 42svh) */
-  body.is-home {
-    --flyer-box-h: 42svh;
-  }
-
-  /* Larghezze come home su mobile */
-  .flyer-header,
-  .flyer-image,
-  .flyer-info,
-  .flyer-footer {
-    width: 300px;
-    max-width: none;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-  }
-
-  /* Cornice completa */
-  .flyer-image { height: var(--flyer-box-h); }
-
-  /* IMMAGINE: mostra sempre tutta l’immagine (niente tagli) */
-  .flyer-image > img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;     /* <<< evita tagli verticali/orizzontali */
-    background: #fafafa;     /* “letterbox” neutro attorno all’immagine */
-    border: 1px solid #000;
-    box-sizing: border-box;
-    max-height: none;        /* gestiamo noi l’altezza con height:100% */
-  }
-
-  /* FRAME TESTO: stessa cornice e altezza interna coerente */
-  .flyer-image > .flyer-frame {
-    width: 100%;
-    height: 100%;
-    border: 1px solid #000;
-    box-sizing: border-box;
-  }
-
-  .flyer-scroll {
-    height: calc(var(--flyer-box-h) - 2px - 20px);
-  }
-
-  /* Ritocchi */
-  .page-title { margin:0 0 6px; }
-  .flyer-header { margin-bottom:4px; }
-  .flyer-info { padding-top:6px; margin-top:6px; }
-
-  .site-footer {
-    padding:8px 16px;
-    font-size:12px;
-    white-space:normal;
-    margin-bottom:env(safe-area-inset-bottom,0px);
-    overflow:hidden;
-    text-overflow:ellipsis;
-    padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
-  }
-}
