@@ -1,254 +1,364 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+/* =======================================================
+   SPAZIO X — STYLE.CSS
+   Versione 2025-10-31 — Cornice mobile come home
+======================================================= */
 
-  <link rel="preload" href="./assets/css/style.css" as="style">
-  <link rel="stylesheet" href="./assets/css/style.css">
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
-  <script src="./assets/js/include.js" defer></script>
+/* =======================================================
+   VARIABILI GLOBALI
+======================================================= */
+:root {
+  --flyer-offset: -6svh;
+  --flyer-box-h: 48svh;
+  --header-h: 64px;
+  --footer-h: 40px;
+}
 
-  <title>Spazio X — Home</title>
-  <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
-  <link rel="preload"
-      href="/assets/fonts/xicons.woff2"
-      as="font" type="font/woff2" crossorigin>
+/* MOBILE: variabili unificate */
+@media (max-width: 480px) {
+  :root {
+    --flyer-offset: -3svh;
+    --flyer-box-h: 42svh;
+    --header-h: 56px;
+    --footer-h: 36px;
+  }
+}
 
-  <link rel="stylesheet" href="/assets/css/xicons.css">
-  <style>
-    /* Alza il blocco centrale */
-    .flyer-container { transform: translateY(-8svh); }
+/* =======================================================
+   STRUTTURA BASE
+======================================================= */
+body {
+  margin: 0;
+  font-family: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #333;
+  background: #fff;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  overflow: hidden;
+}
 
-    /* Cornice ridotta (200px) */
-    .flyer-image {
-      height: 200px;
-      max-width: 300px;
-      width: 100%;
-      margin: 0 auto;
-    }
-    .flyer-image > .flyer-frame {
-      height: 100%;
-      border: 1px solid #000;
-      background: #fafafa;
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      overflow: hidden;
-    }
+#header { min-height: var(--header-h); }
+#footer { min-height: var(--footer-h); }
 
-    #hydra-canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-      image-rendering: crisp-edges;
-    }
+.site-header { padding: 20px 40px; text-align: left; }
+.site-footer {
+  text-align: left;
+  font-size: 14px;
+  white-space: nowrap;
+  padding: 10px 40px;
+  margin-bottom: 16px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+}
 
-    .page-title { text-align: left; }
+.page-title {
+  padding: 0 40px;
+  margin: 0 0 8px;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+@media (max-width:480px){
+  .page-title{ padding:0 25px; font-size:1.6rem; }
+}
 
-    .home-actions-top {
-      width: 100%;
-      max-width: 300px;
-      margin: 0 auto 10px;
-      text-align: center;
-    }
+/* =======================================================
+   BLOCCO FLYER
+======================================================= */
+.flyer-container {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transform: translateY(var(--flyer-offset));
+}
+.flyer-block {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
-    .hydra-credit {
-      width: 100%;
-      max-width: 300px;
-      margin: 4px auto 0;
-      text-align: center;
-      font-size: 0.5em;
-      color: #777;
-      letter-spacing: 0.02em;
-    }
-    .hydra-credit a {
-      color: #777;
-      text-decoration: none;
-      border-bottom: 1px dotted #aaa;
-    }
-    .hydra-credit a:hover {
-      color: #000;
-      border-color: #000;
-    }
+/* Larghezza standard base (desktop) */
+.flyer-header,
+.flyer-image,
+.flyer-info {
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid #888;
-      background: #f7f7f7;
-      color: #333;
-      text-decoration: none;
-      font-size: .9em;
-      cursor: pointer;
-      user-select: none;
-    }
-    .btn:hover, .btn:focus { background:#eee; color:#000; }
+.flyer-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  font-size:.7em;
+  color:#444;
+  margin-bottom:6px;
+}
 
-    .home-actions-bottom {
-      margin-top: 12px;
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      align-items: center;
-    }
+/* =======================================================
+   CORNICE (IMMAGINE o TESTO)
+======================================================= */
+.flyer-image {}
 
-    details.dropdown { position: relative; display: inline-block; }
-    details.dropdown > summary { list-style: none; outline: none; }
-    details.dropdown > summary::-webkit-details-marker { display: none; }
-    details.dropdown[open] > summary.btn { background:#eee; }
+.flyer-image > img,
+.flyer-image > .flyer-frame {
+  display:block;
+  width:100%;
+  border:1px solid #000;
+  box-sizing:border-box;
+  max-height: var(--flyer-box-h);
+}
 
-    .menu {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      min-width: 160px;
-      border: 1px solid #888;
-      background: #fff;
-      padding: 6px;
-      z-index: 10;
-      box-sizing: border-box;
-    }
-    .menu a {
-      display: block;
-      padding: 6px 8px;
-      border: 1px solid transparent;
-      text-decoration: none;
-      color: #333;
-      font-size: .9em;
-    }
-    .menu a:hover { border-color:#888; background:#f7f7f7; }
-  </style>
-</head>
+.flyer-frame { background:#fafafa; overflow:hidden; }
+.flyer-scroll{
+  height: calc(var(--flyer-box-h) - 2px - 20px);
+  overflow:auto;
+  padding:10px 12px;
+  text-align:left;
+  font-size:.9em;
+  line-height:1.5;
+  color:#333;
+}
 
-<body>
-  <div id="header"></div>
+/* Scrollbar personalizzata */
+.flyer-scroll::-webkit-scrollbar{ width:6px; }
+.flyer-scroll::-webkit-scrollbar-thumb{ background:#888; border-radius:3px; }
+.flyer-scroll::-webkit-scrollbar-thumb:hover{ background:#555; }
 
-  <h1 class="page-title">Spazio <b class="xi-logox fa-4x"></b></h1>
+.flyer-info {
+  text-align:right;
+  font-size:.7em;
+  color:#444;
+  border-top:1px solid #ccc;
+  padding-top:8px;
+  margin-top:8px;
+}
 
-  <main class="flyer-container">
-    <div class="flyer-block">
+/* =======================================================
+   OGGETTO VOLANTE
+======================================================= */
+.flier{
+  pointer-events:none;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:2147483647;
+  width:0;
+  height:0;
+  overflow:visible!important;
+}
+.flier img{
+  width:48px!important;
+  height:48px!important;
+  opacity:.75;
+  object-fit:contain;
+  will-change:transform;
+  animation:flyAcross 90s linear infinite;
+}
+@keyframes flyAcross{
+  0%,98.001%{ transform:translate3d(-200%,100vh,0) rotateZ(0deg); }
+  15%{ transform:translate3d(100vw,-100%,0) rotateZ(180deg); }
+  15.001%,18%{ transform:translate3d(100vw,-30%,0) rotateZ(0deg); }
+  40%{ transform:translate3d(-200%,3vh,0) rotateZ(-180deg); }
+  65%{ transform:translate3d(100vw,50vh,0) rotateZ(0deg); }
+  95%{ transform:translate3d(10vw,100vh,0) rotateZ(0deg); }
+}
 
-      <!-- Pulsante download -->
-      <div class="home-actions-top">
-        <a class="btn btn-download" 
-          href="https://raw.githubusercontent.com/xspazioxspaziox/xspazioxspaziox.github.io/545db9824541a67d9cfb6aff027abd2853e1a9cf/spazio-x-ottobre-2025.pdf" download>
-          Scarica il programma di ottobre
-        </a>
-      </div>
+/* =======================================================
+   MOBILE — Cornice larga come la home
+======================================================= */
+@media (max-width: 480px) {
+  /* Cornice e contenuti centrati a 300px */
+  .flyer-header,
+  .flyer-image,
+  .flyer-info,
+  .flyer-footer {
+    width: 300px;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
 
-      <!-- Cornice con Hydra -->
-      <div class="flyer-image">
-        <div class="flyer-frame">
-          <canvas id="hydra-canvas"></canvas>
-        </div>
-      </div>
+  .flyer-image { height: var(--flyer-box-h); }
 
-      <!-- Credito Hydra -->
-      <div class="hydra-credit">
-        *visual generated with
-        <a href="https://hydra.ojack.xyz/" target="_blank">Hydra</a> by O. Jack - <a href="/assets/js/hydra.js" target="_blank">code</a>
-      </div>
+  .flyer-image > img,
+  .flyer-image > .flyer-frame {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid #000;
+    box-sizing: border-box;
+  }
 
-      <!-- Bottoni -->
-      <div class="home-actions-bottom">
-        <details class="dropdown">
-          <summary class="btn btn-eventi">prossimi eventi</summary>
-          <div class="menu">
-            <a href="eventi/2025/31-08-yoga-flyer/">31.08.25</a>
-            <a href="eventi/2025/27-09-xxx-flyer/">27.09.25</a>
-            <a href="eventi/2025/28-09-xxx-flyer/">28.09.25</a>
-          </div>
-        </details>
+  .flyer-scroll {
+    height: calc(var(--flyer-box-h) - 2px - 20px);
+  }
 
-        <details class="dropdown">
-          <summary class="btn btn-archivio">index</summary>
-          <div class="menu">
-            <a href="eventi/">/eventi</a>
-            <a href="artisti/">/artisti</a>
-          </div>
-        </details>
+  .page-title { margin:0 0 6px; }
+  .flyer-header { margin-bottom:4px; }
+  .flyer-info { padding-top:6px; margin-top:6px; }
 
-        <button id="randomBtn" class="btn btn-random" type="button">?</button>
-      </div>
+  .site-footer {
+    padding:8px 16px;
+    font-size:12px;
+    white-space:normal;
+    margin-bottom:env(safe-area-inset-bottom,0px);
+    overflow:hidden;
+    text-overflow:ellipsis;
+    padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
+  }
+}
 
-    </div>
-  </main>
+/* =======================================================
+   RESPONSIVE BASE (max 380px)
+======================================================= */
+@media (max-width:380px){
+  .flyer-scroll{ font-size:.85em; }
+  .site-header, .site-footer { padding:15px 25px; }
+  .site-footer {
+    font-size:13px;
+    margin-bottom: calc(20px + env(safe-area-inset-bottom,0px));
+  }
+  .flier img{ width:36px!important; height:36px!important; animation-duration:110s; }
+}
 
-  <div id="footer"></div>
+/* =======================================================
+   DESKTOP / TABLET
+======================================================= */
+@media (min-width: 481px) {
+  :root { --flyer-box-h: 375px; }
 
-  <script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
-  <script>
-    // === HYDRA ===
-    const hydraCanvas = document.getElementById('hydra-canvas');
-    const hydra = new Hydra({ canvas: hydraCanvas, detectAudio: false });
+  .flyer-header,
+  .flyer-image,
+  .flyer-info {
+    width: 300px;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    // === codice visuals hydra, se lo cambi aggiorna anche dentro /assets/js/hydra.js ===
-osc(4,.02,0)
-     .rotate(.2,1).scale(8,.6)
-     .modulateScrollX(noise(.2,.02))
-     .modulateScrollY(noise(.4,.02))
-.modulate(noise(200,.2))
-     .repeat(6,4)
-     .rotate(.2,.2)
-     .scrollY(()=>mouse.x/3000)
-     .diff(gradient(.02))
-.modulate(src(o0))
-     .diff(shape([80],.8)).scrollY(80,.2).repeat(()=>mouse.y/220,3).modulate(src(o0).scrollX(2))
-     .diff(noise(1))
-.out(o0);
+  .flyer-image { height: 375px; }
 
+  .flyer-image > img,
+  .flyer-image > .flyer-frame {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: none;
+  }
 
-    // === SUONI PERSONALIZZATI ===
-    const sounds = {
-      download: new Audio('/assets/sfx/download.mp3'),
-      eventi: new Audio('/assets/sfx/eventi.mp3'),
-      archivio: new Audio('/assets/sfx/archivio.mp3'),
-      random: new Audio('/assets/sfx/random.mp3'),
-    };
+  .flyer-scroll {
+    height: calc(375px - 2px - 20px);
+  }
 
-    // Imposta preload e volume
-    Object.values(sounds).forEach(a => {
-      a.preload = 'auto';
-      a.volume = 0.8;
-    });
+  .flyer-container {
+    transform: translateY(-2svh);
+  }
+}
 
-    // Funzione per clonare e suonare (evita sovrapposizioni tagliate)
-    function playSound(key) {
-      const base = sounds[key];
-      if (!base) return;
-      const clone = base.cloneNode(true);
-      clone.play().catch(()=>{});
-    }
+/* =======================================================
+   GRANDI SCHERMI (≥1600px)
+======================================================= */
+@media (min-width: 1600px) {
+  .site-header,
+  .site-footer,
+  .page-title {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
 
-    // Collega i suoni
-    document.querySelector('.btn-download')?.addEventListener('click', () => playSound('download'));
-    document.querySelector('.btn-eventi')?.addEventListener('click', () => playSound('eventi'));
-    document.querySelector('.btn-archivio')?.addEventListener('click', () => playSound('archivio'));
-    document.querySelector('.btn-random')?.addEventListener('click', () => playSound('random'));
+  .flyer-block {
+    transform: scale(1.15);
+    transform-origin: center top;
+  }
 
-    // === RANDOM LINK “?” ===
-    const RANDOM_LINKS = [
-      '/eventi/2025/31-08-yoga-flyer/',
-      '/eventi/2025/31-08-yoga-info/',
-      '/eventi/',
-      '/artisti/',
-      '/artisti/pino-scoppon/'
-    ];
-    document.getElementById('randomBtn').addEventListener('click', () => {
-      const url = RANDOM_LINKS[Math.floor(Math.random() * RANDOM_LINKS.length)];
-      location.href = url;
-    });
+  .flyer-container { transform: translateY(-3svh); }
 
-    // === Dropdown: chiusura automatica ===
-    document.querySelectorAll('details.dropdown summary').forEach(s => {
-      s.addEventListener('click', () => {
-        const parent = s.parentElement;
-        document.querySelectorAll('details.dropdown[open]').forEach(d => {
-          if (d !== parent) d.removeAttribute('open');
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+  .page-title {
+    margin-bottom: 14px;
+    font-size: 2.3rem;
+  }
+
+  .site-footer {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+}
+
+/* =======================================================
+   FIX VISIVO
+======================================================= */
+.flyer-frame { background:#fafafa; }
+.flyer-scroll {
+  background:#fafafa;
+  padding:12px 12px 10px;
+}
+.flyer-scroll > :first-child { margin-top:0; }
+.flyer-scroll > :last-child { margin-bottom:0; }
+.flyer-scroll p { margin:0 0 1em; }
+
+/* =======================================================
+   CONTROLLO SCROLL
+======================================================= */
+@supports (height: 100dvh) { body { height: 100dvh; } }
+@supports not (height: 100dvh) { body { height: 100svh; } }
+
+html, body { overscroll-behavior: none; }
+.flyer-scroll {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =======================================================
+   LINK
+======================================================= */
+a {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+a:hover,
+a:focus { color: #000; }
+a:active { opacity: 0.7; }
+
+.flyer-scroll a {
+  color: #333;
+  border-bottom: 1px dashed #666;
+  text-decoration: none;
+}
+.flyer-scroll a:hover,
+.flyer-scroll a:focus {
+  color: #000;
+  border-color: #000;
+}
+
+/* =======================================================
+   BLOCCO INFERIORE (indice + info)
+======================================================= */
+.flyer-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.7em;
+  color: #444;
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  margin-top: 8px;
+  width: 100%;
+  max-width: 250px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 481px) {
+  .flyer-footer { max-width: 300px; }
+}
+
+@media (max-width: 380px) {
+  .flyer-footer { width: 95%; max-width: 95%; }
+}
