@@ -1,18 +1,18 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   2025-11 — Mobile no-overflow + scroll stabile + 4:5 + allineamenti
+   Versione aggiornata (mobile fix + footer fix)
 ======================================================= */
 
 /* FONT */
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 /* =======================================================
-   VARIABILI GLOBALI (fallback desktop)
+   VARIABILI GLOBALI
 ======================================================= */
-:root{
+:root {
   --flyer-offset: -6svh;
   --flyer-box-h: 48svh;
-  --flyer-w: 250px;       /* sovrascritto nei breakpoint */
+  --flyer-w: 250px;
   --header-h: 64px;
   --footer-h: 40px;
 }
@@ -20,230 +20,339 @@
 /* =======================================================
    STRUTTURA BASE
 ======================================================= */
-body{
-  margin:0;
-  font-family:'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  color:#333; background:#fff;
-  height:100vh;
-  display:grid;
-  grid-template-rows:auto auto 1fr auto;
-  overflow:hidden; /* lo scroll avviene nelle cornici */
+body {
+  margin: 0;
+  font-family: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #333;
+  background: #fff;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  overflow: hidden;
 }
-#header{ min-height:var(--header-h); }
-#footer{ min-height:var(--footer-h); }
 
-.site-header{ padding:20px 40px; text-align:left; }
-.site-footer{
-  text-align:left; font-size:14px; white-space:nowrap;
-  padding:10px 40px; margin-bottom:16px;
-  padding-bottom:max(10px, env(safe-area-inset-bottom, 0px));
+#header { min-height: var(--header-h); }
+#footer { min-height: var(--footer-h); }
+
+.site-header { padding: 20px 40px; text-align: left; }
+.site-footer {
+  text-align: left;
+  font-size: 14px;
+  white-space: nowrap;
+  padding: 10px 40px;
+  margin-bottom: 16px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
 }
-.page-title{
-  padding:0 40px; margin:0 0 8px;
-  font-size:2rem; line-height:1.2;
+
+.page-title {
+  padding: 0 40px;
+  margin: 0 0 8px;
+  font-size: 2rem;
+  line-height: 1.2;
 }
 
 /* =======================================================
-   BLOCCO FLYER (base)
+   BLOCCO FLYER
 ======================================================= */
-.flyer-container{
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
+.flyer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   transform: translateY(var(--flyer-offset));
 }
-.flyer-block{ display:flex; flex-direction:column; align-items:center; }
-
-.flyer-header, .flyer-image, .flyer-info, .flyer-footer{
-  width:var(--flyer-w); max-width:none; margin-inline:auto; box-sizing:border-box;
+.flyer-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.flyer-header{
-  display:flex; justify-content:space-between; align-items:baseline;
-  font-size:.7em; color:#444; margin-bottom:6px;
+.flyer-header,
+.flyer-image,
+.flyer-info,
+.flyer-footer {
+  width: var(--flyer-w);
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.flyer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: .7em;
+  color: #444;
+  margin-bottom: 6px;
 }
 
 /* =======================================================
-   CORNICE (base)
+   CORNICE
 ======================================================= */
-.flyer-image{ box-sizing:border-box; }
-.flyer-image > img, .flyer-image > .flyer-frame{
-  display:block; width:100%; border:1px solid #000; box-sizing:border-box;
+.flyer-image { box-sizing: border-box; }
+.flyer-image > img,
+.flyer-image > .flyer-frame {
+  display: block;
+  width: 100%;
+  border: 1px solid #000;
+  box-sizing: border-box;
 }
-.flyer-frame{ background:#fafafa; overflow:hidden; }
+.flyer-frame { background: #fafafa; overflow: hidden; }
 
-.flyer-scroll{
-  overflow:auto; padding:10px 12px; text-align:left;
-  font-size:.9em; line-height:1.5; color:#333;
+.flyer-scroll {
+  overflow: auto;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: .9em;
+  line-height: 1.5;
+  color: #333;
 }
 
-/* Scrollbar */
-.flyer-scroll::-webkit-scrollbar{ width:6px; }
-.flyer-scroll::-webkit-scrollbar-thumb{ background:#888; border-radius:3px; }
-.flyer-scroll::-webkit-scrollbar-thumb:hover{ background:#555; }
+/* Scrollbar personalizzata */
+.flyer-scroll::-webkit-scrollbar { width: 6px; }
+.flyer-scroll::-webkit-scrollbar-thumb { background: #888; border-radius: 3px; }
+.flyer-scroll::-webkit-scrollbar-thumb:hover { background: #555; }
 
-/* Sotto cornice */
-.flyer-info{
-  text-align:right; font-size:.7em; color:#444;
-  border-top:1px solid #ccc; padding-top:8px; margin-top:8px;
+.flyer-info {
+  text-align: right;
+  font-size: .7em;
+  color: #444;
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  margin-top: 8px;
 }
-.flyer-footer{
-  display:flex; justify-content:space-between; align-items:baseline;
-  font-size:.7em; color:#444;
-  border-top:1px solid #ccc; padding-top:8px; margin-top:8px;
+.flyer-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: .7em;
+  color: #444;
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  margin-top: 8px;
 }
 
 /* =======================================================
    OGGETTO VOLANTE
 ======================================================= */
-.flier{
-  pointer-events:none; position:fixed; top:0; left:0; z-index:2147483647;
-  width:0; height:0; overflow:visible!important;
+.flier {
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 2147483647;
+  width: 0; height: 0;
+  overflow: visible !important;
 }
-.flier img{
-  width:48px!important; height:48px!important; opacity:.75; object-fit:contain;
-  will-change:transform; animation:flyAcross 90s linear infinite;
+.flier img {
+  width: 48px !important;
+  height: 48px !important;
+  opacity: .75;
+  object-fit: contain;
+  will-change: transform;
+  animation: flyAcross 90s linear infinite;
 }
-@keyframes flyAcross{
-  0%,98.001%{ transform:translate3d(-200%,100vh,0) rotateZ(0deg); }
-  15%{ transform:translate3d(100vw,-100%,0) rotateZ(180deg); }
-  15.001%,18%{ transform:translate3d(100vw,-30%,0) rotateZ(0deg); }
-  40%{ transform:translate3d(-200%,3vh,0) rotateZ(-180deg); }
-  65%{ transform:translate3d(100vw,50vh,0) rotateZ(0deg); }
-  95%{ transform:translate3d(10vw,100vh,0) rotateZ(0deg); }
-}
-
-/* =======================================================
-   VERY SMALL
-======================================================= */
-@media (max-width:380px){
-  .flyer-scroll{ font-size:.85em; }
-  .site-header, .site-footer{ padding:15px 25px; }
-  .site-footer{ font-size:13px; margin-bottom:calc(20px + env(safe-area-inset-bottom,0px)); }
-  .flier img{ width:36px!important; height:36px!important; animation-duration:110s; }
+@keyframes flyAcross {
+  0%,98.001% { transform: translate3d(-200%,100vh,0) rotateZ(0deg); }
+  15% { transform: translate3d(100vw,-100%,0) rotateZ(180deg); }
+  15.001%,18% { transform: translate3d(100vw,-30%,0) rotateZ(0deg); }
+  40% { transform: translate3d(-200%,3vh,0) rotateZ(-180deg); }
+  65% { transform: translate3d(100vw,50vh,0) rotateZ(0deg); }
+  95% { transform: translate3d(10vw,100vh,0) rotateZ(0deg); }
 }
 
 /* =======================================================
-   DESKTOP / TABLET — 300×375 come prima
+   DESKTOP / TABLET
 ======================================================= */
-@media (min-width:481px){
-  :root{ --flyer-box-h:375px; --flyer-w:300px; }
+@media (min-width: 481px) {
+  :root {
+    --flyer-box-h: 375px;
+    --flyer-w: 300px;
+  }
 
-  .flyer-image{ height:var(--flyer-box-h); }
-  .flyer-image > img, .flyer-image > .flyer-frame{ height:100%; object-fit:cover; }
-  .flyer-scroll{ height:calc(var(--flyer-box-h) - 2px - 20px); }
+  .flyer-image { height: var(--flyer-box-h); }
 
-  .flyer-container{ transform: translateY(-2svh); }
+  .flyer-image > img,
+  .flyer-image > .flyer-frame {
+    height: 100%;
+    object-fit: cover;
+  }
 
-  .flyer-info, .flyer-footer{
-    width:var(--flyer-w); text-align:right; font-size:.7em; line-height:1.4;
-    border-top:1px solid #ccc; padding-top:8px; margin-top:8px;
+  .flyer-scroll { height: calc(var(--flyer-box-h) - 2px - 20px); }
+
+  .flyer-container { transform: translateY(-2svh); }
+
+  .flyer-info,
+  .flyer-footer {
+    width: var(--flyer-w);
+    text-align: right;
+    font-size: .7em;
+    line-height: 1.4;
+    border-top: 1px solid #ccc;
+    padding-top: 8px;
+    margin-top: 8px;
   }
 }
 
 /* =======================================================
    GRANDI SCHERMI (≥1600px)
 ======================================================= */
-@media (min-width:1600px){
-  .site-header, .site-footer, .page-title{ padding-inline:6vw; }
-  .flyer-block{ transform:scale(1.15); transform-origin:center top; }
-  .flyer-container{ transform: translateY(-3svh); }
-  .page-title{ margin-bottom:14px; font-size:2.3rem; }
-  .site-footer{ font-size:16px; line-height:1.4; }
-  .flyer-info, .flyer-footer{ width:var(--flyer-w); }
+@media (min-width: 1600px) {
+  .site-header,
+  .site-footer,
+  .page-title {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .flyer-block {
+    transform: scale(1.15);
+    transform-origin: center top;
+  }
+
+  .flyer-container { transform: translateY(-3svh); }
+
+  .page-title { margin-bottom: 14px; font-size: 2.3rem; }
+  .site-footer { font-size: 16px; line-height: 1.4; }
+
+  .flyer-info,
+  .flyer-footer { width: var(--flyer-w); }
 }
 
 /* =======================================================
-   MOBILE (≤480px) — NO overflow + scroll iOS + 4:5 + allineamenti
+   MOBILE (≤480px) — Tutte le modifiche da qui in giù
 ======================================================= */
-@media (max-width:480px){
-  /* 1) anti-sbordo di base */
-  *, *::before, *::after{ box-sizing:border-box; }
-  html, body{ width:100%; max-width:100%; overflow-x:hidden !important; }
-
-  /* 2) padding coerente col calcolo della larghezza */
-  :root{
+@media (max-width: 480px) {
+  :root {
     --pad-m: clamp(12px, 5vw, 24px);
     --flyer-offset: -3svh;
-    --header-h: 56px; --footer-h: 36px;
-    /* Cornice = viewport - padding laterali - 2px bordo (wrapper) */
+    --header-h: 56px;
+    --footer-h: 36px;
     --flyer-w: min(300px, calc(100vw - (2 * var(--pad-m)) - 2px));
   }
 
-  .site-header, .site-footer, .page-title{
-    padding-left:var(--pad-m); padding-right:var(--pad-m);
-  }
-  .menu{ max-width:calc(100vw - (2 * var(--pad-m))); overflow-wrap:anywhere; }
-  .flier{ contain:paint; } /* evita estensione grafica oltre viewport */
+  /* Anti-sbordo globale */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; }
 
-  /* 3) FIX iOS scroll: niente transform sul container; usa margin-top */
-  .flyer-container{ transform:none; margin-top:var(--flyer-offset); }
+  .flyer-container, .flyer-block { width: 100%; max-width: 100%; overflow-x: hidden; }
 
-  /* 4) Cornice: bordo sul wrapper, proporzione 4:5, niente overflow */
-  .flyer-image{
-    width:var(--flyer-w);
-    aspect-ratio:4/5; height:auto;
-    border:1px solid #000; background:#fafafa;
-    display:block; overflow:hidden; position:relative; z-index:1;
-  }
-  /* Interni: riempiono la cornice, nessun bordo aggiuntivo */
-  .flyer-image > img{
-    width:100%; height:100%; object-fit:contain; border:0; display:block;
-  }
-  .flyer-image > .flyer-frame{
-    width:100%; height:100%;
-    border:0; background:transparent;
-    display:flex; align-items:stretch; justify-content:stretch;
-    min-height:0; box-sizing:border-box;
-  }
-  /* Testo interno scrollabile e fluido */
-  .flyer-scroll{
-    flex:1; min-height:0; overflow:auto; -webkit-overflow-scrolling:touch;
-    padding:10px 12px; height:auto; box-sizing:border-box;
+  /* Header/Titolo */
+  .site-header, .page-title {
+    box-sizing: border-box;
+    max-width: 100vw;
+    padding-left: var(--pad-m);
+    padding-right: var(--pad-m);
+    overflow-x: hidden;
   }
 
-  /* 5) Header / Sotto cornice perfettamente allineati alla cornice */
-  .flyer-header, .flyer-info, .flyer-footer{
-    width:var(--flyer-w) !important; max-width:none;
-  }
-  .flyer-info, .flyer-footer{
-    text-align:right; font-size:.7em; line-height:1.4;
-    border-top:1px solid #ccc; padding-top:8px; margin-top:8px;
-    position:relative; z-index:2; /* clic sempre attivi sui bottoni sotto */
+  /* Footer fix — evita sbordo */
+  .site-footer {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    box-sizing: border-box;
+    max-width: 100vw;
+    padding-left: var(--pad-m);
+    padding-right: var(--pad-m);
+    overflow-x: hidden;
+    font-size: 12px;
+    line-height: 1.4;
   }
 
-  /* 6) Titolo e header compatti */
-  .page-title{ font-size:1.6rem; margin:0 0 6px; overflow-wrap:anywhere; }
-  .flyer-header{ margin-bottom:4px; }
+  /* Cornice mobile */
+  .flyer-container { transform: none; margin-top: var(--flyer-offset); }
 
-  /* 7) ridondanza anti-overflow per wrapper principali */
-  .flyer-container, .flyer-block{ width:100%; max-width:100%; overflow-x:hidden; }
+  .flyer-image {
+    width: var(--flyer-w);
+    aspect-ratio: 4/5;
+    height: auto;
+    border: 1px solid #000;
+    background: #fafafa;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flyer-image > img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    border: 0;
+    display: block;
+  }
+
+  .flyer-image > .flyer-frame {
+    width: 100%; height: 100%;
+    border: 0; background: transparent;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    min-height: 0;
+    box-sizing: border-box;
+  }
+
+  .flyer-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 12px;
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  /* Sotto cornice allineato */
+  .flyer-info,
+  .flyer-footer {
+    width: var(--flyer-w);
+    text-align: right;
+    font-size: .7em;
+    line-height: 1.4;
+    border-top: 1px solid #ccc;
+    padding-top: 8px;
+    margin-top: 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .page-title { font-size: 1.6rem; margin: 0 0 6px; }
+  .flyer-header { margin-bottom: 4px; }
 }
 
 /* =======================================================
-   LINK / FIX VISIVO / SCROLL CONTROL
+   FIX VISIVO / LINK / SCROLL CONTROL
 ======================================================= */
-.flyer-scroll{
-  background:#fafafa; padding:12px 12px 10px;
+.flyer-scroll {
+  background: #fafafa;
+  padding: 12px 12px 10px;
 }
-.flyer-scroll > :first-child{ margin-top:0; }
-.flyer-scroll > :last-child{ margin-bottom:0; }
-.flyer-scroll p{ margin:0 0 1em; }
+.flyer-scroll > :first-child { margin-top: 0; }
+.flyer-scroll > :last-child { margin-bottom: 0; }
+.flyer-scroll p { margin: 0 0 1em; }
 
-@supports (height:100dvh){ body{ height:100dvh; } }
-@supports not (height:100dvh){ body{ height:100svh; } }
+@supports (height: 100dvh) { body { height: 100dvh; } }
+@supports not (height: 100dvh) { body { height: 100svh; } }
 
-html, body{ overscroll-behavior:none; }
-.flyer-scroll{ overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+html, body { overscroll-behavior: none; }
+.flyer-scroll { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
 
-/* Link (coerenti con l’originale) */
-a{
-  color:#555; text-decoration:none;
+/* LINK (coerenti con la versione originale) */
+a {
+  color: #555;
+  text-decoration: none;
   transition: color .2s ease, opacity .2s ease;
 }
-a:hover, a:focus{ color:#000; }
-a:active{ opacity:.7; }
-.flyer-scroll a{
-  color:#333; border-bottom:1px dashed #666; text-decoration:none;
+a:hover, a:focus { color: #000; }
+a:active { opacity: .7; }
+
+.flyer-scroll a {
+  color: #333;
+  border-bottom: 1px dashed #666;
+  text-decoration: none;
 }
-.flyer-scroll a:hover, .flyer-scroll a:focus{
-  color:#000; border-color:#000;
+.flyer-scroll a:hover,
+.flyer-scroll a:focus {
+  color: #000;
+  border-color: #000;
 }
