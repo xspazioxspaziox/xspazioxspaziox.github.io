@@ -184,7 +184,7 @@
     const hydra = new Hydra({ canvas: hydraCanvas, detectAudio: false });
 
     // === codice visuals hydra, se lo cambi aggiorna anche dentro /assets/js/hydra.js ===
-  shape(4,.7).modulate(noise(40,.2)).diff(osc(4,.02,0)
+  osc(4,.02,0)
      .rotate(.2,1).scale(8,.6)
      .modulateScrollX(noise(.2,.02))
      .modulateScrollY(noise(.4,.02))
@@ -195,7 +195,7 @@
      .diff(gradient(.02))
 .modulate(src(o0))
      .diff(shape([80],.8)).scrollY(80,.2).repeat(6,3).modulate(src(o0).scrollX(2))
-     .diff(noise(1)))
+     .diff(noise(1))
 .out(o0);
 
 
