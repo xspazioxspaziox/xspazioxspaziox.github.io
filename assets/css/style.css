@@ -1,6 +1,6 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   Versione 2025-10-31 — Cornice mobile come home
+   2025-10-31 — Fix mobile: larghezze allineate + cornice completa
 ======================================================= */
 
 /* FONT */
@@ -10,20 +10,10 @@
    VARIABILI GLOBALI
 ======================================================= */
 :root {
-  --flyer-offset: -6svh;
-  --flyer-box-h: 48svh;
-  --header-h: 64px;
-  --footer-h: 40px;
-}
-
-/* MOBILE: variabili unificate */
-@media (max-width: 480px) {
-  :root {
-    --flyer-offset: -3svh;
-    --flyer-box-h: 42svh;
-    --header-h: 56px;
-    --footer-h: 36px;
-  }
+  --flyer-offset: -6svh;   /* sposta il blocco centrale verso l’alto */
+  --flyer-box-h: 48svh;    /* altezza cornice (mobile default, poi override) */
+  --header-h: 64px;        /* altezza header */
+  --footer-h: 40px;        /* altezza footer */
 }
 
 /* =======================================================
@@ -37,7 +27,7 @@ body {
   height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  overflow: hidden;
+  overflow: hidden; /* niente scroll pagina */
 }
 
 #header { min-height: var(--header-h); }
@@ -73,13 +63,14 @@ body {
   justify-content:center;
   transform: translateY(var(--flyer-offset));
 }
+
 .flyer-block {
   display:flex;
   flex-direction:column;
   align-items:center;
 }
 
-/* Larghezza standard base (desktop) */
+/* Base (mobile originario: 250px / 95%) — verrà sovrascritto su mobile */
 .flyer-header,
 .flyer-image,
 .flyer-info {
@@ -101,19 +92,23 @@ body {
 /* =======================================================
    CORNICE (IMMAGINE o TESTO)
 ======================================================= */
-.flyer-image {}
+.flyer-image {
+  box-sizing: border-box; /* include eventuali bordi/padding nel calcolo */
+}
 
 .flyer-image > img,
 .flyer-image > .flyer-frame {
   display:block;
   width:100%;
   border:1px solid #000;
-  box-sizing:border-box;
+  box-sizing:border-box; /* evita overflow che “taglia” la cornice */
   max-height: var(--flyer-box-h);
 }
 
 .flyer-frame { background:#fafafa; overflow:hidden; }
+
 .flyer-scroll{
+  /* 2px = bordo frame; 20px = padding verticale dello scroll */
   height: calc(var(--flyer-box-h) - 2px - 20px);
   overflow:auto;
   padding:10px 12px;
@@ -123,11 +118,12 @@ body {
   color:#333;
 }
 
-/* Scrollbar personalizzata */
+/* Scrollbar */
 .flyer-scroll::-webkit-scrollbar{ width:6px; }
 .flyer-scroll::-webkit-scrollbar-thumb{ background:#888; border-radius:3px; }
 .flyer-scroll::-webkit-scrollbar-thumb:hover{ background:#555; }
 
+/* Riga inferiore */
 .flyer-info {
   text-align:right;
   font-size:.7em;
@@ -168,52 +164,6 @@ body {
 }
 
 /* =======================================================
-   MOBILE — Cornice larga come la home
-======================================================= */
-@media (max-width: 480px) {
-  /* Cornice e contenuti centrati a 300px */
-  .flyer-header,
-  .flyer-image,
-  .flyer-info,
-  .flyer-footer {
-    width: 300px;
-    max-width: none;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-  }
-
-  .flyer-image { height: var(--flyer-box-h); }
-
-  .flyer-image > img,
-  .flyer-image > .flyer-frame {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border: 1px solid #000;
-    box-sizing: border-box;
-  }
-
-  .flyer-scroll {
-    height: calc(var(--flyer-box-h) - 2px - 20px);
-  }
-
-  .page-title { margin:0 0 6px; }
-  .flyer-header { margin-bottom:4px; }
-  .flyer-info { padding-top:6px; margin-top:6px; }
-
-  .site-footer {
-    padding:8px 16px;
-    font-size:12px;
-    white-space:normal;
-    margin-bottom:env(safe-area-inset-bottom,0px);
-    overflow:hidden;
-    text-overflow:ellipsis;
-    padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
-  }
-}
-
-/* =======================================================
    RESPONSIVE BASE (max 380px)
 ======================================================= */
 @media (max-width:380px){
@@ -227,7 +177,7 @@ body {
 }
 
 /* =======================================================
-   DESKTOP / TABLET
+   DESKTOP / TABLET (come versione originale)
 ======================================================= */
 @media (min-width: 481px) {
   :root { --flyer-box-h: 375px; }
@@ -261,7 +211,7 @@ body {
 }
 
 /* =======================================================
-   GRANDI SCHERMI (≥1600px)
+   GRANDI SCHERMI (≥1600px) — come versione originale
 ======================================================= */
 @media (min-width: 1600px) {
   .site-header,
@@ -338,6 +288,7 @@ a:active { opacity: 0.7; }
 
 /* =======================================================
    BLOCCO INFERIORE (indice + info)
+   (le regole base restano; il mobile le sovrascrive più sotto)
 ======================================================= */
 .flyer-footer {
   display: flex;
@@ -361,4 +312,62 @@ a:active { opacity: 0.7; }
 
 @media (max-width: 380px) {
   .flyer-footer { width: 95%; max-width: 95%; }
+}
+
+/* =======================================================
+   🔧 MOBILE — FIX larghezze allineate + cornice completa
+   (posto a FONDO file per vincere la cascata)
+======================================================= */
+@media (max-width: 480px) {
+  /* Variabili mobile (leggera riduzione offset per evitare taglio) */
+  :root {
+    --flyer-offset: -2svh;  /* meno spinta verso l’alto -> niente cornice tagliata */
+    --flyer-box-h: 42svh;   /* altezza unica per TUTTE le pagine */
+    --header-h: 56px;
+    --footer-h: 36px;
+  }
+
+  /* Larghezze UNIFORMI a 300px (come home) per testo e divisori */
+  .flyer-header,
+  .flyer-image,
+  .flyer-info,
+  .flyer-footer {
+    width: 300px !important;   /* !important per battere vecchie regole in coda */
+    max-width: none !important;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  /* Cornice completa, senza taglio */
+  .flyer-image { height: var(--flyer-box-h); }
+
+  .flyer-image > img,
+  .flyer-image > .flyer-frame {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    max-height: none; /* evitiamo che il max-height accorci la cornice */
+  }
+
+  .flyer-scroll {
+    height: calc(var(--flyer-box-h) - 2px - 20px);
+  }
+
+  /* Ritocchi tipografici */
+  .page-title { margin:0 0 6px; }
+  .flyer-header { margin-bottom:4px; }
+  .flyer-info { padding-top:6px; margin-top:6px; }
+
+  .site-footer {
+    padding:8px 16px;
+    font-size:12px;
+    white-space:normal;
+    margin-bottom:env(safe-area-inset-bottom,0px);
+    overflow:hidden;
+    text-overflow:ellipsis;
+    padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
+  }
 }
