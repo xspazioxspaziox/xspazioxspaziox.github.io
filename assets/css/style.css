@@ -1,6 +1,7 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   Mobile fix + footer fix + home 200px + dropdown classico (no scroll pagina)
+   Mobile fix + footer fix + home 200px + dropdown classico
+   + dropdown width = testo + bottone sopra riallineato
 ======================================================= */
 
 /* FONT */
@@ -28,7 +29,7 @@ body {
   height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  overflow: hidden; /* <- la pagina non scorre mai */
+  overflow: hidden; /* la pagina non scorre */
 }
 
 #header { min-height: var(--header-h); }
@@ -268,19 +269,24 @@ body {
 }
 
 /* =======================================================
-   HOME (solo .is-home) — Cornice bassa anche su mobile
+   HOME (solo .is-home) — Cornice 200px + bottone sopra riallineato
 ======================================================= */
 @media (max-width:480px){
+  /* allinea perfettamente ai bordi della cornice */
   body.is-home .home-actions-top,
   body.is-home .hydra-credit,
   body.is-home .home-actions-bottom{
     width: var(--flyer-w);
     max-width:none;
     margin-left:auto; margin-right:auto;
-    overflow: visible;           /* non clip il dropdown */
+    overflow: visible;
     position: relative; z-index: 2;
+    text-align: center;
   }
+  body.is-home .home-actions-top{ margin: 0 auto 10px; }
+  body.is-home .home-actions-top .btn{ display:inline-block; margin:0 auto; }
 
+  /* cornice fissa 200px */
   body.is-home .flyer-image{
     aspect-ratio:auto;
     height:200px !important;
@@ -298,28 +304,43 @@ body {
 }
 
 /* =======================================================
-   HOME (solo mobile) — dropdown classico sotto al bottone, senza scroll pagina
+   HOME (solo mobile) — dropdown classico sotto + larghezza = testo
 ======================================================= */
 @media (max-width:480px){
-  /* ancoraggio del menu al bottone */
   body.is-home details.dropdown{ position: relative; }
 
   body.is-home details.dropdown .menu{
     position: absolute;
-    top: calc(100% + 6px);
-    left: 0;                 /* come nel primissimo codice */
+    top: calc(100% + 6px); /* attaccato sotto al bottone */
+    left: 0;
     transform: none;
     z-index: 10000;
 
-    width: max(160px, min(var(--flyer-w), calc(100vw - (2 * var(--pad-m)))));
-    max-height: 60vh;        /* se mai servisse, scorre dentro il menu */
-    overflow: auto;
+    /* 🔽 dimensioni: largo quanto il contenuto */
+    display: inline-block;
+    width: fit-content;          /* si adatta al contenuto */
+    max-width: calc(100vw - (2 * var(--pad-m))); /* mai oltre la viewport */
+    min-width: 160px;            /* come da stile originale */
+    box-sizing: border-box;
 
-    border:1px solid #888; background:#fff; padding:6px; box-sizing:border-box;
+    /* se il contenuto dovesse andare a capo, lascialo andare */
+    white-space: normal;
+    overflow: auto;
+    max-height: 60vh;
+
+    /* stile originale */
+    border:1px solid #888; background:#fff; padding:6px;
   }
 
-  /* il layout NON deve mai scrollare */
-  body.is-home{ overflow-y: hidden; }     /* ← ribadito */
+  /* link del menu come prima */
+  body.is-home .menu a{
+    display:block; padding:6px 8px;
+    border:1px solid transparent; text-decoration:none; color:#333; font-size:.9em;
+  }
+  body.is-home .menu a:hover{ border-color:#888; background:#f7f7f7; }
+
+  /* la pagina resta non-scrollabile */
+  body.is-home{ overflow-y: hidden; }
 }
 
 /* =======================================================
@@ -351,4 +372,4 @@ a:active{ opacity:.7; }
 }
 .flyer-scroll a:hover, .flyer-scroll a:focus{
   color:#000; border-color:#000;
-}
+   }
