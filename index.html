@@ -20,7 +20,7 @@
     /* Alza il blocco centrale */
     .flyer-container { transform: translateY(-8svh); }
 
-    /* Cornice ridotta (200px) */
+    /* Cornice ridotta (200px) — home mantiene la sua altezza dedicata */
     .flyer-image {
       height: 200px;
       max-width: 300px;
@@ -121,7 +121,8 @@
   </style>
 </head>
 
-<body>
+<!-- Aggiunta la classe is-home per escludere questa pagina dai nuovi calcoli di altezza mobile -->
+<body class="is-home">
   <div id="header"></div>
 
   <h1 class="page-title">Spazio <b class="xi-logox fa-4x"></b></h1>
