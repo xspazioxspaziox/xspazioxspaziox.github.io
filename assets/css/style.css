@@ -1,7 +1,7 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   Mobile fix + footer fix + home 200px + dropdown classico
-   + dropdown width = testo + bottone sopra riallineato
+   Versione finale — Mobile fix + footer fix + home 200px +
+   dropdown classico + bottone riallineato + larghezza testo
 ======================================================= */
 
 /* FONT */
@@ -137,26 +137,26 @@ body {
 /* =======================================================
    OGGETTO VOLANTE
 ======================================================= */
-.flier{
-  pointer-events:none;
-  position:fixed;
-  top:0; left:0;
-  z-index:2147483647;
-  width:0; height:0;
-  overflow:visible!important;
+.flier {
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 2147483647;
+  width: 0; height: 0;
+  overflow: visible !important;
 }
-.flier img{
-  width:48px!important; height:48px!important;
-  opacity:.75; object-fit:contain;
-  will-change:transform; animation:flyAcross 90s linear infinite;
+.flier img {
+  width: 48px !important; height: 48px !important;
+  opacity: .75; object-fit: contain;
+  will-change: transform; animation: flyAcross 90s linear infinite;
 }
-@keyframes flyAcross{
-  0%,98.001%{ transform:translate3d(-200%,100vh,0) rotateZ(0deg); }
-  15%{ transform:translate3d(100vw,-100%,0) rotateZ(180deg); }
-  15.001%,18%{ transform:translate3d(100vw,-30%,0) rotateZ(0deg); }
-  40%{ transform:translate3d(-200%,3vh,0) rotateZ(-180deg); }
-  65%{ transform:translate3d(100vw,50vh,0) rotateZ(0deg); }
-  95%{ transform:translate3d(10vw,100vh,0) rotateZ(0deg); }
+@keyframes flyAcross {
+  0%,98.001% { transform: translate3d(-200%,100vh,0) rotateZ(0deg); }
+  15% { transform: translate3d(100vw,-100%,0) rotateZ(180deg); }
+  15.001%,18% { transform: translate3d(100vw,-30%,0) rotateZ(0deg); }
+  40% { transform: translate3d(-200%,3vh,0) rotateZ(-180deg); }
+  65% { transform: translate3d(100vw,50vh,0) rotateZ(0deg); }
+  95% { transform: translate3d(10vw,100vh,0) rotateZ(0deg); }
 }
 
 /* =======================================================
@@ -174,7 +174,7 @@ body {
 
   .flyer-container { transform: translateY(-2svh); }
 
-  .flyer-info, .flyer-footer{
+  .flyer-info, .flyer-footer {
     width: var(--flyer-w);
     text-align: right;
     font-size: .7em;
@@ -190,11 +190,11 @@ body {
 ======================================================= */
 @media (min-width:1600px){
   .site-header, .site-footer, .page-title { padding-left:6vw; padding-right:6vw; }
-  .flyer-block{ transform: scale(1.15); transform-origin:center top; }
-  .flyer-container{ transform: translateY(-3svh); }
-  .page-title{ margin-bottom:14px; font-size:2.3rem; }
-  .site-footer{ font-size:16px; line-height:1.4; }
-  .flyer-info, .flyer-footer{ width: var(--flyer-w); }
+  .flyer-block { transform: scale(1.15); transform-origin:center top; }
+  .flyer-container { transform: translateY(-3svh); }
+  .page-title { margin-bottom:14px; font-size:2.3rem; }
+  .site-footer { font-size:16px; line-height:1.4; }
+  .flyer-info, .flyer-footer { width: var(--flyer-w); }
 }
 
 /* =======================================================
@@ -236,43 +236,47 @@ body {
   /* Cornici (tutte le pagine tranne home) */
   .flyer-container { transform:none; margin-top:var(--flyer-offset); }
 
-  .flyer-image{
-    width:var(--flyer-w);
-    aspect-ratio:4/5; height:auto;
-    border:1px solid #000; background:#fafafa;
-    display:block; overflow:hidden; position:relative; z-index:1;
+  .flyer-image {
+    width: var(--flyer-w);
+    aspect-ratio: 4/5;
+    height: auto;
+    border: 1px solid #000;
+    background: #fafafa;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
   }
 
-  .flyer-image > img{ width:100%; height:100%; object-fit:contain; border:0; display:block; }
+  .flyer-image > img { width:100%; height:100%; object-fit:contain; border:0; display:block; }
 
-  .flyer-image > .flyer-frame{
+  .flyer-image > .flyer-frame {
     width:100%; height:100%;
     border:0; background:transparent;
     display:flex; align-items:stretch; justify-content:stretch;
     min-height:0; box-sizing:border-box;
   }
 
-  .flyer-scroll{
+  .flyer-scroll {
     flex:1; min-height:0; overflow:auto; -webkit-overflow-scrolling:touch;
     padding:10px 12px; height:auto; box-sizing:border-box;
   }
 
-  .flyer-info, .flyer-footer{
-    width:var(--flyer-w);
+  .flyer-info, .flyer-footer {
+    width: var(--flyer-w);
     text-align:right; font-size:.7em; line-height:1.4;
     border-top:1px solid #ccc; padding-top:8px; margin-top:8px;
     position:relative; z-index:2;
   }
 
-  .page-title{ font-size:1.6rem; margin:0 0 6px; }
-  .flyer-header{ margin-bottom:4px; }
+  .page-title { font-size:1.6rem; margin:0 0 6px; }
+  .flyer-header { margin-bottom:4px; }
 }
 
 /* =======================================================
-   HOME (solo .is-home) — Cornice 200px + bottone sopra riallineato
+   HOME (solo .is-home) — Cornice 200px + bottone riallineato
 ======================================================= */
 @media (max-width:480px){
-  /* allinea perfettamente ai bordi della cornice */
   body.is-home .home-actions-top,
   body.is-home .hydra-credit,
   body.is-home .home-actions-bottom{
@@ -283,11 +287,11 @@ body {
     position: relative; z-index: 2;
     text-align: center;
   }
-  body.is-home .home-actions-top{ margin: 0 auto 10px; }
-  body.is-home .home-actions-top .btn{ display:inline-block; margin:0 auto; }
 
-  /* cornice fissa 200px */
-  body.is-home .flyer-image{
+  body.is-home .home-actions-top { margin: 0 auto 10px; }
+  body.is-home .home-actions-top .btn { display:inline-block; margin:0 auto; }
+
+  body.is-home .flyer-image {
     aspect-ratio:auto;
     height:200px !important;
     max-width:300px; width:100%;
@@ -295,81 +299,93 @@ body {
     border:1px solid #000;
     position: relative; z-index:1;
   }
-  body.is-home .flyer-image > .flyer-frame{
+
+  body.is-home .flyer-image > .flyer-frame {
     height:100%;
     display:flex; align-items:stretch; justify-content:center;
     border:0; background:#fafafa; overflow:hidden;
   }
-  body.is-home #hydra-canvas{ width:100%; height:100%; display:block; image-rendering:crisp-edges; }
+
+  body.is-home #hydra-canvas {
+    width:100%; height:100%; display:block; image-rendering:crisp-edges;
+  }
 }
 
 /* =======================================================
-   HOME (solo mobile) — dropdown classico sotto + larghezza = testo
+   HOME (solo mobile) — dropdown classico sotto + larghezza testo
 ======================================================= */
 @media (max-width:480px){
-  body.is-home details.dropdown{ position: relative; }
+  body.is-home details.dropdown { position: relative; }
 
-  body.is-home details.dropdown .menu{
+  body.is-home details.dropdown .menu {
     position: absolute;
     top: calc(100% + 6px); /* attaccato sotto al bottone */
     left: 0;
-    transform: none;
     z-index: 10000;
 
-    /* 🔽 dimensioni: largo quanto il contenuto */
+    /* 🔽 dimensioni: solo quanto il contenuto */
     display: inline-block;
-    width: fit-content;          /* si adatta al contenuto */
-    max-width: calc(100vw - (2 * var(--pad-m))); /* mai oltre la viewport */
-    min-width: 160px;            /* come da stile originale */
+    width: fit-content;
+    max-width: calc(100vw - (2 * var(--pad-m)));
     box-sizing: border-box;
+    white-space: nowrap;
+    overflow: visible;
 
-    /* se il contenuto dovesse andare a capo, lascialo andare */
-    white-space: normal;
-    overflow: auto;
-    max-height: 60vh;
-
-    /* stile originale */
-    border:1px solid #888; background:#fff; padding:6px;
+    border: 1px solid #888;
+    background: #fff;
+    padding: 6px;
   }
 
-  /* link del menu come prima */
-  body.is-home .menu a{
-    display:block; padding:6px 8px;
-    border:1px solid transparent; text-decoration:none; color:#333; font-size:.9em;
+  body.is-home .menu a {
+    display: block;
+    padding: 6px 8px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    color: #333;
+    font-size: .9em;
+    white-space: nowrap;
   }
-  body.is-home .menu a:hover{ border-color:#888; background:#f7f7f7; }
+  body.is-home .menu a:hover {
+    border-color: #888;
+    background: #f7f7f7;
+  }
 
-  /* la pagina resta non-scrollabile */
-  body.is-home{ overflow-y: hidden; }
+  /* pagina sempre ferma */
+  body.is-home { overflow-y: hidden; }
 }
 
 /* =======================================================
    FIX VISIVO / LINK / SCROLL CONTROL
 ======================================================= */
-.flyer-scroll{
-  background:#fafafa; padding:12px 12px 10px;
+.flyer-scroll {
+  background:#fafafa;
+  padding:12px 12px 10px;
 }
-.flyer-scroll > :first-child{ margin-top:0; }
-.flyer-scroll > :last-child{ margin-bottom:0; }
-.flyer-scroll p{ margin:0 0 1em; }
+.flyer-scroll > :first-child { margin-top:0; }
+.flyer-scroll > :last-child { margin-bottom:0; }
+.flyer-scroll p { margin:0 0 1em; }
 
 @supports (height:100dvh){ body{ height:100dvh; } }
 @supports not (height:100dvh){ body{ height:100svh; } }
 
-html, body{ overscroll-behavior:none; }
-.flyer-scroll{ overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+html, body { overscroll-behavior:none; }
+.flyer-scroll { overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
 
 /* LINK */
-a{
+a {
   color:#555; text-decoration:none;
   transition: color .2s ease, opacity .2s ease;
 }
-a:hover, a:focus{ color:#000; }
-a:active{ opacity:.7; }
+a:hover, a:focus { color:#000; }
+a:active { opacity:.7; }
 
-.flyer-scroll a{
-  color:#333; border-bottom:1px dashed #666; text-decoration:none;
+.flyer-scroll a {
+  color:#333;
+  border-bottom:1px dashed #666;
+  text-decoration:none;
 }
-.flyer-scroll a:hover, .flyer-scroll a:focus{
-  color:#000; border-color:#000;
-   }
+.flyer-scroll a:hover,
+.flyer-scroll a:focus {
+  color:#000;
+  border-color:#000;
+}
