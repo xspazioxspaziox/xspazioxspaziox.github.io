@@ -1,32 +1,19 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   Versione commentata per manutenzione
+   Versione ottimizzata 2025-10-31
    -------------------------------------------------------
-   Struttura generale:
-   - Font e variabili globali
-   - Layout di base
-   - Cornici (flyer)
-   - Responsive e widescreen
-   - Accessori (scrollbar, link, ecc.)
-   -------------------------------------------------------
-   Suggerimenti per chi modifica:
-   ✅ Usa unità relative (vh, svh, rem, em, %) per la massima compatibilità.
-   ✅ Tutte le altezze principali derivano da variabili globali.
-   ✅ Per aggiungere margini o padding, rispetta le media query esistenti.
-   ✅ Testa sempre su mobile, laptop e widescreen.
+   Migliorie:
+   ✅ Cornice centrale coerente anche su mobile
+   ✅ Rimozione doppie media query e conflitti
 ======================================================= */
 
 /* =======================================================
    FONT
-   Importa “Source Code Pro” con display=swap
-   per evitare reflow del testo durante il caricamento.
 ======================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 /* =======================================================
    VARIABILI GLOBALI
-   - Queste controllano proporzioni verticali e offset.
-   - Modificare qui per regolare altezza cornici o header/footer.
 ======================================================= */
 :root {
   --flyer-offset: -6svh;   /* sposta il blocco centrale verso l’alto */
@@ -34,9 +21,11 @@
   --header-h: 64px;        /* altezza dell’header iniettato */
   --footer-h: 40px;        /* altezza del footer iniettato */
 }
+
+/* === MOBILE: variabili unificate === */
 @media (max-width: 480px) {
   :root {
-    --flyer-offset: -4svh;
+    --flyer-offset: -3svh;
     --flyer-box-h: 42svh;
     --header-h: 56px;
     --footer-h: 36px;
@@ -45,8 +34,6 @@
 
 /* =======================================================
    STRUTTURA BASE
-   Il body usa un grid con 4 righe:
-   header / titolo / contenuto / footer
 ======================================================= */
 body {
   margin: 0;
@@ -56,14 +43,11 @@ body {
   height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  overflow: hidden; /* Evita scroll verticale */
+  overflow: hidden;
 }
-
-/* Riserva lo spazio di header/footer anche se non ancora caricati via JS */
 #header { min-height: var(--header-h); }
 #footer { min-height: var(--footer-h); }
 
-/* Header e footer principali */
 .site-header { padding: 20px 40px; text-align: left; }
 .site-footer {
   text-align: left;
@@ -74,7 +58,6 @@ body {
   padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
 }
 
-/* Titolo di ogni pagina */
 .page-title {
   padding: 0 40px;
   margin: 0 0 8px;
@@ -87,8 +70,6 @@ body {
 
 /* =======================================================
    BLOCCO FLYER
-   - Contiene immagine o testo centrale
-   - Centra verticalmente il contenuto
 ======================================================= */
 .flyer-container {
   display:flex;
@@ -103,7 +84,6 @@ body {
   align-items:center;
 }
 
-/* Larghezza standard per i flyer */
 .flyer-header,
 .flyer-image,
 .flyer-info {
@@ -113,7 +93,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Riga superiore del flyer (es. data e ora) */
 .flyer-header {
   display:flex;
   justify-content:space-between;
@@ -125,9 +104,8 @@ body {
 
 /* =======================================================
    CORNICE (IMMAGINE o TESTO)
-   - Definisce la struttura visiva del box centrale
 ======================================================= */
-.flyer-image {} /* wrapper */
+.flyer-image {}
 
 .flyer-image > img,
 .flyer-image > .flyer-frame {
@@ -138,7 +116,6 @@ body {
   max-height: var(--flyer-box-h);
 }
 
-/* Cornice con testo scrollabile */
 .flyer-frame { background:#fafafa; overflow:hidden; }
 .flyer-scroll{
   height: calc(var(--flyer-box-h) - 2px - 20px);
@@ -155,7 +132,6 @@ body {
 .flyer-scroll::-webkit-scrollbar-thumb{ background:#888; border-radius:3px; }
 .flyer-scroll::-webkit-scrollbar-thumb:hover{ background:#555; }
 
-/* Riga inferiore */
 .flyer-info {
   text-align:right;
   font-size:.7em;
@@ -167,7 +143,6 @@ body {
 
 /* =======================================================
    OGGETTO VOLANTE
-   - Immagine animata che attraversa lo schermo
 ======================================================= */
 .flier{
   pointer-events:none;
@@ -210,9 +185,41 @@ body {
   .flier img{ width:36px!important; height:36px!important; animation-duration:110s; }
 }
 
+/* === MOBILE: cornice coerente === */
+@media (max-width: 480px) {
+  .flyer-image { height: var(--flyer-box-h); }
+
+  .flyer-image > img,
+  .flyer-image > .flyer-frame {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    border: 1px solid #000;
+    box-sizing: border-box;
+  }
+
+  .flyer-scroll {
+    height: calc(var(--flyer-box-h) - 2px - 20px);
+  }
+
+  .page-title { margin:0 0 6px; }
+  .flyer-header { margin-bottom:4px; }
+  .flyer-info { padding-top:6px; margin-top:6px; }
+
+  .site-footer {
+    padding:8px 16px;
+    font-size:12px;
+    white-space:normal;
+    margin-bottom:env(safe-area-inset-bottom,0px);
+    overflow:hidden;
+    text-overflow:ellipsis;
+    padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* =======================================================
    DESKTOP / TABLET
-   Cornice 300×375px, centrata
 ======================================================= */
 @media (min-width: 481px) {
   :root { --flyer-box-h: 375px; }
@@ -247,12 +254,8 @@ body {
 
 /* =======================================================
    GRANDI SCHERMI (≥1600px)
-   - Padding extra solo per widescreen
-   - Mantiene il centro invariato
-   - Ingrandisce la parte centrale del 15%
 ======================================================= */
 @media (min-width: 1600px) {
-  /* Respiro laterale SOLO su widescreen */
   .site-header,
   .site-footer,
   .page-title {
@@ -260,7 +263,6 @@ body {
     padding-right: 6vw;
   }
 
-  /* 👉 Ingrandimento del blocco centrale: +15% */
   .flyer-block {
     transform: scale(1.15);
     transform-origin: center top;
@@ -268,7 +270,6 @@ body {
 
   .flyer-container { transform: translateY(-3svh); }
 
-  /* Titolo e footer leggermente più grandi */
   .page-title {
     margin-bottom: 14px;
     font-size: 2.3rem;
@@ -281,7 +282,7 @@ body {
 }
 
 /* =======================================================
-   FIX VISIVO: rimuove spazi bianchi extra nei box testo
+   FIX VISIVO
 ======================================================= */
 .flyer-frame { background:#fafafa; }
 .flyer-scroll {
@@ -293,32 +294,11 @@ body {
 .flyer-scroll p { margin:0 0 1em; }
 
 /* =======================================================
-   MOBILE: altezza e footer adattato
+   CONTROLLO SCROLL
 ======================================================= */
 @supports (height: 100dvh) { body { height: 100dvh; } }
 @supports not (height: 100dvh) { body { height: 100svh; } }
 
-@media (max-width: 480px) {
-  :root { --flyer-box-h: 40svh; --flyer-offset: -2svh; }
-
-  .page-title { margin:0 0 6px; }
-  .flyer-header { margin-bottom:4px; }
-  .flyer-info { padding-top:6px; margin-top:6px; }
-
-  .site-footer {
-    padding:8px 16px;
-    font-size:12px;
-    white-space:normal;
-    margin-bottom:env(safe-area-inset-bottom,0px);
-    overflow:hidden;
-    text-overflow:ellipsis;
-    padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
-  }
-}
-
-/* =======================================================
-   CONTROLLO SCROLL
-======================================================= */
 html, body { overscroll-behavior: none; }
 .flyer-scroll {
   overscroll-behavior: contain;
@@ -327,8 +307,6 @@ html, body { overscroll-behavior: none; }
 
 /* =======================================================
    LINK
-   - Generali (fuori cornici)
-   - Interni (nei box testuali)
 ======================================================= */
 a {
   color: #555;
@@ -351,7 +329,7 @@ a:active { opacity: 0.7; }
 }
 
 /* =======================================================
-   BLOCCO INFERIORE (indice + info)
+   BLOCCO INFERIORE
 ======================================================= */
 .flyer-footer {
   display: flex;
