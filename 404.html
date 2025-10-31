@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- =======================
+       METADATI DI BASE
+       - UTF-8: supporta i caratteri internazionali.
+       - viewport: garantisce la corretta visualizzazione su dispositivi mobili.
+  ======================= -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Titolo mostrato nel browser -->
+  <title>Pagina non trovata — Spazio X</title>
+
+  <!-- =======================
+       STILI GLOBALI
+       - Richiama il CSS principale del sito.
+       - Percorso relativo alla root del progetto.
+  ======================= -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <!-- =======================
+       HEADER
+       - Iniettato automaticamente da include.js.
+       - Lasciato vuoto come segnaposto.
+  ======================= -->
+  <div id="header"></div>
+
+  <!-- =======================
+       CONTENUTO PRINCIPALE
+       - Mostra un messaggio di errore 404.
+       - Mantiene la stessa struttura visiva delle altre pagine (flyer-container).
+  ======================= -->
+  <main class="flyer-container">
+    <!-- Titolo della pagina -->
+    <h1 class="page-title">404 — Pagina non trovata</h1>
+
+    <!-- Link per tornare alla home -->
+    <div class="flyer-info">
+      <a href="./">Torna alla home</a>
+    </div>
+  </main>
+
+  <!-- =======================
+       FOOTER
+       - Iniettato automaticamente da include.js.
+       - Mantiene il layout coerente con le altre pagine.
+  ======================= -->
+  <div id="footer"></div>
+
+  <!-- =======================
+       SCRIPT DI INCLUDE
+       - Carica header e footer comuni.
+       - defer: eseguito dopo il caricamento del documento HTML.
+  ======================= -->
+  <script src="./assets/js/include.js" defer></script>
+</body>
+</html>

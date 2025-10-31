@@ -1,312 +1,250 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Eventi</title>
-  <meta name="description" content="Test page">
+  <link rel="preload" href="./assets/css/style.css" as="style">
+  <link rel="stylesheet" href="./assets/css/style.css">
 
-  <!-- Social: Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@<twitter_username>">
-  <meta name="twitter:title" content="Eventi">
-  <meta name="twitter:description" content="Test page">
-  
-  <meta property="twitter:image:src" content="/assets/img/opengraph.png">
-  
+  <script src="./assets/js/include.js" defer></script>
 
-  <!-- Social: Facebook / Open Graph -->
-  <meta property="og:url" content="/">
-  <meta property="og:title" content="Eventi">
-  
-  <meta property="og:image" content="/assets/img/opengraph.png">
-  
-  <meta property="og:description" content="Test page">
-  <meta property="og:site_name" content="jekyll-theme-potato-hacker">
-
-  <!-- Social: Schema.org  -->
-  <meta itemprop="name" content="Eventi"/>
-  <meta itemprop="description" content="Test page">
-  <meta itemprop="image" content="/assets/img/opengraph.png"/>
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="/assets/img/icons/favicon.ico" type="image/x-icon" />
-
-  <!-- Android Lolipop Theme Color -->
-  <meta name="theme-color" content="#2a4d14">
-
-<link rel="preload"
+  <title>Spazio X — Home</title>
+  <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
+  <link rel="preload"
       href="/assets/fonts/xicons.woff2"
       as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="/assets/css/xicons.css">
-  <!-- Styles -->
-  <link rel="stylesheet" id="css-theme" href="/assets/css/main-light.css">
-  <link rel="stylesheet" href="/assets/css/highlight/gruvbox.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/xicons.css">
+  <style>
+    /* Alza il blocco centrale */
+    .flyer-container { transform: translateY(-8svh); }
 
-  <!-- Javascript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
-  <script type="text/javascript" src="/assets/js/main.js"></script>
+    /* Cornice ridotta (200px) */
+    .flyer-image {
+      height: 200px;
+      max-width: 300px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .flyer-image > .flyer-frame {
+      height: 100%;
+      border: 1px solid #000;
+      background: #fafafa;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #hydra-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      image-rendering: crisp-edges;
+    }
+
+    .page-title { text-align: left; }
+
+    .home-actions-top {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto 10px;
+      text-align: center;
+    }
+
+    .hydra-credit {
+      width: 100%;
+      max-width: 300px;
+      margin: 4px auto 0;
+      text-align: center;
+      font-size: 0.5em;
+      color: #777;
+      letter-spacing: 0.02em;
+    }
+    .hydra-credit a {
+      color: #777;
+      text-decoration: none;
+      border-bottom: 1px dotted #aaa;
+    }
+    .hydra-credit a:hover {
+      color: #000;
+      border-color: #000;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid #888;
+      background: #f7f7f7;
+      color: #333;
+      text-decoration: none;
+      font-size: .9em;
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn:hover, .btn:focus { background:#eee; color:#000; }
+
+    .home-actions-bottom {
+      margin-top: 12px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    details.dropdown { position: relative; display: inline-block; }
+    details.dropdown > summary { list-style: none; outline: none; }
+    details.dropdown > summary::-webkit-details-marker { display: none; }
+    details.dropdown[open] > summary.btn { background:#eee; }
+
+    .menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      min-width: 160px;
+      border: 1px solid #888;
+      background: #fff;
+      padding: 6px;
+      z-index: 10;
+      box-sizing: border-box;
+    }
+    .menu a {
+      display: block;
+      padding: 6px 8px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      color: #333;
+      font-size: .9em;
+    }
+    .menu a:hover { border-color:#888; background:#f7f7f7; }
+  </style>
 </head>
 
+<body>
+  <div id="header"></div>
 
-<body class="animated fadeIn">
-  <div class="container">
-    <div id="background-div">
-      <svg id="background-svg">
-        <lineargradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
-          <stop stop-opacity="0" class="bgColor2" offset="0%" />
-          <stop stop-opacity="0.5" class="bgColor2" offset="10%" />
-          <stop stop-opacity="0.5" class="bgColor1" offset="40%" />
-          <stop stop-opacity="0" class="bgColor1" offset="100%" />
-        </lineargradient>
-        <g id="bg-layer1"></g>
-        <g id="bg-layer2" class="hide"></g>
-        <g id="bg-layer3"></g>
-        <g id="bg-layer4"></g>
-      </svg>
-    </div>
-    <section class="header">
-      <header>
-  <div class="row">
-    <div class="col-xs-12">
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-toggle collapsed navbar-icon" data-toggle="collapse"
-              data-target="#bs-example-navbar-collapse-1">
-              <i class="fa fa-bars fa-2x"></i>
-            </a>
-            <a class="navbar-brand navbar-icon" href="/">
-                <!--i class="fa fa-home fa-2x"></i-->
-                <i class="xi-logox fa-2x"></i>
-            </a>
-          </div>
+  <h1 class="page-title">Spazio <b class="xi-logox fa-4x"></b></h1>
 
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/">Home</a></li>
-              
+  <main class="flyer-container">
+    <div class="flyer-block">
 
-              
-                <li class="dropdown dropdown-Artisti">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">Artisti
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-Donald Trump">
-                    <li priority="1"><a href="/dropdown/artitsti_item1.html">Donald Trump</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-Artisti">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">Artisti
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-Ornella Vanoni">
-                    <li priority="2"><a href="/dropdown/artitsti_item2.html">Ornella Vanoni</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-Artisti">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">Artisti
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-Mario Merola">
-                    <li priority="3"><a href="/dropdown/artitsti_item3.html">Mario Merola</a></li>
-                  </ul>
-                </li>
-              
-              
-                <li class="nav-item"><a href="/items/about.html">About</a></li>
-              
-              <script>
-                // clean repeated dropdowns and add <li> to their positions
-                let done = [];
-                let elements = [];
-                $(".dropdown")
-                  //
-                  .each((index0 , value0) => {
-                    let dropdownClass = "."+$(value0)[0].classList[1];
-                    if (done.indexOf(dropdownClass) !== -1) return
-                    done.push(dropdownClass)
-                    let dropdownMain = $(dropdownClass)[0]
-                    let itemsList = $(dropdownClass+">ul>li").sort((a, b) => parseInt(b.getAttribute("priority") || -9999999) - parseInt(a.getAttribute("priority") || -9999999))
-                    $(dropdownClass+">ul>li").remove();
-                    $(dropdownClass+">ul").append(itemsList)
-                    $(dropdownClass).remove();
-                    elements.push(dropdownMain)
-                });
-                let priority = [ "artisti",  "About", ];
-                elements = elements.concat(...$(".nav-item").remove())
-                priority.map(text => {
-                  elements = elements.filter(node => {
-                      let nodeText = node.querySelector("a").textContent.trim()
-                      if (text == nodeText) {
-                          $(".nav").append(node)
-                          return false;
-                      }
-                      return true;
-                  })
-                });
-                $(".nav").append(elements)
-              </script>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </div>
-</header>
+      <!-- Pulsante download -->
+      <div class="home-actions-top">
+        <a class="btn btn-download" 
+          href="https://raw.githubusercontent.com/xspazioxspaziox/xspazioxspaziox.github.io/545db9824541a67d9cfb6aff027abd2853e1a9cf/spazio-x-ottobre-2025.pdf" download>
+          Scarica il programma di ottobre
+        </a>
+      </div>
 
-    </section>
-    <section class="content">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-1 content-div">
-          <div class="page-separator visible-md visible-lg visible-xl">
-            <h1 class="h1-strip" style="padding-bottom:4em; margin-bottom: 0;"></h1>
-          </div>
-          <div class="page-separator visible-sm">
-            <h1 class="h1-strip" style="padding-bottom:3em; margin-bottom: 0;"></h1>
-          </div>
-          <div class="page-separator visible-xs">
-            <h1 class="h1-strip" style="padding-bottom:1em; margin-bottom: 0;"></h1>
-          </div>
-          <h1 class="post-title page-title" id="title"><a href="#title">Eventi</a></h1>
-          <h2 id="20250928">2025.09.28</h2>
-
-<p>Open sunday</p>
-
-<p>O.X.O - laboratorio di improvvisazione libera</p>
-
-<p>Appuntamento mensile focalizzato sull’improvvisazione libera, O.X.O è un momento di condivisione ed esplorazione di suoni e strumenti, senza limite di esperienza o di genere musicale. 
-Saranno a disposizione sala, batteria, qualche percussione e impianto.
-I partecipantx provvederanno a portare la propria strumentazione/amplificazione/altri “suoni” e nel caso condividerli.</p>
-
-<p><img src="assets/img/oxo_202509.jpg" alt="alt text" /></p>
-
-<h2 id="20250927">2025.09.27</h2>
-<p>Et voilà!
-Non c’è 2 senza 3 mentre il 4 vien da sé ;-)
-Come da tradizione, spazio x riapre i battenti in occasione del @trevisocomicbookfestival,
-consolidato alleato che ringraziamo per la boccata di freschezza che ogni anno porta in città.
-Ci sarà l’inaugurazione della mostra “Frog feeder” di @josephmelhuish e a seguire bando
-alle ciance con il live di @ynhame_lefrit, il dj set di Joseph aka @dj_noknees_dj e di quei
-mattacchioni di @giulioperotti e @kakofonico_ da @pho_bho_records .
-Spazio X, usato sicuro, felici o rimborsati.
-Eleganza italiana, accento Veneto, cadenza Romana, inglese maccheronico.
-Spazio gay friendly, spazio apartitico, spazio che rifiuta l’omologazione della nostra società.
-Ci vediamo nell’isola che non c’è!
-Grafica: @marco.golfetto</p>
-
-<p><img src="assets/img/tcbf2025phobho2.jpg" alt="alt text" /></p>
-
-
-        </div>
-        <div class="col-md-2">
-          <div class="pane-separator visible-md visible-lg visible-xl" style="margin-bottom:30em;"></div>
-          <div class="right-pane">
-            
-            <div class="avatar">
-              <center>
-                
-                <img src="/assets/img/logox_800_wonb.png" alt="me" class="avatar-image">
-                
-                
-                <p style="margin-top: 0.5em;" class="avatar-description">Spazio X</p>
-                
-                <div class="right-links">
-                  
-<a href="https://github.com/<github_username>" target="_blank">
-  <i class="fa fa-github fa-3x"></i>
-</a>
-
-
-<a href="mailto:<your@mail>">
-  <i class="fa fa-envelope fa-3x"></i>
-</a>
-
-
-<a href="https://www.facebook.com/<facebook_username>" target="_blank">
-  <i class="fa fa-facebook fa-3x"></i>
-</a>
-
-
-<a href="https://twitter.com/<twitter_username>" target="_blank">
-  <i class="fa fa-twitter fa-3x"></i>
-</a>
-
-
-<a href="https://www.linkedin.com/in/<linkedin_id>" target="_blank">
-  <i class="fa fa-linkedin fa-3x"></i>
-</a>
-
-
-                </div>
-              </center>
-            </div>
-            
-            
-          </div>
+      <!-- Cornice con Hydra -->
+      <div class="flyer-image">
+        <div class="flyer-frame">
+          <canvas id="hydra-canvas"></canvas>
         </div>
       </div>
-    </section>
-    <section class="footer">
-      <footer class="page-footer">
-  <center>
-    
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        
-<a href="https://github.com/<github_username>" target="_blank">
-  <i class="fa fa-github fa-3x"></i>
-</a>
 
-
-<a href="mailto:<your@mail>">
-  <i class="fa fa-envelope fa-3x"></i>
-</a>
-
-
-<a href="https://www.facebook.com/<facebook_username>" target="_blank">
-  <i class="fa fa-facebook fa-3x"></i>
-</a>
-
-
-<a href="https://twitter.com/<twitter_username>" target="_blank">
-  <i class="fa fa-twitter fa-3x"></i>
-</a>
-
-
-<a href="https://www.linkedin.com/in/<linkedin_id>" target="_blank">
-  <i class="fa fa-linkedin fa-3x"></i>
-</a>
-
-
+      <!-- Credito Hydra -->
+      <div class="hydra-credit">
+        *visual generated with
+        <a href="https://hydra.ojack.xyz/" target="_blank">Hydra</a> by O. Jack - <a href="/assets/js/hydra.js" target="_blank">code</a>
       </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        Copyright (c) 2025 <your_name> -
-        <a href="mailto:<your@mail>">&lt;<your@mail>&gt;</a>
-      </div>
-    </div>
-    
-  </center>
-</footer>
 
-    </section>
-  </div>
+      <!-- Bottoni -->
+      <div class="home-actions-bottom">
+        <details class="dropdown">
+          <summary class="btn btn-eventi">prossimi eventi</summary>
+          <div class="menu">
+            <a href="eventi/2025/31-08-yoga-flyer/">31.08.25</a>
+            <a href="eventi/2025/27-09-xxx-flyer/">27.09.25</a>
+            <a href="eventi/2025/28-09-xxx-flyer/">28.09.25</a>
+          </div>
+        </details>
+
+        <details class="dropdown">
+          <summary class="btn btn-archivio">index</summary>
+          <div class="menu">
+            <a href="eventi/">/eventi</a>
+            <a href="artisti/">/artisti</a>
+          </div>
+        </details>
+
+        <button id="randomBtn" class="btn btn-random" type="button">?</button>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
+  <script>
+    // === HYDRA ===
+    const hydraCanvas = document.getElementById('hydra-canvas');
+    const hydra = new Hydra({ canvas: hydraCanvas, detectAudio: false });
+
+    // === codice visuals hydra, se lo cambi aggiorna anche dentro /assets/js/hydra.js ===
+    osc(10, 0.08, 1)
+      .modulateScale(osc(6).rotate(Math.sin(time)), .5)
+      .thresh(.4)
+.colorama(50)
+.modulateScale(o0)
+      .diff(src(o0).scale(3))
+      .modulateScale(osc(1).modulateRotate(o0, .7))
+      .diff(src(o0).rotate([-.02, .01, -.002, 0]).scrollY(0, [-0.006, 0].fast(0.7)))
+      .out(o0);
+
+
+    // === SUONI PERSONALIZZATI ===
+    const sounds = {
+      download: new Audio('/assets/sfx/download.mp3'),
+      eventi: new Audio('/assets/sfx/eventi.mp3'),
+      archivio: new Audio('/assets/sfx/archivio.mp3'),
+      random: new Audio('/assets/sfx/random.mp3'),
+    };
+
+    // Imposta preload e volume
+    Object.values(sounds).forEach(a => {
+      a.preload = 'auto';
+      a.volume = 0.8;
+    });
+
+    // Funzione per clonare e suonare (evita sovrapposizioni tagliate)
+    function playSound(key) {
+      const base = sounds[key];
+      if (!base) return;
+      const clone = base.cloneNode(true);
+      clone.play().catch(()=>{});
+    }
+
+    // Collega i suoni
+    document.querySelector('.btn-download')?.addEventListener('click', () => playSound('download'));
+    document.querySelector('.btn-eventi')?.addEventListener('click', () => playSound('eventi'));
+    document.querySelector('.btn-archivio')?.addEventListener('click', () => playSound('archivio'));
+    document.querySelector('.btn-random')?.addEventListener('click', () => playSound('random'));
+
+    // === RANDOM LINK “?” ===
+    const RANDOM_LINKS = [
+      '/eventi/2025/31-08-yoga-flyer/',
+      '/eventi/2025/31-08-yoga-info/',
+      '/eventi/',
+      '/artisti/',
+      '/artisti/pino-scoppon/'
+    ];
+    document.getElementById('randomBtn').addEventListener('click', () => {
+      const url = RANDOM_LINKS[Math.floor(Math.random() * RANDOM_LINKS.length)];
+      location.href = url;
+    });
+
+    // === Dropdown: chiusura automatica ===
+    document.querySelectorAll('details.dropdown summary').forEach(s => {
+      s.addEventListener('click', () => {
+        const parent = s.parentElement;
+        document.querySelectorAll('details.dropdown[open]').forEach(d => {
+          if (d !== parent) d.removeAttribute('open');
+        });
+      });
+    });
+  </script>
 </body>
-
 </html>
