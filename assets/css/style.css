@@ -1,6 +1,6 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   2025-11 — Cornici proporzionate + scroll fisso + fix anti-sbordo
+   2025-11 — Mobile: no overflow + scroll affidabile + proporzioni 4:5
 ======================================================= */
 
 /* FONT */
@@ -12,7 +12,7 @@
 :root {
   --flyer-offset: -6svh;
   --flyer-box-h: 48svh;
-  --flyer-w: 250px;   /* larghezza base, modificata nei breakpoint */
+  --flyer-w: 250px;          /* larghezza base (override nei breakpoint) */
   --header-h: 64px;
   --footer-h: 40px;
 }
@@ -28,7 +28,7 @@ body {
   height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  overflow: hidden; /* evita lo scroll della pagina */
+  overflow: hidden; /* la pagina non scorre; scorre il contenuto della cornice */
 }
 
 #header { min-height: var(--header-h); }
@@ -49,9 +49,6 @@ body {
   margin: 0 0 8px;
   font-size: 2rem;
   line-height: 1.2;
-}
-@media (max-width:480px){
-  .page-title{ padding:0 25px; font-size:1.6rem; }
 }
 
 /* =======================================================
@@ -189,6 +186,8 @@ body {
     --flyer-w: 300px;
   }
 
+  .page-title{ padding:0 40px; }
+
   .flyer-image { height: var(--flyer-box-h); }
 
   .flyer-image > img,
@@ -235,62 +234,69 @@ body {
 }
 
 /* =======================================================
-   MOBILE (≤480px) — Scroll fix + proporzioni + anti-sbordo
+   MOBILE (≤480px) — no overflow + scroll iOS + proporzione 4:5
 ======================================================= */
 @media (max-width:480px){
   :root{
+    --pad-m: clamp(12px, 5vw, 24px);              /* padding orizzontale reale pagina */
     --flyer-offset: -3svh;
     --header-h: 56px;
     --footer-h: 36px;
-    --flyer-w: clamp(220px, 94vw, 300px);
+    /* Larghezza cornice = viewport - padding sinistro/destro - bordo (2px) */
+    --flyer-w: min(300px, calc(100vw - (2 * var(--pad-m)) - 2px));
   }
 
   /* anti-sbordo globale */
   *, *::before, *::after { box-sizing: border-box; }
   html, body { width:100%; max-width:100%; overflow-x:hidden; }
+  .flyer-container, .flyer-block { width:100%; max-width:100%; overflow-x:hidden; }
 
-  .flyer-container,
-  .flyer-block { width:100%; max-width:100%; overflow-x:hidden; }
+  /* padding pagina coerente al calcolo */
+  .site-header, .site-footer, .page-title {
+    padding-left: var(--pad-m);
+    padding-right: var(--pad-m);
+  }
+  .page-title { font-size:1.6rem; overflow-wrap:anywhere; }
 
-  .site-header,
-  .site-footer { padding-left:min(24px,5vw); padding-right:min(24px,5vw); }
-
-  .menu { max-width:94vw; overflow-wrap:anywhere; }
+  .menu { max-width: calc(100vw - (2 * var(--pad-m))); overflow-wrap:anywhere; }
   .flier { contain: paint; }
 
-  /* offset sostituito da margin-top per evitare bug iOS scroll */
+  /* iOS FIX: niente transform su container quando c’è uno scroll interno */
   .flyer-container{
     transform:none;
-    margin-top: var(--flyer-offset);
+    margin-top: var(--flyer-offset); /* mantiene l’offset visivo */
   }
 
+  /* Cornice: proporzione identica al desktop (4:5) e bordo sul wrapper */
   .flyer-image{
-    aspect-ratio:4/5;
-    height:auto;
-    border:1px solid #000;
+    aspect-ratio: 4 / 5;
+    height: auto;
+    width: var(--flyer-w);           /* stessa misura per header/info/footer */
+    border: 1px solid #000;
     background:#fafafa;
     display:block;
   }
 
+  /* Interni: riempiono la cornice, niente bordo aggiuntivo */
   .flyer-image > img{
     width:100%; height:100%;
     object-fit:contain;
     border:0; display:block;
   }
-
   .flyer-image > .flyer-frame{
     width:100%; height:100%;
     border:0; background:transparent;
     display:flex;
     align-items:stretch;
     justify-content:stretch;
-    min-height:0;
+    min-height:0;           /* essenziale per lo scroll */
     box-sizing:border-box;
   }
 
+  /* Testo scrollabile */
   .flyer-scroll{
     flex:1;
-    min-height:0;
+    min-height:0;           /* 🔑 sblocca lo scroll nei flex container */
     overflow:auto;
     -webkit-overflow-scrolling:touch;
     padding:10px 12px;
@@ -298,9 +304,11 @@ body {
     box-sizing:border-box;
   }
 
+  /* Sotto cornice: allineamento perfetto alla larghezza della cornice */
   .flyer-info,
   .flyer-footer{
     width: var(--flyer-w);
+    max-width:none;
     text-align:right;
     font-size:.7em;
     line-height:1.4;
@@ -330,7 +338,7 @@ body {
 html, body { overscroll-behavior:none; }
 .flyer-scroll { overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
 
-/* Link coerenti con l’originale */
+/* Link (coerenti con l’originale) */
 a {
   color:#555;
   text-decoration:none;
