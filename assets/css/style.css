@@ -1,8 +1,8 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
    Versione finale
-   - Mobile: “index” adattato al testo
-   - Desktop/Widescreen: bottone sopra centrato + “index” corretto
+   ✅ Mobile perfetta
+   ✅ Desktop/Widescreen: dropdown "index" adattato al testo
 ======================================================= */
 
 /* FONT */
@@ -166,11 +166,22 @@ body {
     box-sizing: border-box;
   }
 
-  /* === SOLO "index": adattamento al testo === */
+  /* === SOLO "index": adattamento al testo (fixato) === */
   body.is-home details.dropdown:has(> summary.btn.btn-archivio) .menu {
-    min-width: auto !important;
+    min-width: 0 !important;
     width: max-content !important;
     white-space: nowrap;
+    overflow: visible;
+    padding: 6px 10px;
+    box-sizing: border-box;
+  }
+
+  /* Fallback browser senza :has() */
+  body.is-home details.dropdown.is-index .menu {
+    min-width: 0 !important;
+    width: max-content !important;
+    white-space: nowrap;
+    overflow: visible;
     padding: 6px 10px;
     box-sizing: border-box;
   }
@@ -198,9 +209,10 @@ body {
 
   /* “index” adattato anche su widescreen */
   body.is-home details.dropdown:has(> summary.btn.btn-archivio) .menu {
-    min-width: auto !important;
+    min-width: 0 !important;
     width: max-content !important;
     white-space: nowrap;
+    overflow: visible;
     padding: 6px 10px;
     box-sizing: border-box;
   }
