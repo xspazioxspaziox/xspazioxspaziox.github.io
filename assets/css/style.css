@@ -2,7 +2,7 @@
    SPAZIO X — STYLE.CSS
    Versione finale
    ✅ Mobile perfetta
-   ✅ Desktop/Widescreen: dropdown "index" adattato al testo (fix definitivo)
+   ✅ Desktop/Widescreen: dropdown "index" non taglia il testo
 ======================================================= */
 
 /* FONT */
@@ -166,17 +166,17 @@ body {
     box-sizing: border-box;
   }
 
-  /* === FIX definitivo: "index" adattato al testo === */
+  /* === FIX: "index" si adatta al testo (desktop) === */
   body.is-home details.dropdown > summary.btn.btn-archivio + .menu {
-    min-width: 0 !important;
-    width: max-content !important;
+    min-width: max-content !important;   /* almeno quanto il testo */
+    width: auto !important;              /* lascia larghezza naturale */
     white-space: nowrap;
     overflow: visible;
     padding: 6px 10px;
     box-sizing: border-box;
   }
 
-  /* Previene clipping dei dropdown */
+  /* Evita clipping dei menu */
   body.is-home .home-actions-bottom { overflow: visible; }
 }
 
@@ -200,10 +200,10 @@ body {
     text-align: center;
   }
 
-  /* “index” adattato anche su widescreen */
+  /* === FIX: "index" si adatta al testo (widescreen) === */
   body.is-home details.dropdown > summary.btn.btn-archivio + .menu {
-    min-width: 0 !important;
-    width: max-content !important;
+    min-width: max-content !important;
+    width: auto !important;
     white-space: nowrap;
     overflow: visible;
     padding: 6px 10px;
@@ -212,7 +212,7 @@ body {
 }
 
 /* =======================================================
-   MOBILE (≤480px)
+   MOBILE (≤480px) — invariato
 ======================================================= */
 @media (max-width:480px){
   :root{
@@ -285,7 +285,7 @@ body {
     border:1px solid #888; background:#fff; padding:6px;
   }
 
-  /* === SOLO “index” mobile === */
+  /* Solo “index” mobile (già ok, preservato) */
   body.is-home details.dropdown:has(> summary.btn.btn-archivio) .menu {
     min-width: auto !important;
     width: fit-content !important;
