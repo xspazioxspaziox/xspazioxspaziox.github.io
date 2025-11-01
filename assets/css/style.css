@@ -2,7 +2,7 @@
    SPAZIO X — STYLE.CSS
    Versione finale
    ✅ Mobile perfetta
-   ✅ Desktop/Widescreen: dropdown "index" adattato al testo
+   ✅ Desktop/Widescreen: dropdown "index" adattato al testo (fix definitivo)
 ======================================================= */
 
 /* FONT */
@@ -166,8 +166,8 @@ body {
     box-sizing: border-box;
   }
 
-  /* === SOLO "index": adattamento al testo (fixato) === */
-  body.is-home details.dropdown:has(> summary.btn.btn-archivio) .menu {
+  /* === FIX definitivo: "index" adattato al testo === */
+  body.is-home details.dropdown > summary.btn.btn-archivio + .menu {
     min-width: 0 !important;
     width: max-content !important;
     white-space: nowrap;
@@ -176,15 +176,8 @@ body {
     box-sizing: border-box;
   }
 
-  /* Fallback browser senza :has() */
-  body.is-home details.dropdown.is-index .menu {
-    min-width: 0 !important;
-    width: max-content !important;
-    white-space: nowrap;
-    overflow: visible;
-    padding: 6px 10px;
-    box-sizing: border-box;
-  }
+  /* Previene clipping dei dropdown */
+  body.is-home .home-actions-bottom { overflow: visible; }
 }
 
 /* =======================================================
@@ -208,7 +201,7 @@ body {
   }
 
   /* “index” adattato anche su widescreen */
-  body.is-home details.dropdown:has(> summary.btn.btn-archivio) .menu {
+  body.is-home details.dropdown > summary.btn.btn-archivio + .menu {
     min-width: 0 !important;
     width: max-content !important;
     white-space: nowrap;
