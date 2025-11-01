@@ -1,7 +1,7 @@
 /* =======================================================
    SPAZIO X — STYLE.CSS
-   Versione finale — Mobile fix + footer fix + home 200px +
-   dropdown classico + bottone riallineato + larghezza testo
+   Versione finale con fix esclusivo per dropdown "index"
+   (solo mobile, solo home)
 ======================================================= */
 
 /* FONT */
@@ -233,7 +233,6 @@ body {
     line-height: 1.4;
   }
 
-  /* Cornici (tutte le pagine tranne home) */
   .flyer-container { transform:none; margin-top:var(--flyer-offset); }
 
   .flyer-image {
@@ -274,7 +273,7 @@ body {
 }
 
 /* =======================================================
-   HOME (solo .is-home) — Cornice 200px + bottone riallineato
+   HOME (solo .is-home)
 ======================================================= */
 @media (max-width:480px){
   body.is-home .home-actions-top,
@@ -319,11 +318,10 @@ body {
 
   body.is-home details.dropdown .menu {
     position: absolute;
-    top: calc(100% + 6px); /* attaccato sotto al bottone */
+    top: calc(100% + 6px);
     left: 0;
     z-index: 10000;
 
-    /* 🔽 dimensioni: solo quanto il contenuto */
     display: inline-block;
     width: fit-content;
     max-width: calc(100vw - (2 * var(--pad-m)));
@@ -350,8 +348,19 @@ body {
     background: #f7f7f7;
   }
 
-  /* pagina sempre ferma */
   body.is-home { overflow-y: hidden; }
+}
+
+/* =======================================================
+   FIX: Dropdown "index" stretto come testo
+======================================================= */
+@media (max-width:480px){
+  body.is-home details.dropdown:has(> summary.btn.btn-archivio) .menu {
+    min-width: 0 !important;
+    width: fit-content !important;
+    white-space: nowrap;
+    overflow: visible;
+  }
 }
 
 /* =======================================================
@@ -388,4 +397,4 @@ a:active { opacity:.7; }
 .flyer-scroll a:focus {
   color:#000;
   border-color:#000;
-}
+   }
