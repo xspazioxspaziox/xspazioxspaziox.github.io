@@ -131,14 +131,14 @@
     }
     .menu a:hover { border-color:#888; background:#f7f7f7; }
 
-    /* ----- ✅ Spazio extra solo su Desktop/Widescreen (no margin-collapse) ----- */
+    /* ----- ✅ Spazio leggermente ridotto solo su Desktop/Widescreen ----- */
     @media (min-width: 481px) {
       .hydra-credit {
         margin: 6px auto 0 !important;
-        padding-bottom: 14px !important; /* spazio visibile e stabile */
+        padding-bottom: 10px !important; /* leggermente meno spazio */
       }
       .home-actions-bottom {
-        margin-top: 18px !important;
+        margin-top: 14px !important; /* armonizzato */
       }
     }
 
@@ -289,7 +289,7 @@
     document.querySelector('.btn-archivio')?.addEventListener('click', () => playSound('archivio'));
     document.querySelector('.btn-random')?.addEventListener('click', () => playSound('random'));
 
-      const RANDOM_LINKS = [
+    const RANDOM_LINKS = [
       'https://sixcarre.bandcamp.com/album/6',
       'https://catherinedanger.bandcamp.com/',
       'https://soundcloud.com/daya-h',
