@@ -289,8 +289,9 @@
     document.querySelector('.btn-random')?.addEventListener('click', () => playSound('random'));
 
     const RANDOM_LINKS = [
-      '/eventi/',
-      '/artisti/',
+      'https://sixcarre.bandcamp.com/album/6',
+      'https://catherinedanger.bandcamp.com/',
+      'https://soundcloud.com/daya-h',
     ];
     document.getElementById('randomBtn').addEventListener('click', () => {
       const url = RANDOM_LINKS[Math.floor(Math.random() * RANDOM_LINKS.length)];
