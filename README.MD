@@ -1,7 +1,7 @@
 STRUTTURA REPOSITORY:  
 
 
-BRANCH MAIN (ora prove-sito-1):
+BRANCH MAIN:
 /  
 ├─ index.html                      # Home minimale (link principali a flyer/info correnti)  
 ├─ 404.html                        # Pagina di errore "Pagina non trovata"  
