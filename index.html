@@ -17,7 +17,7 @@
 
   <link rel="stylesheet" href="/assets/css/xicons.css">
   <style>
-    /* ----- Desktop/Tablet (come prima) ----- */
+    /* ----- Desktop/Tablet ----- */
     .flyer-container { transform: translateY(-8svh); }
 
     /* Cornice ridotta (200px) — home mantiene la sua altezza dedicata su desktop/tablet */
@@ -131,13 +131,14 @@
     }
     .menu a:hover { border-color:#888; background:#f7f7f7; }
 
-    /* ----- ✅ Spazio extra solo su Desktop/Widescreen ----- */
+    /* ----- ✅ Spazio extra solo su Desktop/Widescreen (no margin-collapse) ----- */
     @media (min-width: 481px) {
       .hydra-credit {
-        margin: 6px auto 10px; /* più aria tra testo e bottoni */
+        margin: 6px auto 0 !important;
+        padding-bottom: 14px !important; /* spazio visibile e stabile */
       }
       .home-actions-bottom {
-        margin-top: 18px; /* aumentato leggermente da 12px */
+        margin-top: 18px !important;
       }
     }
 
@@ -288,14 +289,14 @@
     document.querySelector('.btn-archivio')?.addEventListener('click', () => playSound('archivio'));
     document.querySelector('.btn-random')?.addEventListener('click', () => playSound('random'));
 
-    const RANDOM_LINKS = [
+      const RANDOM_LINKS = [
       'https://sixcarre.bandcamp.com/album/6',
       'https://catherinedanger.bandcamp.com/',
       'https://soundcloud.com/daya-h',
     ];
     document.getElementById('randomBtn').addEventListener('click', () => {
       const url = RANDOM_LINKS[Math.floor(Math.random() * RANDOM_LINKS.length)];
-      location.href = url;
+      window.open(url, '_blank');
     });
 
     document.querySelectorAll('details.dropdown summary').forEach(s => {
