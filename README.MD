@@ -5,6 +5,7 @@ BRANCH MAIN:
 /  
 ├─ index.html                      # Home minimale (link principali a flyer/info correnti)  
 ├─ 404.html                        # Pagina di errore "Pagina non trovata"  
+├─ CNAME                       # Da non toccare, fa sì che siamo linkati al dominio www.xspazioxspaziox.com
 │  
 ├─ assets/  
 │  ├─ css/  
