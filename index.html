@@ -26,9 +26,9 @@
       max-width: 300px;
       width: 100%;
       margin: 0 auto;
-      overflow: hidden;              /* evita bleed del canvas */
+      overflow: hidden;
       position: relative;
-      z-index: 1;                    /* sotto ai bottoni/crediti */
+      z-index: 1;
       box-sizing: border-box;
     }
     .flyer-image > .flyer-frame {
@@ -66,7 +66,7 @@
       color: #777;
       letter-spacing: 0.02em;
       position: relative;
-      z-index: 2; /* sopra la cornice */
+      z-index: 2;
     }
     .hydra-credit a {
       color: #777;
@@ -89,7 +89,7 @@
       cursor: pointer;
       user-select: none;
       position: relative;
-      z-index: 2; /* assicura click sopra alla cornice/canvas */
+      z-index: 2;
     }
     .btn:hover, .btn:focus { background:#eee; color:#000; }
 
@@ -100,7 +100,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      z-index: 2; /* sopra alla cornice/canvas */
+      z-index: 2;
     }
 
     details.dropdown { position: relative; display: inline-block; }
@@ -118,7 +118,7 @@
       padding: 6px;
       z-index: 10;
       box-sizing: border-box;
-      max-width: 100%;            /* non oltrepassa il contenitore */
+      max-width: 100%;
       overflow-wrap: anywhere;
     }
     .menu a {
@@ -131,26 +131,33 @@
     }
     .menu a:hover { border-color:#888; background:#f7f7f7; }
 
+    /* ----- ✅ Spazio extra solo su Desktop/Widescreen ----- */
+    @media (min-width: 481px) {
+      .hydra-credit {
+        margin: 6px auto 10px; /* più aria tra testo e bottoni */
+      }
+      .home-actions-bottom {
+        margin-top: 18px; /* aumentato leggermente da 12px */
+      }
+    }
+
     /* ----- Mobile (≤480px): anti-sbordo + click + proporzione 4:5 ----- */
     @media (max-width: 480px) {
       html, body { overflow-x: hidden; width: 100%; max-width: 100%; }
 
-      /* Evita il bug iOS sullo scroll dei contenuti interni: niente transform */
       .flyer-container { transform: none; margin-top: -8svh; }
 
-      /* Cornice proporzionata 4:5, calcolata su viewport */
       .flyer-image {
-        width: min(300px, calc(100vw - 2*16px - 2px)); /* 2*padding di pagina (16px) + 2px bordo */
+        width: min(300px, calc(100vw - 2*16px - 2px));
         max-width: none;
         aspect-ratio: 4 / 5;
-        height: auto;            /* deriva dal ratio */
-        border: 1px solid #000;  /* bordo sul wrapper per allineare i divisori */
+        height: auto;
+        border: 1px solid #000;
         background: #fafafa;
         overflow: hidden;
         position: relative;
         z-index: 1;
       }
-      /* Interno della cornice: nessun bordo, riempie il box */
       .flyer-image > .flyer-frame {
         border: 0;
         background: transparent;
@@ -166,7 +173,6 @@
         display: block;
       }
 
-      /* Allinea anche pulsanti/crediti alla stessa larghezza della cornice */
       .home-actions-top,
       .hydra-credit,
       .home-actions-bottom {
@@ -175,10 +181,9 @@
         margin-left: auto;
         margin-right: auto;
         position: relative;
-        z-index: 2; /* sopra la cornice/canvas: click garantiti */
+        z-index: 2;
       }
 
-      /* Titolo e padding di pagina compatti */
       .page-title { padding: 0 16px; }
       .menu { max-width: calc(100vw - 2*16px); }
     }
@@ -194,9 +199,10 @@
     <div class="flyer-block">
 
       <!-- Pulsante download -->
-    <div class="home-actions-top">
+      <div class="home-actions-top">
         <a class="btn btn-download" 
-          href="https://raw.githubusercontent.com/xspazioxspaziox/xspazioxspaziox.github.io/6b8700a971ac630e597a5c7cdfc5accd86817640/spazio-x-novembre-2025.pdf" download>
+          href="https://raw.githubusercontent.com/xspazioxspaziox/xspazioxspaziox.github.io/6b8700a971ac630e597a5c7cdfc5accd86817640/spazio-x-novembre-2025.pdf" 
+          download>
           Scarica il programma di novembre
         </a>
       </div>
@@ -211,7 +217,8 @@
       <!-- Credito Hydra -->
       <div class="hydra-credit">
         *visual generated with
-        <a href="https://hydra.ojack.xyz/" target="_blank">Hydra</a> by O. Jack - <a href="/assets/js/hydra.js" target="_blank">code</a>
+        <a href="https://hydra.ojack.xyz/" target="_blank">Hydra</a> by O. Jack -
+        <a href="/assets/js/hydra.js" target="_blank">code</a>
       </div>
 
       <!-- Bottoni -->
@@ -241,37 +248,33 @@
 
   <script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
   <script>
-    // === HYDRA ===
     const hydraCanvas = document.getElementById('hydra-canvas');
     const hydra = new Hydra({ canvas: hydraCanvas, detectAudio: false });
 
-    // === codice visuals hydra, se lo cambi aggiorna anche dentro /assets/js/hydra.js ===
-osc(4,.02,0)
-     .rotate(.2,1).scale(8,.6)
-     .modulateScrollX(noise(.2,.02))
-     .modulateScrollY(noise(.4,.02))
-.modulate(noise(200,.2))
-     .repeat(6,4)
-     .rotate(.2,.2)
-     .scrollY(()=>mouse.x/3000)
-     .diff(gradient(.02))
-.modulate(src(o0))
-     .diff(shape([80],.8)).scrollY(80,.2).repeat(()=>mouse.y/220,()=>mouse.x/400).modulate(src(o0).scrollX(2))
-     .diff(noise(1))
-.out(o0);
+    osc(4,.02,0)
+      .rotate(.2,1).scale(8,.6)
+      .modulateScrollX(noise(.2,.02))
+      .modulateScrollY(noise(.4,.02))
+      .modulate(noise(200,.2))
+      .repeat(6,4)
+      .rotate(.2,.2)
+      .scrollY(()=>mouse.x/3000)
+      .diff(gradient(.02))
+      .modulate(src(o0))
+      .diff(shape([80],.8))
+      .scrollY(80,.2)
+      .repeat(()=>mouse.y/220,()=>mouse.x/400)
+      .modulate(src(o0).scrollX(2))
+      .diff(noise(1))
+      .out(o0);
 
-    // === SUONI PERSONALIZZATI ===
     const sounds = {
       download: new Audio('/assets/sfx/download.mp3'),
       eventi: new Audio('/assets/sfx/eventi.mp3'),
       archivio: new Audio('/assets/sfx/archivio.mp3'),
       random: new Audio('/assets/sfx/random.mp3'),
     };
-
-    Object.values(sounds).forEach(a => {
-      a.preload = 'auto';
-      a.volume = 0.8;
-    });
+    Object.values(sounds).forEach(a => { a.preload = 'auto'; a.volume = 0.8; });
 
     function playSound(key) {
       const base = sounds[key];
@@ -285,18 +288,15 @@ osc(4,.02,0)
     document.querySelector('.btn-archivio')?.addEventListener('click', () => playSound('archivio'));
     document.querySelector('.btn-random')?.addEventListener('click', () => playSound('random'));
 
-    // === RANDOM LINK “?” ===
     const RANDOM_LINKS = [
       '/eventi/',
       '/artisti/',
-      
     ];
     document.getElementById('randomBtn').addEventListener('click', () => {
       const url = RANDOM_LINKS[Math.floor(Math.random() * RANDOM_LINKS.length)];
       location.href = url;
     });
 
-    // === Dropdown: chiusura automatica ===
     document.querySelectorAll('details.dropdown summary').forEach(s => {
       s.addEventListener('click', () => {
         const parent = s.parentElement;
