@@ -17,7 +17,7 @@ BRANCH MAIN:
 │  └─ img/  
 │     ├─ favicon.ico               # Icona del sito  
 │     ├─ volo.png                  # Oggetto volante decorativo animato  
-│     └─ (altre immagini generiche)  
+│     └─ (altre immagini generiche da non toccare)  
 │  
 ├─ partials/   
 │  ├─ head.html                    # Script vari (incluso nelle pagine)  
@@ -27,16 +27,16 @@ BRANCH MAIN:
 ├─ eventi/  
 │  ├─ index.html                   # Archivio eventi (lista scrollabile)  
 │  ├─ img/  
-│  │  └─ 31-08-25-yoga.jpg         # Immagini dei flyer (una per evento)  
+│  │  └─ 31-08-25-yoga.jpg         # Es. immagini dei flyer (una per evento)  
 │  └─ 2025/  
 │     ├─ 31-08-yoga-flyer/  
-│     │  └─ index.html             # Pagina flyer: immagine 300×375px  
+│     │  └─ index.html             # Es. pagina flyer: immagine 300×375px  
 │     └─ 31-08-yoga-info/  
-│        └─ index.html             # Pagina info: testo scrollabile + link ad artista/evento  
+│        └─ index.html             # Es. pagina info: testo scrollabile + link ad artista/evento  
 │  
 └─ artisti/  
    ├─ index.html                   # Archivio artisti (lista di link scrollabile)  
-   └─ pino-scoppon/  
+   └─ nome-artista/  
       └─ index.html                # Scheda artista: testo in cornice + link evento correlato  
   
   BRANCH: PROGRAMMI-PDF
@@ -44,14 +44,13 @@ BRANCH MAIN:
     
 COME AGGIUNGERE UN NUOVO EVENTO:
 
-1. Aggiungi l’immagine in eventi/img/.
+1. Aggiungi l’immagine in eventi/img/ con il nome che segua il format delle altre.
 2. Duplica una coppia di cartelle *-flyer e *-info in eventi/AAAA/.
-3. Aggiorna i testi e la data/ora.
+3. Aggiorna il titolo, testi e la data/ora nella pagina.
 4. Inserisci il link *-flyer in eventi/index.html, in /index.html e nella pagina *-info.
 5. Inserisci il link *-info nella pagina *-flyer
 6. Crea pagina artista e collegala in artisti/ e nel testo della pagina *.info.
 7. Collega evento *-flyer nella pagina artista
-
 
 COLLEGAMENTI INTERNI TIPICI
   
@@ -69,7 +68,7 @@ CARICARE PROGRAMMA DEL MESE IN HOME PAGE
   
 Caricare pdf del programma nel branch programmi-pdf con nome spazio-x-MESE-ANNO.pdf  
 linkare pdf per il download, nell'index della home page al posto di quello vecchio:  
-https://raw.githubusercontent.com/xspazioxspaziox/xspazioxspaziox.github.io/545db9824541a67d9cfb6aff027abd2853e1a9cf/spazio-x-MESE-ANNO.pdf
+es. https://raw.githubusercontent.com/xspazioxspaziox/xspazioxspaziox.github.io/545db9824541a67d9cfb6aff027abd2853e1a9cf/spazio-x-MESE-ANNO.pdf
 
 VISUALS HOMEPAGE
 
