@@ -146,6 +146,9 @@ body {
   body.is-home .home-actions-top { margin-bottom: 10px; }
   body.is-home .home-actions-top .btn { display: inline-block; margin: 0 auto; }
 
+  /* 👉 FIX: "prossimi eventi" su una sola riga in desktop */
+  body.is-home .btn.btn-eventi { white-space: nowrap; }
+
   /* Dropdown desktop */
   body.is-home details.dropdown { position: relative; display: inline-block; }
   body.is-home details.dropdown > summary { list-style: none; outline: none; }
@@ -199,6 +202,9 @@ body {
     margin: 0 auto;
     text-align: center;
   }
+
+  /* 👉 FIX: "prossimi eventi" su una riga anche in widescreen */
+  body.is-home .btn.btn-eventi { white-space: nowrap; }
 
   /* === FIX: "index" si adatta al testo (widescreen) === */
   body.is-home details.dropdown > summary.btn.btn-archivio + .menu {
