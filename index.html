@@ -131,18 +131,18 @@
     }
     .menu a:hover { border-color:#888; background:#f7f7f7; }
 
-    /* ----- ✅ Spazio leggermente ridotto solo su Desktop/Widescreen ----- */
+    /* ----- ✅ Spazio ridotto (desktop/widescreen) ----- */
     @media (min-width: 481px) {
       .hydra-credit {
         margin: 6px auto 0 !important;
-        padding-bottom: 10px !important; /* leggermente meno spazio */
+        padding-bottom: 6px !important; /* spazio ridotto */
       }
       .home-actions-bottom {
-        margin-top: 14px !important; /* armonizzato */
+        margin-top: 10px !important; /* leggermente più compatto */
       }
     }
 
-    /* ----- Mobile (≤480px): anti-sbordo + click + proporzione 4:5 ----- */
+    /* ----- Mobile (≤480px): invariato ----- */
     @media (max-width: 480px) {
       html, body { overflow-x: hidden; width: 100%; max-width: 100%; }
 
