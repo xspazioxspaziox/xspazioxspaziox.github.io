@@ -1,1 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- =======================
+       STILI GLOBALI
+       - Carica il CSS principale del sito.
+       - Puoi usare percorsi relativi (../../../) oppure root-based (/assets/).
+       - Root-based è consigliato su GitHub Pages utente (più stabile).
+  ======================= -->
+
+  <!-- Esempio relativo (non usato qui): -->
+  <!-- <link rel="preload" href="../../../assets/css/style.css" as="style"> -->
+  <!-- <link rel="stylesheet" href="../../../assets/css/style.css"> -->
+
+  <!-- Esempio root-based (usato qui): -->
+  <link rel="preload" href="/assets/css/style.css" as="style">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- =======================
+       SCRIPT DI INCLUDE
+       - include.js inietta automaticamente header e footer.
+       - defer fa sì che lo script venga eseguito dopo il parsing HTML.
+  ======================= -->
+
+  <!-- Relativo: ../../../assets/js/include.js -->
+  <!-- Oppure root-based: -->
+  <script src="/assets/js/include.js" defer></script>
+
+  <!-- =======================
+       META E TITOLI
+       - Titolo specifico della pagina evento (parte testuale).
+       - Favicon comune a tutto il sito.
+  ======================= -->
+  <title>Spazio X — 11 ottobre 2025</title>
+
+  <!-- Relativo: ../../../assets/img/favicon.ico -->
+  <!-- Oppure root-based: -->
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preload"
+      href="/assets/fonts/xicons.woff2"
+      as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/assets/css/xicons.css">
+</head>
+
+<body>
+  <!-- =======================
+       HEADER
+       - Iniettato dinamicamente via include.js.
+       - Contiene logo, menu o elementi comuni di navigazione.
+  ======================= -->
+  <div id="header"></div>
+
+  <!-- =======================
+       TITOLO DI PAGINA
+       - Facoltativo, può essere impostato con testo personalizzato.
+  ======================= -->
+  <h1 class="page-title">Spazio <b class="xi-logox fa-4x"></b></h1>
+
+  <!-- =======================
+       CONTENUTO CENTRALE
+       - Layout identico a quello del flyer.
+       - In questo caso la cornice contiene testo scrollabile invece dell’immagine.
+  ======================= -->
+  <main class="flyer-container">
+    <div class="flyer-block">
+
+      <!-- =======================
+           RIGA SUPERIORE (testata)
+           - Mostra data e orario dell’evento.
+      ======================= -->
+      <div class="flyer-header">
+        <div class="flyer-date">11/10/25</div>
+        <div class="flyer-time">h. 15.00</div>
+      </div>
+
+      <!-- =======================
+           CORNICE TESTO
+           - Struttura identica alla cornice immagine.
+           - Contiene una sezione scrollabile con descrizione e link.
+      ======================= -->
+      <div class="flyer-image">
+        <div class="flyer-frame">
+          <div class="flyer-scroll">
+            <!-- Contenuto testuale dell’evento -->
+            <p>
+       GITA WARPA<br>
+La festa del videogioco ribelle e itinerante di <a target="_blank" href="https://zonawarpa.it/">Zona Warpa</a><br>
+× videogiochi, live, workshop, talk<br>
+PROGRAMMA<br>
+
+15:00 Sala Giochi Warpa con selezione di titoli e console retro a cura del Collettivo Warpo, Free Play!<br>
+
+15:00-17:30 Workshop Orca (nonmateria) per imparare a fare musica utilizzando il linguaggio di programmazione Orca per Live Coding conturbanti - porta laptop e cuffie!
+<br>
+17:30 Talk Cosmo M. Esposito Decolonizziamo il gioco. Analisi e critiche degli aspetti coloniali espliciti ed impliciti appartenenti al mondo del gioco
+<br>
+19:00 Talk Matteo Bini, Software libero e minimalismo per uno sviluppo davvero indipendente. Analisi degli strumenti e dei Perchè ha senso per uno sviluppo armonioso guaradre in questa direzione
+<br>
+20:00 - 00:00 Live e dj set
+<br>
+Dj set Misterioso: set da pasto, selezione di brani dalle proprietà corroboranti ed aperitive
+<br>
+Mrs Bhutan Rap e Nintendo Ds - ai Beat Wario Pianesi, al Rap l' ignota cantante
+<br>
+nonmateria - live coding, mostrerà tutto il potenziale di ciò che ci ha spiegato nel suo workshop
+<br>
+La fretta dei vecchi - progetto di improvvisazione di stampo Trip hop. 
+Tamburi, nastri e videogame creano tracce estemporanee che diventano mantra sonori e visivi.<br>
+              -
+              <br>
+Ingresso: 5 euro
+ </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =======================
+           RIGA INFERIORE (FOOTER LOCALE)
+           - Allineata con la cornice.
+           - A sinistra: link alla sezione "eventi".
+           - A destra: link alla pagina "flyer" dello stesso evento.
+      ======================= -->
+      <div class="flyer-footer">
+        <div class="footer-left">
+          <a href="../../">index eventi</a>
+        </div>
+        <div class="footer-right">
+          <a href="../18-10-flyer/">flyer→</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =======================
+       FOOTER
+       - Iniettato automaticamente via include.js.
+       - Contiene i contatti, i social e altre informazioni globali.
+  ======================= -->
+  <div id="footer"></div>
+</body>
+</html>
