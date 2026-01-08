@@ -1,1 +1,110 @@
 
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- =======================
+       STILI GLOBALI
+       - Carica il CSS principale del sito.
+       - Il preload migliora i tempi di caricamento.
+  ======================= -->
+  <link rel="preload" href="../../assets/css/style.css" as="style">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- =======================
+       SCRIPT DI INCLUDE
+       - include.js inietta header e footer comuni.
+       - defer = eseguito dopo il parsing dell’HTML.
+  ======================= -->
+  <script src="../../assets/js/include.js" defer></script>
+
+  <!-- =======================
+       META E TITOLI
+       - Titolo della pagina.
+       - Favicon del sito.
+  ======================= -->
+  <title>Spazio x - Andrea Inchierchia e Federico Nardella</title>
+  <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preload"
+      href="/assets/fonts/xicons.woff2"
+      as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/assets/css/xicons.css">
+</head>
+
+<body>
+  <!-- =======================
+       HEADER
+       - Viene iniettato automaticamente da include.js.
+       - Contiene menu, logo o link principali.
+  ======================= -->
+  <div id="header"></div>
+
+  <!-- =======================
+       TITOLO DELLA PAGINA
+       - Ogni pagina può avere un titolo personalizzato.
+  ======================= -->
+  <h1 class="page-title">Spazio <b class="xi-logox fa-4x"></b></h1>
+
+  <!-- =======================
+       CONTENUTO PRINCIPALE
+       - Contiene il blocco centrale del layout.
+       - flyer-container centra verticalmente il contenuto.
+  ======================= -->
+  <main class="flyer-container">
+    <div class="flyer-block">
+
+      <!-- =======================
+           RIGA SUPERIORE (HEADER DEL FLYER)
+           - Mostra informazioni tipo nome e azione.
+      ======================= -->
+      <div class="flyer-header">
+        <div class="flyer-date">Andrea Inchierchia e Federico Nardella</div>
+        <div class="flyer-time"><a target="_blank" href="https://www.instagram.com/andreainchi/">link 1</a> <a target="_blank" href="https://www.instagram.com/federiconardella_/">link 2</a></div>
+      </div>
+
+      <!-- =======================
+           CORNICE TESTO
+           - Struttura identica a quella dei flyer immagine.
+           - Contiene un box scrollabile con il testo.
+      ======================= -->
+      <div class="flyer-image">
+        <div class="flyer-frame">
+          <div class="flyer-scroll">
+            <!-- Testo descrittivo o biografia -->
+            <p>
+Il duo è composto da Andrea Inchierchia (chitarra romantica, elettronica) e  Federico Nardella (speaker, motorini, cetra).
+Il set si sviluppa su alcuni canovacci dai quali si sviluppa libera improvvisazione. I suoni non processati e materici di Nardella (che suona senza impianto, posizionando i coni nello spazio) si fondono con la morbidezza della delicata chitarra romantica di Inchierchia, che tramite l'elettronica assume alle volte sembianze mostruose. Il set è fatto di piccoli suoni che intersecandosi tra di loro danno vita ad un organismo in continuo mutamento.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =======================
+           RIGA INFERIORE (FOOTER DEL FLYER)
+           - Allineata con la cornice.
+           - A sinistra: link alla sezione “artisti”.
+           - A destra: link all’evento corrispondente.
+      ======================= -->
+      <div class="flyer-footer">
+        <div class="footer-left">
+          <a href="../">index artisti</a>
+        </div>
+        <div class="footer-right">
+          <a href="../../eventi/2026/25-01-live-flyer/">evento</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =======================
+       FOOTER
+       - Iniettato automaticamente da include.js.
+       - Contiene contatti e link social.
+  ======================= -->
+  <div id="footer"></div>
+</body>
+</html>
