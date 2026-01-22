@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- =======================
+       STILI GLOBALI
+       - Carica il CSS principale del sito.
+       - L’attributo preload accelera il caricamento.
+  ======================= -->
+  <link rel="preload" href="/assets/css/style.css" as="style">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- =======================
+       SCRIPT DI INCLUDE
+       - include.js inietta automaticamente header e footer.
+       - defer fa sì che lo script venga eseguito dopo l’HTML.
+  ======================= -->
+  <script src="/assets/js/include.js" defer></script>
+
+  <!-- =======================
+       META E TITOLI
+       - Titolo della scheda evento.
+       - Favicon comune a tutto il sito.
+  ======================= -->
+  <title>Spazio X — 7 febbraio 2026</title>
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preload"
+      href="/assets/fonts/xicons.woff2"
+      as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/assets/css/xicons.css">
+</head>
+
+<body>
+  <!-- =======================
+       HEADER
+       - Area superiore iniettata via include.js.
+       - Contiene logo, menu o elementi di navigazione.
+  ======================= -->
+  <div id="header"></div>
+
+  <!-- =======================
+       TITOLO DELLA PAGINA
+       - Facoltativo: può contenere titolo personalizzato.
+  ======================= -->
+  <h1 class="page-title">Spazio <b class="xi-logox fa-4x"></b></h1>
+
+  <!-- =======================
+       BLOCCO CENTRALE
+       - Contiene la struttura principale del flyer (header, immagine, footer).
+       - Centrato verticalmente dallo stile flyer-container.
+  ======================= -->
+  <main class="flyer-container">
+    <div class="flyer-block">
+
+      <!-- =======================
+           RIGA SUPERIORE DEL FLYER
+           - Mostra le informazioni base dell’evento (data e ora).
+      ======================= -->
+      <div class="flyer-header">
+        <div class="flyer-date">07/02/26</div>
+        <div class="flyer-time">20.00→02.00</div>
+      </div>
+
+      <!-- =======================
+           IMMAGINE DEL FLYER
+           - Mostra il poster o visual dell’evento.
+           - Le dimensioni sono controllate dal CSS (300×375px su desktop).
+      ======================= -->
+      <div class="flyer-image">
+        <img src="/eventi/img/07-02-26.jpg" alt="flyer 7 febbraio">
+      </div>
+
+      <!-- =======================
+           RIGA INFERIORE (FOOTER LOCALE)
+           - Allineata alla cornice del flyer.
+           - A sinistra: link alla sezione “eventi”.
+           - A destra: link alla pagina informativa collegata.
+      ======================= -->
+      <div class="flyer-footer">
+        <div class="footer-left">
+          <a href="/eventi/">index eventi</a>
+        </div>
+        <div class="footer-right">
+          <a href="/eventi/2026/07-02-info/">info→</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =======================
+       FOOTER
+       - Iniettato automaticamente via include.js.
+       - Contiene contatti, social o note di copyright.
+  ======================= -->
+  <div id="footer"></div>
+</body>
+</html>
