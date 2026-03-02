@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- =======================
+       STILI GLOBALI
+       - Carica il CSS principale del sito.
+       - Puoi usare percorsi relativi (../../../) oppure root-based (/assets/).
+       - Root-based è consigliato su GitHub Pages utente (più stabile).
+  ======================= -->
+
+  <!-- Esempio relativo (non usato qui): -->
+  <!-- <link rel="preload" href="../../../assets/css/style.css" as="style"> -->
+  <!-- <link rel="stylesheet" href="../../../assets/css/style.css"> -->
+
+  <!-- Esempio root-based (usato qui): -->
+  <link rel="preload" href="/assets/css/style.css" as="style">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- =======================
+       SCRIPT DI INCLUDE
+       - include.js inietta automaticamente header e footer.
+       - defer fa sì che lo script venga eseguito dopo il parsing HTML.
+  ======================= -->
+
+  <!-- Relativo: ../../../assets/js/include.js -->
+  <!-- Oppure root-based: -->
+  <script src="/assets/js/include.js" defer></script>
+
+  <!-- =======================
+       META E TITOLI
+       - Titolo specifico della pagina evento (parte testuale).
+       - Favicon comune a tutto il sito.
+  ======================= -->
+  <title>Spazio X — 11 marzo 2026</title>
+
+  <!-- Relativo: ../../../assets/img/favicon.ico -->
+  <!-- Oppure root-based: -->
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preload"
+      href="/assets/fonts/xicons.woff2"
+      as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/assets/css/xicons.css">
+</head>
+
+<body>
+  <!-- =======================
+       HEADER
+       - Iniettato dinamicamente via include.js.
+       - Contiene logo, menu o elementi comuni di navigazione.
+  ======================= -->
+  <div id="header"></div>
+
+  <!-- =======================
+       TITOLO DI PAGINA
+       - Facoltativo, può essere impostato con testo personalizzato.
+  ======================= -->
+  <h1 class="page-title">Spazio <b class="xi-logox fa-4x"></b></h1>
+
+  <!-- =======================
+       CONTENUTO CENTRALE
+       - Layout identico a quello del flyer.
+       - In questo caso la cornice contiene testo scrollabile invece dell’immagine.
+  ======================= -->
+  <main class="flyer-container">
+    <div class="flyer-block">
+
+      <!-- =======================
+           RIGA SUPERIORE (testata)
+           - Mostra data e orario dell’evento.
+      ======================= -->
+      <div class="flyer-header">
+        <div class="flyer-date">11/03/26</div>
+        <div class="flyer-time">21.30→23.00</div>
+      </div>
+
+      <!-- =======================
+           CORNICE TESTO
+           - Struttura identica alla cornice immagine.
+           - Contiene una sezione scrollabile con descrizione e link.
+      ======================= -->
+      <div class="flyer-image">
+        <div class="flyer-frame">
+          <div class="flyer-scroll">
+            <!-- Contenuto testuale dell’evento -->
+            <p>
+×  × Proiezione film:  "Fela, Il mio Dio Vivente" di Daniele Vicari, 2023 (1h 30m)
+<br><br>
+Nel documentario di Daniele Vicari si intrecciano due storie: quella di Michele Avantario, filmmaker e videoartista appassionato di musica africana, e quella del rivoluzionario musicista nigeriano Fela Kuti, padre dell'afro beat e importante figura carismatica e politica. Il cuore della narrazione è il sogno di Avantario di realizzare un film interpretato dallo stesso Fela. Il film non verrà mai realizzato ma tra i due nascerà un rapporto profondo che porterà Michele a passare molto tempo a Kalakuta, la comune fondata dallo stesso Kuti, e ad immergersi a pieno nella vita del grande musicista e della sua comunità, girando ore di riprese che verranno custodite per anni da sua moglie Renata, per poi finalmente arrivare in questo film.
+<br><br>
+-<br>
+👉 Ingresso libero<br>
+🥦 Bottega “La Piave” aperta dalle 19.30 alle 21.00 per spesa a KM 0<br>
+🎥 Porta il tuo hard disk per scambiare film<br>
+Grafica: Marco Golfetto  
+ </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =======================
+           RIGA INFERIORE (FOOTER LOCALE)
+           - Allineata con la cornice.
+           - A sinistra: link alla sezione "eventi".
+           - A destra: link alla pagina "flyer" dello stesso evento.
+      ======================= -->
+      <div class="flyer-footer">
+        <div class="footer-left">
+          <a href="../../">index eventi</a>
+        </div>
+        <div class="footer-right">
+          <a href="../11-03-flyer/">flyer→</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =======================
+       FOOTER
+       - Iniettato automaticamente via include.js.
+       - Contiene i contatti, i social e altre informazioni globali.
+  ======================= -->
+  <div id="footer"></div>
+</body>
+</html>
