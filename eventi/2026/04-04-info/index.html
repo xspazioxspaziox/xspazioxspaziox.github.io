@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- =======================
+       STILI GLOBALI
+       - Carica il CSS principale del sito.
+       - Puoi usare percorsi relativi (../../../) oppure root-based (/assets/).
+       - Root-based è consigliato su GitHub Pages utente (più stabile).
+  ======================= -->
+
+  <!-- Esempio relativo (non usato qui): -->
+  <!-- <link rel="preload" href="../../../assets/css/style.css" as="style"> -->
+  <!-- <link rel="stylesheet" href="../../../assets/css/style.css"> -->
+
+  <!-- Esempio root-based (usato qui): -->
+  <link rel="preload" href="/assets/css/style.css" as="style">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- =======================
+       SCRIPT DI INCLUDE
+       - include.js inietta automaticamente header e footer.
+       - defer fa sì che lo script venga eseguito dopo il parsing HTML.
+  ======================= -->
+
+  <!-- Relativo: ../../../assets/js/include.js -->
+  <!-- Oppure root-based: -->
+  <script src="/assets/js/include.js" defer></script>
+
+  <!-- =======================
+       META E TITOLI
+       - Titolo specifico della pagina evento (parte testuale).
+       - Favicon comune a tutto il sito.
+  ======================= -->
+  <title>Spazio X — 4 aprile 2026</title>
+
+  <!-- Relativo: ../../../assets/img/favicon.ico -->
+  <!-- Oppure root-based: -->
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preload"
+      href="/assets/fonts/xicons.woff2"
+      as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/assets/css/xicons.css">
+</head>
+
+<body>
+  <!-- =======================
+       HEADER
+       - Iniettato dinamicamente via include.js.
+       - Contiene logo, menu o elementi comuni di navigazione.
+  ======================= -->
+  <div id="header"></div>
+
+  <!-- =======================
+       TITOLO DI PAGINA
+       - Facoltativo, può essere impostato con testo personalizzato.
+  ======================= -->
+  <h1 class="page-title">Spazio <b class="xi-logox fa-4x"></b></h1>
+
+  <!-- =======================
+       CONTENUTO CENTRALE
+       - Layout identico a quello del flyer.
+       - In questo caso la cornice contiene testo scrollabile invece dell’immagine.
+  ======================= -->
+  <main class="flyer-container">
+    <div class="flyer-block">
+
+      <!-- =======================
+           RIGA SUPERIORE (testata)
+           - Mostra data e orario dell’evento.
+      ======================= -->
+      <div class="flyer-header">
+        <div class="flyer-date">04/04/26</div>
+        <div class="flyer-time">19.30→02.00</div>
+      </div>
+
+      <!-- =======================
+           CORNICE TESTO
+           - Struttura identica alla cornice immagine.
+           - Contiene una sezione scrollabile con descrizione e link.
+      ======================= -->
+      <div class="flyer-image">
+        <div class="flyer-frame">
+          <div class="flyer-scroll">
+            <!-- Contenuto testuale dell’evento -->
+            <p>
+Threeblackbirds e Shyrec label presentano 𝗦𝗛𝗬𝗥𝗘𝗖 𝗡𝗜𝗚𝗛𝗧
+<br><br>
+🕘 21:30 Sala Concerti<br>
+𝗕𝗟𝗔𝗡𝗞 𝗩𝗘𝗥𝗦𝗘
+<br><br>
+🕘 22:00 Spazio X<br>
+𝗕𝗔𝗗 𝗣𝗥𝗜𝗧𝗧<br>
+Progetto di Luca Marchetto che fonde neoclassica, ambient ed elettronica sperimentale in composizioni intense e cinematiche.
+<br><br>
+🕘 22:30 Sala Concerti<br>
+𝗚𝗥𝗜𝗚𝗜𝗢 𝗦𝗖𝗔𝗥𝗟𝗔𝗧𝗧𝗢
+<br><br>
+🕘 23:00 Spazio X<br>
+𝗣𝗘𝗧𝗥𝗢𝗟𝗜𝗢<br>
+Progetto solista di Enrico Cerrato tra ambient, industrial e noise, con oltre 140 concerti tra Italia ed Europa e una forte componente audiovisiva nei live.
+<br><br>
+🕘 23.30 Sala Concerti<br>
+𝗧𝗔𝗟𝗞 𝗧𝗢 𝗛𝗘𝗥<br>
+𝗖𝗛𝗘𝗖𝗖𝗢 𝗠𝗘𝗥𝗗𝗘𝗭 — DJ SET
+<br><br>
+⚡ NON STOP LIVE MUSIC ⚡<br>
+I live si alterneranno senza pause su due palchi — Sala Concerti e Spazio X
+<br><br>
+-<br>
+🍕 Pizzeria aperta <br>
+Grafica: Marco Golfetto
+  
+ </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =======================
+           RIGA INFERIORE (FOOTER LOCALE)
+           - Allineata con la cornice.
+           - A sinistra: link alla sezione "eventi".
+           - A destra: link alla pagina "flyer" dello stesso evento.
+      ======================= -->
+      <div class="flyer-footer">
+        <div class="footer-left">
+          <a href="../../">index eventi</a>
+        </div>
+        <div class="footer-right">
+          <a href="../04-04-flyer/">flyer→</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =======================
+       FOOTER
+       - Iniettato automaticamente via include.js.
+       - Contiene i contatti, i social e altre informazioni globali.
+  ======================= -->
+  <div id="footer"></div>
+</body>
+</html>
