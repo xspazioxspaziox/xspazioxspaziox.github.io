@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- =======================
+       STILI GLOBALI
+       - Carica il CSS principale del sito.
+       - Il preload migliora i tempi di caricamento.
+  ======================= -->
+  <link rel="preload" href="../../assets/css/style.css" as="style">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- =======================
+       SCRIPT DI INCLUDE
+       - include.js inietta header e footer comuni.
+       - defer = eseguito dopo il parsing dell’HTML.
+  ======================= -->
+  <script src="../../assets/js/include.js" defer></script>
+
+  <!-- =======================
+       META E TITOLI - titolo scheda e favicon
+  ======================= -->
+  <title>Spazio x - Afrorack</title>
+  <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preload"
+      href="/assets/fonts/xicons.woff2"
+      as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/assets/css/xicons.css">
+</head>
+
+<body>
+  <!-- =======================
+       HEADER
+       - Viene iniettato automaticamente da include.js.
+  ======================= -->
+  <div id="header"></div>
+
+  <!-- =======================
+       TITOLO DELLA PAGINA
+  ======================= -->
+  <h1 class="page-title">Spazio <b class="xi-logox fa-4x"></b></h1>
+
+  <!-- =======================
+       CONTENUTO PRINCIPALE
+       - Contiene il blocco centrale del layout.
+       - flyer-container centra verticalmente il contenuto.
+  ======================= -->
+  <main class="flyer-container">
+    <div class="flyer-block">
+
+      <!-- =======================
+           RIGA SUPERIORE
+      ======================= -->
+      <div class="flyer-header">
+        <div class="flyer-date">Margo Sanda</div>
+        <div class="flyer-time"><a target="_blank" href="https://margosanda.bandcamp.com/track/chaos">ascolta</a></div>
+      </div>
+
+      <!-- =======================
+           CORNICE TESTO
+           - Struttura identica a quella dei flyer immagine.
+           - Contiene un box scrollabile con il testo.
+      ======================= -->
+      <div class="flyer-image">
+        <div class="flyer-frame">
+          <div class="flyer-scroll">
+            <!-- Testo descrittivo o biografia -->
+            <p>
+Margo Sanda è una creatrice musicale nata in Italia e con base a Copenaghen, attiva nel panorama dell’art pop sperimentale e dell’improvvisazione libera.
+La sua musica è una creatura viva e mutevole — a metà tra canzone, caos e caverna digitale.
+Intima e imprevedibile, esplora territori interiori attraverso elaborati collage sonori e una profonda ricerca sulla voce. Alternando italiano e inglese, intreccia testi surreali in paesaggi sonori che sfumano i confini tra vulnerabilità e forza.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =======================
+           RIGA INFERIORE (FOOTER DEL FLYER)
+           - Allineata con la cornice.
+           - A sinistra: link alla sezione “artisti”.
+           - A destra: link all’evento corrispondente.
+      ======================= -->
+      <div class="flyer-footer">
+        <div class="footer-left">
+          <a href="../">index artisti</a>
+        </div>
+        <div class="footer-right">
+          <a href="../../eventi/2026/22-04-flyer/">evento</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =======================
+       FOOTER
+       - Iniettato automaticamente da include.js.
+  ======================= -->
+  <div id="footer"></div>
+</body>
+</html>
