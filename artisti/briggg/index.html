@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- =======================
+       STILI GLOBALI
+       - Carica il CSS principale del sito.
+       - Il preload migliora i tempi di caricamento.
+  ======================= -->
+  <link rel="preload" href="../../assets/css/style.css" as="style">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- =======================
+       SCRIPT DI INCLUDE
+       - include.js inietta header e footer comuni.
+       - defer = eseguito dopo il parsing dell’HTML.
+  ======================= -->
+  <script src="../../assets/js/include.js" defer></script>
+
+  <!-- =======================
+       META E TITOLI
+       - Titolo della pagina.
+       - Favicon del sito.
+  ======================= -->
+  <title>Spazio x - Briggg</title>
+  <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preload"
+      href="/assets/fonts/xicons.woff2"
+      as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/assets/css/xicons.css">
+</head>
+
+<body>
+  <!-- =======================
+       HEADER
+       - Viene iniettato automaticamente da include.js.
+       - Contiene menu, logo o link principali.
+  ======================= -->
+  <div id="header"></div>
+
+  <!-- =======================
+       TITOLO DELLA PAGINA
+       - Ogni pagina può avere un titolo personalizzato.
+  ======================= -->
+  <h1 class="page-title">Spazio <b class="xi-logox fa-4x"></b></h1>
+
+  <!-- =======================
+       CONTENUTO PRINCIPALE
+       - Contiene il blocco centrale del layout.
+       - flyer-container centra verticalmente il contenuto.
+  ======================= -->
+  <main class="flyer-container">
+    <div class="flyer-block">
+
+      <!-- =======================
+           RIGA SUPERIORE (HEADER DEL FLYER)
+           - Mostra informazioni tipo nome e azione.
+      ======================= -->
+      <div class="flyer-header">
+        <div class="flyer-date">Briggg</div>
+        <div class="flyer-time"><a target="_blank" href="https://www.youtube.com/live/K26sw8B_2eM">ascolta</a></div>
+      </div>
+
+      <!-- =======================
+           CORNICE TESTO
+           - Struttura identica a quella dei flyer immagine.
+           - Contiene un box scrollabile con il testo.
+      ======================= -->
+      <div class="flyer-image">
+        <div class="flyer-frame">
+          <div class="flyer-scroll">
+            <!-- Testo descrittivo o biografia -->
+            <p>
+Nicolò Briggi, aka Briggg è un artista con base a Venezia. Profondamente influenzato dalla cultura dei Sound System britannici, Briggg ha sviluppato un forte legame con il reggae, il dub e la jungle, che compongono il fulcro dei suoi DJ set. Le sue selezioni hanno trovato spazio in numerosi locali ed eventi, a Venezia e non solo, contribuendo alla diffusione della cultura bass. È curatore e membro attivo di Amareacque, collettivo indipendente con base a Venezia, impegnato nell'organizzazione di eventi DIY e nella promozione della Sound System Culture, anche attraverso le recenti collaborazioni con Bassi Gradassi Sound System. 
+      </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =======================
+           RIGA INFERIORE (FOOTER DEL FLYER)
+           - Allineata con la cornice.
+           - A sinistra: link alla sezione “artisti”.
+           - A destra: link all’evento corrispondente.
+      ======================= -->
+      <div class="flyer-footer">
+        <div class="footer-left">
+          <a href="../">index artisti</a>
+        </div>
+        <div class="footer-right">
+          <a href="../../eventi/2026/07-11-flyer/">evento</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =======================
+       FOOTER
+       - Iniettato automaticamente da include.js.
+       - Contiene contatti e link social.
+  ======================= -->
+  <div id="footer"></div>
+</body>
+</html>
